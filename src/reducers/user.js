@@ -13,7 +13,7 @@ const initialState = {
   loginDialogOpen: false
 };
 
-export default function user(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
     case TRY_LOGIN:
       return { ...state, loginPending: true };
@@ -37,4 +37,4 @@ export default function user(state = initialState, action) {
     default:
       return state;
   }
-}
+};

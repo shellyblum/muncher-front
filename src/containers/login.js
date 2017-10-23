@@ -7,10 +7,10 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import LoginForm from '../components/LoginForm/loginForm';
 import { toggleLoginDialog } from '../actions/user';
-import { messages } from '../helpers/messages';
+import messages from '../helpers/messages';
 
 // looks like we have import with the same name on line 8
-const LoginDialog = ({ toggleLoginDialog }) => {
+const LoginDialog = ({ toggleLoginDialog, loginDialogOpen }) => {
   const actions = [
     <Link to="/signup">
       <FlatButton
@@ -29,7 +29,7 @@ const LoginDialog = ({ toggleLoginDialog }) => {
         title={messages.loginDialogTitle}
         actions={actions}
         modal={false}
-        open={this.props.loginDialogOpen}
+        open={loginDialogOpen}
         onRequestClose={toggleLoginDialog}
       >
         <LoginForm />
@@ -52,7 +52,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 LoginDialog.propTypes = {
-  toggleLoginDialog: PropTypes.func.isRequired
+  toggleLoginDialog: PropTypes.func.isRequired,
+  loginDialogOpen: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginDialog);

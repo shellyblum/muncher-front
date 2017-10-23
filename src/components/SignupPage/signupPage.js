@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import ReusableForm from '../ReusableForm/reusableForm';
 import { loginSignupRequest } from '../../actions/user';
-import { messages } from '../../helpers/messages';
+import messages from '../../helpers/messages';
 
 class SignupPage extends Component {
   constructor(props) {
