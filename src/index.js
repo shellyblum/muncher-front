@@ -1,17 +1,17 @@
+/* eslint no-undef: off */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/App.js';
+import { Provider } from 'react-redux';
+import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
-import { Provider } from 'react-redux'
-// import 'react-datepicker/dist/react-datepicker.css';
-import configureStore from './store.js'
+import configureStore from './store';
 
-let store = configureStore(); 
+const store = configureStore();
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>
-    , document.getElementById('root'));
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();
-
