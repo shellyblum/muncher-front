@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App/App.js';
 import registerServiceWorker from './registerServiceWorker';
+import { Provider } from 'react-redux'
+// import 'react-datepicker/dist/react-datepicker.css';
+import configureStore from './store.js'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+let store = configureStore(); 
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>
+    , document.getElementById('root'));
 registerServiceWorker();
+
