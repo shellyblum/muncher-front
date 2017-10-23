@@ -13,7 +13,10 @@ class LoginForm extends Component {
     }
 
     handleInputChange({ target }) {
-        this.setState({ [target.name]: target.value })
+        this.setState({
+            [target.name]: target.value,
+            [`${target.name}Error`]: ''
+        })
     }
 
     handleLoginRequest() {
