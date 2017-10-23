@@ -16,7 +16,8 @@ const ReusableForm = ({ fields, errors, handleInputChange }) => (
             errorText={errors[`${field.name}Error`]}
             onChange={handleInputChange}
 
-          /> <br />
+          />
+          <br />
         </div>
       )
       )
