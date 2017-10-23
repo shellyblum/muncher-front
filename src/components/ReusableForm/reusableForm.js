@@ -1,5 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
 
 const ReusableForm = ({ fields, errors, handleInputChange }) => (
   <div>
@@ -18,5 +19,11 @@ const ReusableForm = ({ fields, errors, handleInputChange }) => (
     ))}
   </div>
 );
+
+ReusableForm.propTypes = {
+  fields: PropTypes.string.isRequired,
+  errors: PropTypes.string.isRequired,
+  handleInputChange: PropTypes.func.isRequired
+};
 
 export default ReusableForm;

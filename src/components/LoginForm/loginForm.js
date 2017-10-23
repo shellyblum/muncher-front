@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import ReusableForm from '../ReusableForm/reusableForm';
 import { loginSignupRequest } from '../../actions/user';
@@ -56,5 +57,9 @@ class LoginForm extends Component {
     );
   }
 }
+
+LoginForm.propTypes = {
+  dispatch: PropTypes.func.isRequired
+};
 
 export default connect()(LoginForm);
