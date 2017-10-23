@@ -20,9 +20,10 @@ class SignupPage extends Component {
   }
 
   handleInputChange({ target }) {
+    const { inputs, errors } = this.state;
     this.setState({
-      inputs: { ...this.state.inputs, [target.name]: target.value },
-      errors: { ...this.state.errors, [`${target.name}Error`]: '' }
+      inputs: { ...inputs, [target.name]: target.value },
+      errors: { ...errors, [`${target.name}Error`]: '' }
     })
   }
 
@@ -35,14 +36,14 @@ class SignupPage extends Component {
       dispatch(loginSignupRequest('login', { Username, Password }))
     }
     else {
-      const { inputs } = this.state;
-      let errors = {};
+      const { inputs, errors } = this.state;
+      let failedInputs = {};
       for (let key in inputs) {
         if (inputs[key].length === 0) {
           errors[`${key}Error`] = 'This field is required.';
         }
       }
-      this.setState({ errors: { ...this.state.errors, ...errors } })
+      this.setState({ errors: { ...errors, ...failedInputs } })
 
     }
   }
@@ -51,7 +52,7 @@ class SignupPage extends Component {
     const fields = [{ name: 'Username', type: 'text' }, { name: 'Password', type: 'password' }
       , { name: 'Firstname', type: 'text' }, { name: 'Lastname', type: 'text' }];
     return (
-      <div style={{width: '50%', margin: '0 auto', border: '1px solid lightgray', padding: '1em'}}>
+      <div style={{ width: '50%', margin: '0 auto', border: '1px solid lightgray', padding: '1em' }}>
         <h2>Please fill out the form</h2>
         <ReusableForm fields={fields} errors={this.state.errors} handleInputChange={this.handleInputChange} />
         <RaisedButton primary onClick={this.handleLoginRequest} label="Signup" />
