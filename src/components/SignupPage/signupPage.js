@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton';
 import ReusableForm from '../ReusableForm/reusableForm'
 import { loginSignupRequest } from '../../actions/user.js'
+import { messages } from '../../helpers/messages'
 
 class SignupPage extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class SignupPage extends Component {
       let failedInputs = {};
       for (let key in inputs) {
         if (inputs[key].length === 0) {
-          errors[`${key}Error`] = 'This field is required.';
+          errors[`${key}Error`] = messages.requiredField;
         }
       }
       this.setState({ errors: { ...errors, ...failedInputs } })

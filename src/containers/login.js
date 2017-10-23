@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import LoginForm from '../components/LoginForm/loginForm.js'
 import { toggleLoginDialog } from '../actions/user.js'
+import {messages} from '../helpers/messages'
 
 class LoginDialog extends React.Component {
 
@@ -32,7 +33,7 @@ class LoginDialog extends React.Component {
       <div>
         <RaisedButton label="Login" onClick={toggleLoginDialog} />
         <Dialog
-          title="Enter your details"
+          title={messages.loginDialogTitle}
           actions={actions}
           modal={false}
           open={this.props.loginDialogOpen}

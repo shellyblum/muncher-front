@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton';
 import ReusableForm from '../ReusableForm/reusableForm'
 import { loginSignupRequest } from '../../actions/user.js'
+import { messages } from '../../helpers/messages'
 
 class LoginForm extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class LoginForm extends Component {
       this.setState({
         errors: {
           ...this.state.errors,
-          [Username ? 'PasswordError' : 'UsernameError']: 'This field is required.'
+          [Username ? 'PasswordError' : 'UsernameError']: messages.requiredField
         }
       })
     }
