@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LoginDialog from '../../containers/login.js'
-
+import SignupPage from '../SignupPage/signupPage'
 
 class App extends Component {
   render() {
@@ -10,15 +10,13 @@ class App extends Component {
       <Router>
         <MuiThemeProvider>
 
-          <div className="App">
-            <header className="App-header">
-              <h1 className="App-title">Welcome to Muncher</h1>
+          <div >
+            <header >
+              <h1 >Welcome to Muncher</h1>
             </header>
             <LoginDialog />
 
-            {/*<Link to='/login'>Login</Link>
-
-            <Route path="/login" component={Login} />*/}
+            <Route path="/signup" component={SignupPage} />
           </div>
         </MuiThemeProvider>
       </Router>

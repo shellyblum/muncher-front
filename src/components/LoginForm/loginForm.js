@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loginRequest } from '../../actions/user.js'
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import ReusableForm from '../ReusableForm/reusableForm'
+import { loginSignupRequest } from '../../actions/user.js'
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '', usernameError: '', passwordError: '' }
+    this.state = { Username: '', Password: '', errors: { UsernameError: '', PasswordError: '' } }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleLoginRequest = this.handleLoginRequest.bind(this);
   }
@@ -15,41 +15,31 @@ class LoginForm extends Component {
   handleInputChange({ target }) {
     this.setState({
       [target.name]: target.value,
-      [`${target.name}Error`]: ''
+      errors: { ...this.state.errors, [`${target.name}Error`]: '' }
     })
   }
 
   handleLoginRequest() {
     const { dispatch } = this.props;
-    const { username, password } = this.state;
-    if (username && password) {
-      dispatch(loginRequest(username, password))
+    const { Username, Password } = this.state;
+    if (Username && Password) {
+      dispatch(loginSignupRequest('login', { Username, Password }))
     }
     else {
-      this.setState({ [username ? 'passwordError' : 'usernameError']: 'This field is required.' })
+      this.setState({
+        errors: {
+          ...this.state.errors,
+          [Username ? 'PasswordError' : 'UsernameError']: 'This field is required.'
+        }
+      })
     }
   }
 
   render() {
-    const { usernameError, passwordError } = this.state;
+    const fields = [{ name: 'Username', type: 'text' }, { name: 'Password', type: 'password' }];
     return (
-      <div >
-        
-        <TextField
-          name='username'
-          hintText="Username"
-          floatingLabelText="Username"
-          errorText={usernameError}
-          onChange={this.handleInputChange}
-        /><br />
-        <TextField
-          name='password'
-          hintText="Password"
-          floatingLabelText="Password"
-          errorText={passwordError}
-          type='password'
-          onChange={this.handleInputChange}
-        /><br />
+      <div>
+        <ReusableForm fields={fields} errors={this.state.errors} handleInputChange={this.handleInputChange} />
         <RaisedButton primary onClick={this.handleLoginRequest} label="Login" />
       </div>
     );
