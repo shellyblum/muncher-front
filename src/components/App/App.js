@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LoginDialog from '../../containers/login.js'
 
-import './App.css';
 
 class App extends Component {
   render() {

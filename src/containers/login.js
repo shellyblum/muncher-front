@@ -23,7 +23,7 @@ class LoginDialog extends React.Component {
             <div>
                 <RaisedButton label="Login" onClick={toggleLoginDialog} />
                 <Dialog
-                    title="Login"
+                    title="Enter your details"
                     actions={actions}
                     modal={false}
                     open={this.props.loginDialogOpen}
