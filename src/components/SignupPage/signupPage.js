@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import RaisedButton from 'material-ui/RaisedButton';
+// import RaisedButton from 'material-ui/RaisedButton';
 import ReusableForm from '../ReusableForm/reusableForm';
 import { loginSignupRequest } from '../../actions/user';
 import messages from '../../helpers/messages';
@@ -11,20 +11,20 @@ class SignupPage extends Component {
     super(props);
     this.state = {
       inputs: {
-        Username: '',
-        Password: '',
-        Firstname: '',
-        Lastname: ''
+        username: '',
+        password: '',
+        firstname: '',
+        lastname: ''
       },
       errors: {
-        UsernameError: '',
-        PasswordError: '',
-        FirstnameError: '',
-        LastnameError: ''
+        usernameError: '',
+        passwordError: '',
+        firstnameError: '',
+        lastnameError: ''
       }
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleLoginRequest = this.handleLoginRequest.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange({ target }) {
@@ -35,11 +35,11 @@ class SignupPage extends Component {
     });
   }
 
-  handleLoginRequest() {
+  handleSubmit() {
     const { dispatch } = this.props;
-    const { Username, Password, Firstname, Lastname } = this.state.inputs;
-    if (Username && Password && Firstname && Lastname) {
-      dispatch(loginSignupRequest('login', { Username, Password }));
+    const { username, password, firstname, lastname } = this.state.inputs;
+    if (username && password && firstname && lastname) {
+      dispatch(loginSignupRequest('signup', { username, password }));
     } else {
       const { inputs } = this.state;
       const failedInputs = {};
@@ -54,10 +54,10 @@ class SignupPage extends Component {
 
   render() {
     const fields = [
-      { name: 'Username', type: 'text' },
-      { name: 'Password', type: 'password' },
-      { name: 'Firstname', type: 'text' },
-      { name: 'Lastname', type: 'text' }
+      { name: 'username', type: 'text', placeHolder: 'Username' },
+      { name: 'password', type: 'password', placeHolder: 'Password' },
+      { name: 'firstname', type: 'text', placeHolder: 'First Name' },
+      { name: 'lastname', type: 'text', placeHolder: 'Last Name' }
     ];
     return (
       <div
@@ -73,11 +73,8 @@ class SignupPage extends Component {
           fields={fields}
           errors={this.state.errors}
           handleInputChange={this.handleInputChange}
-        />
-        <RaisedButton
-          primary
-          onClick={this.handleLoginRequest}
-          label="Signup"
+          handleSubmit={this.handleSubmit}
+          submitLabel="Signup"
         />
       </div>
     );
