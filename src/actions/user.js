@@ -17,7 +17,7 @@ export const loginFailure = error => ({
 export const toggleLoginDialog = () => ({ type: TOGGLE_LOGIN_DIALOG });
 
 const api = {
-  signup:  '/api/v1/users',
+  signup: '/api/v1/users',
   login: '/api/v1/users/signIn'
 };
 
