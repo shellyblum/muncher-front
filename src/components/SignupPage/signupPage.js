@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import RaisedButton from 'material-ui/RaisedButton';
 import ReusableForm from '../ReusableForm/reusableForm';
 import { loginSignupRequest } from '../../actions/user';
 import messages from '../../helpers/messages';
+import styled from 'styled-components';
+
+const Form = styled.div`
+  width: 50%; 
+  margin: 0 auto;  
+  border: 1px solid lightgray; 
+  padding: 1em; 
+  text-align: center; 
+`
 
 class SignupPage extends Component {
   constructor(props) {
@@ -60,14 +68,7 @@ class SignupPage extends Component {
       { name: 'lastname', type: 'text', placeHolder: 'Last Name' }
     ];
     return (
-      <div
-        style={{
-          width: '50%',
-          margin: '0 auto',
-          border: '1px solid lightgray',
-          padding: '1em'
-        }}
-      >
+      <Form>
         <h2>Please fill out the form</h2>
         <ReusableForm
           fields={fields}
@@ -76,7 +77,7 @@ class SignupPage extends Component {
           handleSubmit={this.handleSubmit}
           submitLabel="Signup"
         />
-      </div>
+      </Form>
     );
   }
 }

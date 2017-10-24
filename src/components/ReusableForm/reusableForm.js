@@ -2,6 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import styled from 'styled-components'; 
+
+const Form = styled.form`
+  width: 50%; 
+  margin: 0 auto; 
+  text-align: center; 
+`
+
 
 const ReusableForm = ({
   fields,
@@ -10,7 +18,7 @@ const ReusableForm = ({
   handleSubmit,
   submitLabel
 }) => (
-  <div>
+  <Form>
     {fields.map(field => (
       <div key={field.name}>
         <TextField
@@ -24,7 +32,7 @@ const ReusableForm = ({
       </div>
     ))}
     <RaisedButton primary onClick={handleSubmit} label={submitLabel} />
-  </div>
+  </Form>
 );
 
 ReusableForm.propTypes = {

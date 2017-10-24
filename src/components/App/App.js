@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { injectGlobal } from 'styled-components';
 import SignupPage from '../SignupPage/signupPage';
@@ -15,9 +15,18 @@ export const global = injectGlobal`
 const App = () => (
   <Router>
     <MuiThemeProvider>
-      <Header />
-
-      <Route path="/signup" component={SignupPage} />
+      <div>
+        <Header />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={() => <h1>Home Page... coming soon..</h1>}
+          />
+          <Route path="/signup" component={SignupPage} />
+          <Route component={() => <h1>Oops.. page not found</h1>} />
+        </Switch>
+      </div>
     </MuiThemeProvider>
   </Router>
 );
