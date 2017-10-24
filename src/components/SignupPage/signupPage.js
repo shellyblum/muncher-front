@@ -13,7 +13,7 @@ const Form = styled.div`
   padding: 1em;
   text-align: center;
 `;
-const SubTitle = styled.div`
+const SubTitle = styled.h2`
   font-size: 20px;
   font-weight: bold;
 `;
