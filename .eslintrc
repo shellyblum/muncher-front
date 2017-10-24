@@ -44,5 +44,8 @@
   "plugins": [
     "prettier",
     "jest"
-  ]
+  ], 
+  "env": {
+    "browser": true
+  }
 }

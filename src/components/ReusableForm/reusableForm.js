@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const ReusableForm = ({ fields, errors, handleInputChange }) => (
   <div>
     {fields.map(field => (
-      <div>
+      <div key={field.name}>
         <TextField
           name={field.name}
           type={field.type}
@@ -21,8 +21,8 @@ const ReusableForm = ({ fields, errors, handleInputChange }) => (
 );
 
 ReusableForm.propTypes = {
-  fields: PropTypes.string.isRequired,
-  errors: PropTypes.string.isRequired,
+  fields: PropTypes.array.isRequired,
+  errors: PropTypes.object.isRequired,
   handleInputChange: PropTypes.func.isRequired
 };
 

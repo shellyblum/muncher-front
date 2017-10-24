@@ -41,16 +41,14 @@ class SignupPage extends Component {
     if (Username && Password && Firstname && Lastname) {
       dispatch(loginSignupRequest('login', { Username, Password }));
     } else {
-      const { inputs, errors } = this.state;
+      const { inputs } = this.state;
       const failedInputs = {};
-
-      // NO FOR LOOPS!
-      for (const key in inputs) {
-        if (inputs[key].length === 0) {
-          errors[`${key}Error`] = messages.requiredField;
-        }
-      }
-      this.setState({ errors: { ...errors, ...failedInputs } });
+      Object.keys(inputs).forEach(key => {
+        failedInputs[`${key}Error`] = !inputs[key].length
+          ? messages.requiredField
+          : '';
+      });
+      this.setState({ errors: failedInputs });
     }
   }
 

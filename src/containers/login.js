@@ -10,27 +10,27 @@ import { toggleLoginDialog } from '../actions/user';
 import messages from '../helpers/messages';
 
 // looks like we have import with the same name on line 8
-const LoginDialog = ({ toggleLoginDialog, loginDialogOpen }) => {
+const LoginDialog = ({ toggleDialog, loginDialogOpen }) => {
   const actions = [
     <Link to="/signup">
       <FlatButton
         label="Not registered? Register now!"
         primary
-        onClick={toggleLoginDialog}
+        onClick={toggleDialog}
       />
     </Link>,
-    <FlatButton label="Cancel" secondary onClick={toggleLoginDialog} />
+    <FlatButton label="Cancel" secondary onClick={toggleDialog} />
   ];
 
   return (
     <div>
-      <RaisedButton label="Login" onClick={toggleLoginDialog} />
+      <RaisedButton label="Login" onClick={toggleDialog} />
       <Dialog
         title={messages.loginDialogTitle}
         actions={actions}
         modal={false}
         open={loginDialogOpen}
-        onRequestClose={toggleLoginDialog}
+        onRequestClose={toggleDialog}
       >
         <LoginForm />
       </Dialog>
@@ -46,14 +46,14 @@ const mapStateToProps = ({ user }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  toggleLoginDialog: () => {
+  toggleDialog: () => {
     dispatch(toggleLoginDialog());
   }
 });
 
 LoginDialog.propTypes = {
-  toggleLoginDialog: PropTypes.func.isRequired,
-  loginDialogOpen: PropTypes.func.isRequired
+  toggleDialog: PropTypes.func.isRequired,
+  loginDialogOpen: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginDialog);
