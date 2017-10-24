@@ -21,8 +21,8 @@ const ReusableForm = ({ fields, errors, handleInputChange }) => (
 );
 
 ReusableForm.propTypes = {
-  fields: PropTypes.array.isRequired,
-  errors: PropTypes.object.isRequired,
+  fields: PropTypes.arrayOf(Object).isRequired,
+  errors: PropTypes.objectOf(String).isRequired,
   handleInputChange: PropTypes.func.isRequired
 };
 
