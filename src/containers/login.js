@@ -9,7 +9,6 @@ import LoginForm from '../components/LoginForm/loginForm';
 import { toggleLoginDialog } from '../actions/user';
 import messages from '../helpers/messages';
 
-// looks like we have import with the same name on line 8
 const LoginDialog = ({ toggleDialog, loginDialogOpen }) => {
   const actions = [
     <Link to="/signup">
@@ -31,6 +30,7 @@ const LoginDialog = ({ toggleDialog, loginDialogOpen }) => {
         modal={false}
         open={loginDialogOpen}
         onRequestClose={toggleDialog}
+        style={{ textAlign: 'center' }}
       >
         <LoginForm />
       </Dialog>
