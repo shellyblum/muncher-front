@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import styled from 'styled-components';
 
-const Form = styled.form`
+const Form = styled.div`
   width: 50%;
   margin: 0 auto;
   text-align: center;

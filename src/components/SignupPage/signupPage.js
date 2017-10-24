@@ -13,6 +13,10 @@ const Form = styled.div`
   padding: 1em;
   text-align: center;
 `;
+const SubTitle = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
 
 class SignupPage extends Component {
   constructor(props) {
@@ -69,7 +73,7 @@ class SignupPage extends Component {
     ];
     return (
       <Form>
-        <h2>Please fill out the form</h2>
+        <SubTitle>Please fill out the form</SubTitle>
         <ReusableForm
           fields={fields}
           errors={this.state.errors}
