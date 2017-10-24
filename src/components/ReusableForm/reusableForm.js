@@ -5,9 +5,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import styled from 'styled-components';
 
 const Form = styled.div`
-  width: 50%;
-  margin: 0 auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ReusableForm = ({
@@ -19,16 +20,14 @@ const ReusableForm = ({
 }) => (
   <Form>
     {fields.map(field => (
-      <div key={field.name}>
-        <TextField
-          name={field.name}
-          type={field.type}
-          floatingLabelText={field.placeHolder}
-          errorText={errors[`${field.name}Error`]}
-          onChange={handleInputChange}
-        />
-        <br />
-      </div>
+      <TextField
+        key={field.name}
+        name={field.name}
+        type={field.type}
+        floatingLabelText={field.placeHolder}
+        errorText={errors[`${field.name}Error`]}
+        onChange={handleInputChange}
+      />
     ))}
     <RaisedButton primary onClick={handleSubmit} label={submitLabel} />
   </Form>

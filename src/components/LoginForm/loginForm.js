@@ -45,15 +45,13 @@ class LoginForm extends Component {
       { name: 'password', type: 'password', placeHolder: 'Password' }
     ];
     return (
-      <div>
-        <ReusableForm
-          fields={fields}
-          errors={this.state.errors}
-          handleInputChange={this.handleInputChange}
-          handleSubmit={this.handleSubmit}
-          submitLabel="Login"
-        />
-      </div>
+      <ReusableForm
+        fields={fields}
+        errors={this.state.errors}
+        handleInputChange={this.handleInputChange}
+        handleSubmit={this.handleSubmit}
+        submitLabel="Login"
+      />
     );
   }
 }
