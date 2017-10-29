@@ -42,11 +42,13 @@ CardWithImage.propTypes = {
 };
 
 CardWithImage.defaultProps = {
-  image: 'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
+  image:
+    'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
   title: 'Title unavailable',
   subtitle: 'Subtitle unavailable',
   text: 'Text unavailable',
-  avatar: 'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
+  avatar:
+    'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
   action: 'Action button'
 };
 
