@@ -2,42 +2,18 @@ import React from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import MenuElements from '../MenuElements/MenuElements'
+
+const drinks = [{price:'50$',description:'lorem ipsum'},{name:'taqila',price:'90$',description:'lorem ipsum'},{name:'water',price:'10$',description:'lorem ipsum'}];
+const Breakfast = [{name:'eggs',price:'89$',description:'lorem ipsum'},{name:'bacon',price:'6$',description:'lorem ipsum'}]
+const mains = [{name:'hamburger',price:'89$',description:'lorem ipsum'},{name:'salmon',price:'25$',description:'lorem ipsum'}]
+const snacks = [{name:'white chocolate',price:'240$',description:'lorem ipsum'},{name:'coconut',price:'49$',description:'lorem ipsum'},{name:'hash cake',price:'499$',description:'lorem ipsum'}]
+
 
 const Body = styled.div`
   width: ${({ w }) => w || '100px'};
 `;
 
-const TabView = styled.div`
-fontSize: 24,
-paddingTop: 16,
-marginBottom: 12,
-fontWeight: 400,
-`;
-
-const MenuContent = styled.div`
-  margin: 35px 18px;
-  font-size: 18px;
-`;
-
-const ItemPrice = styled.div`
-  float: right;
-  font-weight: bold;
-  font-family: arial;
-  margin-top: -22px;
-`;
-
-const ItemDescription = styled.div`
-  font-style: italic;
-  font-size: 0.9em;
-  line-height: 1.5em;
-`;
-
-const ItemName = styled.div`
-  font-family: helvetica;
-  font-weight: bold;
-  border-bottom: 2px dotted rgb(213, 213, 213);
-  margin-top: 1em;
-`;
 
 export default class Menu extends React.Component {
   constructor(props) {
@@ -61,104 +37,22 @@ export default class Menu extends React.Component {
         >
           <Tab label="Drinks" value="a">
             <div>
-              <TabView />
-              <MenuContent>
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-              </MenuContent>
+                <MenuElements items = {drinks}> </MenuElements>
             </div>
           </Tab>
           <Tab label="Breakfast" value="b">
-            <div>
-              <TabView />
-              <MenuContent>
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-              </MenuContent>
+            <div>                    
+              <MenuElements items = {Breakfast}> </MenuElements>
             </div>
           </Tab>
           <Tab label="Mains" value="c">
             <div>
-              <TabView />
-              <MenuContent>
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-              </MenuContent>
+              <MenuElements items = {mains}> </MenuElements>
             </div>
           </Tab>
           <Tab label="Snacks" value="d">
             <div>
-              <TabView />
-              <MenuContent>
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-
-                <ItemName> vodka</ItemName>
-                <ItemPrice>50$ </ItemPrice>
-                <ItemDescription>
-                  lorem ipsum description about the product{' '}
-                </ItemDescription>
-              </MenuContent>
+              <MenuElements items = {snacks}> </MenuElements>
             </div>
           </Tab>
         </Tabs>
