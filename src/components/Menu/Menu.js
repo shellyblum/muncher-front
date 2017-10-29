@@ -20,7 +20,6 @@ const MenuContent = styled.div`
 `;
 
 const ItemPrice = styled.div`
-  
   float: right;
   font-weight: bold;
   font-family: arial;
@@ -62,7 +61,7 @@ export default class Menu extends React.Component {
         >
           <Tab label="Drinks" value="a">
             <div>
-              <TabView></TabView>
+              <TabView />
               <MenuContent>
                 <ItemName> vodka</ItemName>
                 <ItemPrice>50$ </ItemPrice>
@@ -92,7 +91,7 @@ export default class Menu extends React.Component {
           </Tab>
           <Tab label="Breakfast" value="b">
             <div>
-              <TabView></TabView>
+              <TabView />
               <MenuContent>
                 <ItemName> vodka</ItemName>
                 <ItemPrice>50$ </ItemPrice>
@@ -116,7 +115,7 @@ export default class Menu extends React.Component {
           </Tab>
           <Tab label="Mains" value="c">
             <div>
-              <TabView></TabView>
+              <TabView />
               <MenuContent>
                 <ItemName> vodka</ItemName>
                 <ItemPrice>50$ </ItemPrice>
@@ -140,7 +139,7 @@ export default class Menu extends React.Component {
           </Tab>
           <Tab label="Snacks" value="d">
             <div>
-              <TabView></TabView>
+              <TabView />
               <MenuContent>
                 <ItemName> vodka</ItemName>
                 <ItemPrice>50$ </ItemPrice>
