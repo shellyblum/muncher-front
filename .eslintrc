@@ -13,27 +13,20 @@
     "sourceType": "module"
   },
   "rules": {
-    "quotes": [
-      "error",
-      "single"
-    ],
+    "linebreak-style": 0,
+    "quotes": ["error", "single"],
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "jsx-a11y/href-no-hash": "off",
-    "react/jsx-closing-bracket-location":"off",
+    "react/jsx-closing-bracket-location": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "comma-dangle": ["error", "never"],
-    "object-curly-newline":"off",
-    "arrow-parens": [
-      "off"
-    ],
+    "object-curly-newline": "off",
+    "arrow-parens": ["off"],
     "prettier/prettier": [
       "warn",
       {
@@ -41,10 +34,7 @@
       }
     ]
   },
-  "plugins": [
-    "prettier",
-    "jest"
-  ], 
+  "plugins": ["prettier", "jest"],
   "env": {
     "browser": true
   }
