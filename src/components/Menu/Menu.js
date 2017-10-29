@@ -15,11 +15,12 @@ fontWeight: 400,
 `;
 
 const MenuContent = styled.div`
-  margin: 35px 0;
+  margin: 35px 18px;
   font-size: 18px;
 `;
 
 const ItemPrice = styled.div`
+  
   float: right;
   font-weight: bold;
   font-family: arial;
@@ -36,6 +37,7 @@ const ItemName = styled.div`
   font-family: helvetica;
   font-weight: bold;
   border-bottom: 2px dotted rgb(213, 213, 213);
+  margin-top: 1em;
 `;
 
 export default class Menu extends React.Component {
@@ -60,7 +62,7 @@ export default class Menu extends React.Component {
         >
           <Tab label="Drinks" value="a">
             <div>
-              <TabView>Drinks</TabView>
+              <TabView></TabView>
               <MenuContent>
                 <ItemName> vodka</ItemName>
                 <ItemPrice>50$ </ItemPrice>
@@ -90,7 +92,7 @@ export default class Menu extends React.Component {
           </Tab>
           <Tab label="Breakfast" value="b">
             <div>
-              <TabView>Breakfast</TabView>
+              <TabView></TabView>
               <MenuContent>
                 <ItemName> vodka</ItemName>
                 <ItemPrice>50$ </ItemPrice>
@@ -114,7 +116,7 @@ export default class Menu extends React.Component {
           </Tab>
           <Tab label="Mains" value="c">
             <div>
-              <TabView>Mains</TabView>
+              <TabView></TabView>
               <MenuContent>
                 <ItemName> vodka</ItemName>
                 <ItemPrice>50$ </ItemPrice>
@@ -138,7 +140,7 @@ export default class Menu extends React.Component {
           </Tab>
           <Tab label="Snacks" value="d">
             <div>
-              <TabView>Snacks</TabView>
+              <TabView></TabView>
               <MenuContent>
                 <ItemName> vodka</ItemName>
                 <ItemPrice>50$ </ItemPrice>
