@@ -5,6 +5,7 @@ import { injectGlobal } from 'styled-components';
 import SignupPage from '../SignupPage/signupPage';
 import Header from '../Header/header';
 import location from '../../pages/location/location';
+import Home from '../../pages/home/Home';
 
 export const global = injectGlobal`
   body {
@@ -26,6 +27,7 @@ const App = () => (
           />
           <Route path="/signup" component={SignupPage} />
           <Route path="/location" component={location} />
+          <Route path="/home" component={Home} />
           <Route component={() => <h1>Oops.. page not found</h1>} />
         </Switch>
       </div>
