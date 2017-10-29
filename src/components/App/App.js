@@ -4,6 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { injectGlobal } from 'styled-components';
 import SignupPage from '../SignupPage/signupPage';
 import Header from '../Header/header';
+import location from '../../pages/location/location';
 
 export const global = injectGlobal`
   body {
@@ -24,6 +25,7 @@ const App = () => (
             component={() => <h1>Home Page... coming soon..</h1>}
           />
           <Route path="/signup" component={SignupPage} />
+          <Route path="/location" component={location} />
           <Route component={() => <h1>Oops.. page not found</h1>} />
         </Switch>
       </div>
