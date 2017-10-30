@@ -6,8 +6,9 @@ const Main = styled.div`
   background-color: #fbfbfb;
   padding: 1em;
   display: grid;
-  grid-template-areas: 'search search search' 'left header header'
-    'left right right' 'bottomLeft right right';
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 'search search search' 'left right right'
+    'bottomLeft right right' '. right right';
 `;
 
 const Search = styled.div`
@@ -32,65 +33,61 @@ const BottomLeft = styled.div`
   height: 250px;
 `;
 
-const Header = styled.h2`
-  background-color: #fff;
-  padding: 10px 0 5px 10px;
-  border: 1px solid #ddd;
-  width: 100%;
-  grid-area: header;
-`;
-const tilesData = [
-  {
-    img: 'http://lorempicsum.com/futurama/250/250/2',
-    location: 'Breakfast',
-    address: 'jill111'
-  },
-  {
-    img: 'http://lorempicsum.com/futurama/250/250/1',
-    location: 'Tasty burger',
-    address: 'pashminu'
-  },
-  {
-    img: 'http://lorempicsum.com/futurama/250/250/3',
-    location: 'Camera',
-    address: 'Danson67'
-  },
-  {
-    img: 'http://lorempicsum.com/futurama/250/250/4',
-    location: 'Morning',
-    address: 'fancycrave1'
-  },
-  {
-    img: 'http://lorempicsum.com/futurama/250/250/5',
-    location: 'Hats',
-    address: 'Hans'
-  },
-  {
-    img: 'http://lorempicsum.com/futurama/250/250/6',
-    location: 'Honey',
-    address: 'fancycravel'
-  },
-  {
-    img: 'http://lorempicsum.com/futurama/250/250/7',
-    location: 'Vegetables',
-    address: 'jill111'
-  },
-  {
-    img: 'http://lorempicsum.com/futurama/250/250/8',
-    location: 'Water plant',
-    address: 'BkrmadtyaKarki'
-  },
-  {
-    img: 'http://lorempicsum.com/futurama/250/250/9',
-    location: 'Water Some',
-    address: 'BkrmadtyaKarki'
-  },
-  {
-    img: 'http://lorempicsum.com/futurama/250/250/1',
-    location: 'plant Fast',
-    address: 'BkrmadtyaKarki'
-  }
-];
+const data = {
+  gridColumns: 3,
+  gridArea: 'right',
+  cards: [
+    {
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title1',
+      text:
+        'Muncher - Text1: It is a long established fact that a reader will be distracted.',
+      action: 'Action'
+    },
+    {
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title2',
+      text:
+        'Muncher - Text2: It is a long established fact that a reader will be distracted.',
+      action: 'Action'
+    },
+    {
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title3',
+      text:
+        'Muncher - Text3: It is a long established fact that a reader will be distracted.',
+      action: 'Action'
+    },
+    {
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title4',
+      text:
+        'Muncher - Text4: It is a long established fact that a reader will be distracted.',
+      action: 'Action'
+    },
+    {
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title5',
+      text:
+        'Muncher - Text5: It is a long established fact that a reader will be distracted.',
+      action: 'Action'
+    },
+    {
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title6',
+      subtitle: 'Muncher - Subtitle6',
+      text:
+        'Muncher - Text6: It is a long established fact that a reader will be distracted.',
+      action: 'Action'
+    }
+  ]
+};
 
 class HomePage extends Component {
   constructor() {
@@ -104,8 +101,7 @@ class HomePage extends Component {
         <Main>
           <Search gridArea="search" />
           <Left gridArea="left" />
-          <Header>Hello List </Header>
-          <GridListCards gridArea="right" items={tilesData} />
+          <GridListCards {...data} />
           <BottomLeft gridArea="bottomLeft" />
         </Main>
       </div>
