@@ -15,6 +15,12 @@ const MenuElements = ({ items }) => (
 );
 
 MenuElements.propTypes = {
-  items: PropTypes.arrayOf(Object).isRequired
+  items: PropTypes.arrayOf(Object)
+};
+
+MenuElements.defaultProps = {
+  items: [
+    { id: 0, name: 'name', price: 'dollar$', description: 'description' }
+  ]
 };
 export default MenuElements;
