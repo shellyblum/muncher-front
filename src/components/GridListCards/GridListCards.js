@@ -20,7 +20,15 @@ GridListCards.propTypes = {
 GridListCards.defaultProps = {
   gridColumns: 3,
   gridArea: 'right',
-  cards: [{}]
+  cards: [
+    {
+      image:
+        'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
+      title: 'Title not available',
+      text: 'Text not available',
+      action: '🚫'
+    }
+  ]
 };
 
 export default GridListCards;
