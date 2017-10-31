@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginDialog from '../../containers/login';
+import LoginDialog from '../../containers/Login';
 import logo from '../../assets/images/flat-51-128.png';
 import { HeaderStyle, Title } from './Header.styles';
 
