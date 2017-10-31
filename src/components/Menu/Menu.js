@@ -5,29 +5,10 @@ import PropTypes from 'prop-types';
 import MenuElements from '../MenuElements/MenuElements';
 
 const data = {
-  drinks: [
-    { id: 1, name: 'vodka', price: '50$', description: 'lorem ipsum' },
-    { id: 2, name: 'taqila', price: '90$', description: 'lorem ipsum' },
-    { id: 3, name: 'water', price: '10$', description: 'lorem ipsum' }
-  ],
-  Breakfast: [
-    { id: 4, name: 'eggs', price: '89$', description: 'lorem ipsum' },
-    { id: 5, name: 'bacon', price: '6$', description: 'lorem ipsum' }
-  ],
-  mains: [
-    { id: 6, name: 'hamburger', price: '89$', description: 'lorem ipsum' },
-    { id: 7, name: 'salmon', price: '25$', description: 'lorem ipsum' }
-  ],
-  snacks: [
-    {
-      id: 8,
-      name: 'white chocolate',
-      price: '240$',
-      description: 'lorem ipsum'
-    },
-    { id: 9, name: 'coconut', price: '49$', description: 'lorem ipsum' },
-    { id: 10, name: 'hash cake', price: '499$', description: 'lorem ipsum' }
-  ]
+  drinks: [{ id: 1, name: 'vodka', price: '50', currency: '$', description: 'lorem ipsum' }, { id: 2, name: 'taqila', price: '90', currency: '$', description: 'lorem ipsum' }, { id: 3, name: 'water', price: '10', currency: '$', description: 'lorem ipsum' }],
+  Breakfast: [{ id: 4, name: 'eggs', price: '89', currency: '$', description: 'lorem ipsum' }, { id: 5, name: 'bacon', price: '6', currency: '$', description: 'lorem ipsum' }],
+  mains: [{ id: 6, name: 'hamburger', price: '89', currency: '$', description: 'lorem ipsum' }, { id: 7, name: 'salmon', price: '25', currency: '$', description: 'lorem ipsum' }],
+  snacks: [{ id: 8, name: 'white chocolate', price: '240', currency: '$', description: 'lorem ipsum' }, { id: 9, name: 'coconut', price: '49', currency: '$', description: 'lorem ipsum' }, { id: 10, name: 'hash cake', price: '499', currency: '$', description: 'lorem ipsum' }]
 };
 
 const Body = styled.div`
@@ -53,26 +34,13 @@ class Menu extends React.Component {
             });
           }}
         >
-          <Tab label="Drinks" value="drinks">
-            <div>
-              <MenuElements items={data.drinks}>drinks</MenuElements>
-            </div>
-          </Tab>
-          <Tab label="Breakfast" value="breakfast">
-            <div>
-              <MenuElements items={data.Breakfast}>Breakfast</MenuElements>
-            </div>
-          </Tab>
-          <Tab label="Mains" value="mains">
-            <div>
-              <MenuElements items={data.mains}>mains</MenuElements>
-            </div>
-          </Tab>
-          <Tab label="Snacks" value="snacks">
-            <div>
-              <MenuElements items={data.snacks}>snacks</MenuElements>
-            </div>
-          </Tab>
+          {Object.keys(data).map(key => (
+            <Tab key={key} label={key} value={key}>
+              <div>
+                <MenuElements items={data[key]}>{key}</MenuElements>
+              </div>
+            </Tab>
+          ))}
         </Tabs>
       </Body>
     );
