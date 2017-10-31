@@ -7,7 +7,5 @@ Redux
 
 Styled-Components
 
-Axios
-
 Material-UI
 
