@@ -20,7 +20,7 @@ MenuElements.propTypes = {
 
 MenuElements.defaultProps = {
   items: [
-    { id: 0, name: 'name', price: 'dollar$', description: 'description' }
+    { id: 0, name: 'name', price: 'dollar', currency: '$', description: 'description' }
   ]
 };
 export default MenuElements;
