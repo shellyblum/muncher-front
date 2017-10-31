@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import GridListCards from '../../components/GridListCards/GridListCards';
+import FeaturedCard from '../../components/FeaturedCard/FeaturedCard';
 
 const Main = styled.div`
   background-color: #fbfbfb;
   padding: 1em;
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: 'search search search' 'left header header'
-    'left right right' 'bottomLeft right right';
+    'bottomLeft right right' '. right right';
 `;
 
 const Search = styled.div`
@@ -25,7 +27,7 @@ const Left = styled.div`
   grid-area: ${({ gridArea }) => gridArea};
 `;
 
-const BottomLeft = styled.div`
+const BottomLeft = styled(FeaturedCard)`
   border: 1px solid green;
   margin-right: 5px;
   grid-area: ${({ gridArea }) => gridArea};
