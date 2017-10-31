@@ -4,8 +4,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { injectGlobal } from 'styled-components';
 import SignupPage from '../SignupPage/signupPage';
 import HomePage from '../../pages/HomePage/HomePage';
-import Header from '../Header/header';
 import location from '../../pages/location/location';
+import Header from '../Header/Header';
 
 export const global = injectGlobal`
   body {
