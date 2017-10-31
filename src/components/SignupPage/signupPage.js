@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import ReusableForm from '../ReusableForm/reusableForm';
+import ReusableForm from '../ReusableForm/ReusableForm';
 import { loginSignupRequest } from '../../actions/user';
 import messages from '../../helpers/messages';
-
-const Form = styled.div`
-  width: 50%;
-  margin: 0 auto;
-  border: 1px solid lightgray;
-  padding: 1em;
-  text-align: center;
-`;
-const SubTitle = styled.h2`
-  font-size: 20px;
-  font-weight: bold;
-`;
+import { Form, SubTitle } from './SignupPage.styles';
 
 class SignupPage extends Component {
   constructor(props) {
