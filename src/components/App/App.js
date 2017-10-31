@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { injectGlobal } from 'styled-components';
-import SignupPage from '../../components/SignupPage/signupPage';
+import SignupPage from '../../components/SignupPage/SignupPage';
 import HomePage from '../../pages/HomePage/HomePage';
-import location from '../../pages/location/location';
+import location from '../../pages/Location/Location';
 import Header from '../Header/Header';
 
 export const global = injectGlobal`
