@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import LoginForm from '../components/LoginForm/loginForm';
+import LoginForm from '../components/LoginForm/LoginForm';
 import { toggleLoginDialog } from '../actions/user';
 import messages from '../helpers/messages';
 
