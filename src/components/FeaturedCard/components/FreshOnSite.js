@@ -2,27 +2,9 @@ import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import { grey400 } from 'material-ui/styles/colors';
 import Divider from 'material-ui/Divider';
 import PropTypes from 'prop-types';
-
-const iconButtonElement = (
-  <IconButton touch tooltip="more" tooltipPosition="bottom-left">
-    <MoreVertIcon color={grey400} />
-  </IconButton>
-);
-
-const rightIconMenu = (
-  <IconMenu iconButtonElement={iconButtonElement}>
-    <MenuItem>Go to restaurant</MenuItem>
-    <MenuItem>Add to favorites</MenuItem>
-    <MenuItem>Delete</MenuItem>
-  </IconMenu>
-);
+import { rightIconMenu } from './freshOnSite.styled';
 
 const FreshOnSite = ({ data }) => (
   <List>
@@ -45,5 +27,17 @@ const FreshOnSite = ({ data }) => (
 export default FreshOnSite;
 
 FreshOnSite.propTypes = {
-  data: PropTypes.arrayOf(Object).isRequired
+  data: PropTypes.arrayOf(Object)
+};
+
+FreshOnSite.defaultProps = {
+  data: [
+    {
+      image:
+        'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
+      title: 'Title not available',
+      text: 'Text not available',
+      action: '🚫'
+    }
+  ]
 };

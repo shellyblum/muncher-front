@@ -56,7 +56,7 @@ const dataForWidget = [
   }
 ];
 
-const TabsExampleIconText = () => (
+const FeaturedCard = () => (
   <Tabs>
     {dataForWidget.map(item => (
       <Tab
@@ -70,4 +70,4 @@ const TabsExampleIconText = () => (
   </Tabs>
 );
 
-export default TabsExampleIconText;
+export default FeaturedCard;

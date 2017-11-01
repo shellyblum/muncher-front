@@ -2,27 +2,9 @@ import React from 'react';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import Avatar from 'material-ui/Avatar';
-import { grey400 } from 'material-ui/styles/colors';
-import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
 import { List, ListItem } from 'material-ui/List';
 import PropTypes from 'prop-types';
-
-const iconButtonElement = (
-  <IconButton touch tooltip="more" tooltipPosition="bottom-left">
-    <MoreVertIcon color={grey400} />
-  </IconButton>
-);
-
-const rightIconMenu = (
-  <IconMenu iconButtonElement={iconButtonElement}>
-    <MenuItem>Go to restaurant</MenuItem>
-    <MenuItem>Make reservation</MenuItem>
-    <MenuItem>Share</MenuItem>
-  </IconMenu>
-);
+import { rightIconMenu } from './featuredRest.styled';
 
 const FeaturedRest = ({ data }) => (
   <div>
@@ -47,5 +29,17 @@ const FeaturedRest = ({ data }) => (
 export default FeaturedRest;
 
 FeaturedRest.propTypes = {
-  data: PropTypes.arrayOf(Object).isRequired
+  data: PropTypes.arrayOf(Object)
+};
+
+FeaturedRest.defaultProps = {
+  data: [
+    {
+      image:
+        'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
+      title: 'Title not available',
+      text: 'Text not available',
+      action: '🚫'
+    }
+  ]
 };
