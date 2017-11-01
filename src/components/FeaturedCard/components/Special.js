@@ -28,5 +28,9 @@ const Special = ({ data }) => (
 export default Special;
 
 Special.propTypes = {
-  data: PropTypes.objectOf(String).isRequired
+  data: PropTypes.objectOf(String)
+};
+
+Special.defaultProps = {
+  data: ''
 };
