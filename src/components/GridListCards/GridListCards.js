@@ -5,30 +5,29 @@ import Grid from './GridListCards.styled';
 
 import CardWithImage from '../CardWithImage/CardWithImage';
 
-const GridListCards = ({ gridColumns, gridArea, cards }) => (
+const GridListCards = ({ gridColumns, gridArea, filteredCards }) => (
   <Grid gridColumns={gridColumns} gridArea={gridArea}>
-    {cards.map(tile => <CardWithImage {...tile} />)}
+    {filteredCards.map(tile => <CardWithImage {...tile} />)}
   </Grid>
 );
+
+GridListCards.defaultProps = {
+  gridColumns: 3,
+  gridArea: 'right'
+};
 
 GridListCards.propTypes = {
   gridColumns: PropTypes.number,
   gridArea: PropTypes.string,
-  cards: PropTypes.arrayOf(Object)
+  filteredCards: PropTypes.arrayOf(PropTypes.shape({
+    image: PropTypes.string,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    action: PropTypes.string,
+    city: PropTypes.string,
+    orderType: PropTypes.string,
+    lng: PropTypes.number,
+    lat: PropTypes.number
+  })).isRequired
 };
-
-GridListCards.defaultProps = {
-  gridColumns: 3,
-  gridArea: 'right',
-  cards: [
-    {
-      image:
-        'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
-      title: 'Title not available',
-      text: 'Text not available',
-      action: '🚫'
-    }
-  ]
-};
-
 export default GridListCards;
