@@ -7,7 +7,7 @@ import CardWithImage from '../CardWithImage/CardWithImage';
 
 const GridListCards = ({ gridColumns, gridArea, filteredCards }) => (
   <Grid gridColumns={gridColumns} gridArea={gridArea}>
-    {filteredCards.map(tile => <CardWithImage {...tile} />)}
+    {filteredCards.map(tile => <CardWithImage key={tile.title} {...tile} />)}
   </Grid>
 );
 

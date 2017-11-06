@@ -4,37 +4,22 @@ export const FilterStyle = styled.div`
     width:100%;
     display:flex;
     align-items:center;
-
+    justify-content:space-between;
 `;
 
 export const SelectItem = {
-  flex: 1,
+  // flex: 1,
   position: 'relative',
-  top: '-31px',
+  top: '-22px',
   padding: 0
 };
 
 
-export const CityItem = {
-  flex: 1,
-  position: 'relative',
-  top: '-40px',
-  padding: 0
-};
 
-
-export const SliderItem = {
-  flex: 1,
-  position: 'relative',
-  top: '-10px',
-  padding: 0,
-  width: '10em'
-
-};
 
 
 export const ButtonItem = {
-  flex: 1,
+  // flex: 1,
   position: 'relative',
   top: '-10px'
 };

@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
-import PlacesAutocomplete from 'react-places-autocomplete';
 import PropTypes from 'prop-types';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import geolib from 'geolib';
 import FlatButton from 'material-ui/FlatButton';
-import Slider from 'material-ui/Slider';
-import { FilterStyle, SelectItem, SliderItem, CityItem, ButtonItem } from './filter.styled';
+import { FilterStyle, SelectItem, ButtonItem } from './filter.styled';
+import initDistances from './filterHelper';
 
 class Filter extends Component {
   constructor(props) {
     super(props);
-    const faresDist = this.checkFarestPoint() + 1;
-
+    const farestDist = this.checkFarestPoint() + 1;
+    const menuDistances = initDistances(farestDist);
     this.state = {
       orderType: '',
       title: '',
       city: '',
-      distance: faresDist,
-      max: faresDist,
-      min: 0,
-      step: faresDist / 1000
+      distance: farestDist,
+      menuDistances
     };
+
     this.filterOrderType = this.filterOrderType.bind(this);
     this.filterTitle = this.filterTitle.bind(this);
     this.filterCity = this.filterCity.bind(this);
     this.filterDist = this.filterDist.bind(this);
     this.clearFilter = this.clearFilter.bind(this);
   }
+
   getTitleMenuItems() {
     return this.props.cards.map(item => (
       <MenuItem key={item.title} value={item.title} primaryText={item.title} />
@@ -45,7 +44,8 @@ class Filter extends Component {
   }
 
   clearFilter() {
-    this.setState({ orderType: '', title: '', city: '', distance: 250 });
+    const { max } = this.state;
+    this.setState({ orderType: '', title: '', city: '', distance: max });
     this.props.updateFilterCards(this.props.cards);
   }
 
@@ -60,14 +60,19 @@ class Filter extends Component {
     this.props.updateFilterCards(fl);
   }
 
-  filterCity(value) {
+  initCities() {
+    return this.props.cards.map(card => (
+      <MenuItem key={card.city} value={card.city} primaryText={card.city} />
+    ));
+  }
+  filterCity(event, index, value) {
     this.setState({ city: value });
     const fl = this.props.cards.filter(card =>
       card.city.toLowerCase().includes(value.toLowerCase()));
     this.props.updateFilterCards(fl);
   }
 
-  filterDist(event, value) {
+  filterDist(event, index, value) {
     this.setState({ distance: value });
     // Working with W3C Geolocation API
     let dist;
@@ -81,11 +86,8 @@ class Filter extends Component {
   }
 
   render() {
-    const { orderType, title, city, distance, max, min, step } = this.state;
-    const inputProps = {
-      value: city,
-      onChange: this.filterCity
-    };
+    const { orderType, title, city, distance, menuDistances } = this.state;
+
     return (
       <FilterStyle>
         <SelectField
@@ -109,18 +111,27 @@ class Filter extends Component {
           {this.getTitleMenuItems()}
         </SelectField>
 
-        <PlacesAutocomplete style={CityItem} inputProps={inputProps} />
+        <SelectField
+          style={SelectItem}
+          floatingLabelText="location"
+          value={city}
+          onChange={this.filterCity}
+        >
+          <MenuItem value={null} primaryText="" />
+          {this.initCities()}
+        </SelectField>
 
-        <Slider
-          style={SliderItem}
-          min={min}
-          max={max}
-          step={step}
+        <SelectField
+          style={SelectItem}
+          floatingLabelText="distance"
           value={distance}
           onChange={this.filterDist}
-        />
+        >
+          {menuDistances}
+        </SelectField>
+
         <div>
-          <span>{distance}</span>
+          <span>{distance || 0} km</span>
         </div>
 
         <FlatButton style={ButtonItem} label="Clear" primary onClick={this.clearFilter} />
