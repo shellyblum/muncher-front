@@ -14,10 +14,6 @@ export const SelectItem = {
   padding: 0
 };
 
-
-
-
-
 export const ButtonItem = {
   // flex: 1,
   position: 'relative',
