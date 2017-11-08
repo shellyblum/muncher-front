@@ -25,7 +25,7 @@ GridListCards.propTypes = {
     text: PropTypes.string,
     action: PropTypes.string,
     city: PropTypes.string,
-    orderType: PropTypes.string,
+    orderType: PropTypes.arrayOf(PropTypes.string),
     lng: PropTypes.number,
     lat: PropTypes.number
   })).isRequired

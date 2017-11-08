@@ -5,13 +5,13 @@ import MenuItem from 'material-ui/MenuItem';
 import geolib from 'geolib';
 import FlatButton from 'material-ui/FlatButton';
 import { FilterStyle, SelectItem, ButtonItem } from './filter.styled';
-import initDistances from './filterHelper';
+import filterHelper from './filterHelper';
 
 class Filter extends Component {
   constructor(props) {
     super(props);
     const farestDist = this.checkFarestPoint() + 1;
-    const menuDistances = initDistances(farestDist);
+    const menuDistances = filterHelper.initDistances(farestDist);
     this.state = {
       orderType: '',
       title: '',
@@ -51,7 +51,8 @@ class Filter extends Component {
 
   filterOrderType(event, index, value) {
     this.setState({ orderType: value });
-    const fl = this.props.cards.filter(card => card.orderType === value);
+    const fl = this.props.cards.filter(card =>
+      filterHelper.findTypeInArray(card, value));
     this.props.updateFilterCards(fl);
   }
   filterTitle(event, index, value) {
@@ -147,7 +148,7 @@ Filter.propTypes = {
     text: PropTypes.string,
     action: PropTypes.string,
     city: PropTypes.string,
-    orderType: PropTypes.string,
+    orderType: PropTypes.arrayOf(PropTypes.string),
     lng: PropTypes.number,
     lat: PropTypes.number
   })).isRequired,
@@ -157,7 +158,7 @@ Filter.propTypes = {
     text: PropTypes.string,
     action: PropTypes.string,
     city: PropTypes.string,
-    orderType: PropTypes.string,
+    orderType: PropTypes.arrayOf(PropTypes.string),
     lng: PropTypes.number,
     lat: PropTypes.number
   })).isRequired,

@@ -14,4 +14,8 @@ function initDistances(farestDist) {
   return distItems;
 }
 
-export default initDistances;
+function findTypeInArray(card, value) {
+  return card.orderType.find(type => type === value);
+}
+
+export default { initDistances, findTypeInArray };
