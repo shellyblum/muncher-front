@@ -4,13 +4,13 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import geolib from 'geolib';
 import FlatButton from 'material-ui/FlatButton';
-import { FilterStyle, SelectItem, ButtonItem } from './filter.styled';
+import { FilterStyle, SelectItem, ButtonItem, DistanceItem } from './filter.styled';
 import filterHelper from './filterHelper';
 
 class Filter extends Component {
   constructor(props) {
     super(props);
-    const farestDist = this.checkFarestPoint() + 1;
+    const farestDist = this.checkFarthestPoint() + 1;
     const menuDistances = filterHelper.initDistances(farestDist);
     this.state = {
       orderType: '',
@@ -32,14 +32,15 @@ class Filter extends Component {
       <MenuItem key={item.title} value={item.title} primaryText={item.title} />
     ));
   }
-  checkFarestPoint() {
+  checkFarthestPoint() {
+    const km = 1000;
     const currLocation = { latitude: 34.518611, longitude: 34.408056 };
     let dist;
     return (
       this.props.filteredCards.reduce((maxDist, card) => {
         dist = geolib.getDistance(currLocation, { latitude: card.lng, longitude: card.lat });
         return Math.max(dist, maxDist);
-      }, 0) / 1000
+      }, 0) / km
     );
   }
 
@@ -49,15 +50,14 @@ class Filter extends Component {
     this.props.updateFilterCards(this.props.cards);
   }
 
-  filterOrderType(event, index, value) {
-    this.setState({ orderType: value });
-    const fl = this.props.cards.filter(card =>
-      filterHelper.findTypeInArray(card, value));
+  filterOrderType(event, index, orderType) {
+    this.setState({ orderType });
+    const fl = this.props.cards.filter(card => filterHelper.findTypeInArray(card, orderType));
     this.props.updateFilterCards(fl);
   }
-  filterTitle(event, index, value) {
-    this.setState({ title: value });
-    const fl = this.props.cards.filter(card => card.title === value);
+  filterTitle(event, index, title) {
+    this.setState({ title });
+    const fl = this.props.cards.filter(card => card.title === title);
     this.props.updateFilterCards(fl);
   }
 
@@ -73,15 +73,15 @@ class Filter extends Component {
     this.props.updateFilterCards(fl);
   }
 
-  filterDist(event, index, value) {
-    this.setState({ distance: value });
+  filterDist(event, index, distance) {
+    this.setState({ distance });
     // Working with W3C Geolocation API
     let dist;
     const currLocation = { latitude: 34.518611, longitude: 34.408056 };
     const fl = this.props.cards.filter(card => {
       dist = geolib.getDistance(currLocation, { latitude: card.lng, longitude: card.lat });
       dist /= 1000;
-      return dist < value;
+      return dist < distance;
     });
     this.props.updateFilterCards(fl);
   }
@@ -131,9 +131,7 @@ class Filter extends Component {
           {menuDistances}
         </SelectField>
 
-        <div>
-          <span>{distance || 0} km</span>
-        </div>
+        <DistanceItem>{distance || 0} km</DistanceItem>
 
         <FlatButton style={ButtonItem} label="Clear" primary onClick={this.clearFilter} />
       </FilterStyle>
