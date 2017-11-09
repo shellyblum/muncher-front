@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { FilterStyle, SelectItem, ButtonItem, DistanceItem } from './filter.styled';
 import filterHelper from './filterHelper';
 
+const KM = 1000;
 class Filter extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +35,6 @@ class Filter extends Component {
   }
 
   checkFarthestPoint() {
-    const KM = 1000;
     const currLocation = { latitude: 34.518611, longitude: 34.408056 };
     let dist;
     return (
@@ -83,7 +83,7 @@ class Filter extends Component {
     const currLocation = { latitude: 34.518611, longitude: 34.408056 };
     const fl = this.props.cards.filter(card => {
       dist = geolib.getDistance(currLocation, { latitude: card.lng, longitude: card.lat });
-      dist /= 1000;
+      dist /= KM;
       return dist < distance;
     });
     this.props.updateFilterCards(fl);
