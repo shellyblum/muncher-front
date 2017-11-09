@@ -10,7 +10,7 @@ import filterHelper from './filterHelper';
 class Filter extends Component {
   constructor(props) {
     super(props);
-    const farthestDistance = this.checkFarthestPoint() + 1;
+    const farthestDistance = this.checkFarthestPoint();
     const menuDistances = filterHelper.initDistances(farthestDistance);
     this.state = {
       orderType: '',

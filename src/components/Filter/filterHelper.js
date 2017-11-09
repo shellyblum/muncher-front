@@ -2,17 +2,16 @@ import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 
 function initDistances(farthestDistance) {
-  const distItems = [];
-  const section = farthestDistance / 5;
-  let value;
-  let index = 0;
-  const tempArr = Array(5).fill(1);
-  tempArr.forEach(() => {
-    value = parseInt(section * index, 10);
-    distItems.push(<MenuItem key={index} value={value} primaryText={value} />);
-    index += 1;
-  });
-  return distItems;
+  const MENU_ITEMS = 9;
+  const START_FROM = 1;
+  return Array(MENU_ITEMS)
+    .fill(1)
+    .map((item, index) =>  (
+      <MenuItem
+        key={parseInt((farthestDistance / MENU_ITEMS) * (index + START_FROM), 10)}
+        value={parseInt((farthestDistance / MENU_ITEMS) * (index + START_FROM), 10)}
+        primaryText={parseInt((farthestDistance / MENU_ITEMS) * (index + START_FROM), 10)}
+      />));
 }
 
 function findTypeInArray(card, cardType) {
