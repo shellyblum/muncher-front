@@ -10,13 +10,13 @@ import filterHelper from './filterHelper';
 class Filter extends Component {
   constructor(props) {
     super(props);
-    const farestDist = this.checkFarthestPoint() + 1;
-    const menuDistances = filterHelper.initDistances(farestDist);
+    const farthestDistance = this.checkFarthestPoint() + 1;
+    const menuDistances = filterHelper.initDistances(farthestDistance);
     this.state = {
       orderType: '',
       title: '',
       city: '',
-      distance: farestDist,
+      distance: farthestDistance,
       menuDistances
     };
 
@@ -33,14 +33,14 @@ class Filter extends Component {
     ));
   }
   checkFarthestPoint() {
-    const km = 1000;
+    const KM = 1000;
     const currLocation = { latitude: 34.518611, longitude: 34.408056 };
     let dist;
     return (
       this.props.filteredCards.reduce((maxDist, card) => {
         dist = geolib.getDistance(currLocation, { latitude: card.lng, longitude: card.lat });
         return Math.max(dist, maxDist);
-      }, 0) / km
+      }, 0) / KM
     );
   }
 
@@ -131,7 +131,7 @@ class Filter extends Component {
           {menuDistances}
         </SelectField>
 
-        <DistanceItem>{distance || 0} km</DistanceItem>
+        <DistanceItem>{distance || 0} KM</DistanceItem>
 
         <FlatButton style={ButtonItem} label="Clear" primary onClick={this.clearFilter} />
       </FilterStyle>
