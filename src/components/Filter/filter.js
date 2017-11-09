@@ -32,6 +32,7 @@ class Filter extends Component {
       <MenuItem key={item.title} value={item.title} primaryText={item.title} />
     ));
   }
+
   checkFarthestPoint() {
     const KM = 1000;
     const currLocation = { latitude: 34.518611, longitude: 34.408056 };
@@ -55,6 +56,7 @@ class Filter extends Component {
     const fl = this.props.cards.filter(card => filterHelper.findTypeInArray(card, orderType));
     this.props.updateFilterCards(fl);
   }
+
   filterTitle(event, index, title) {
     this.setState({ title });
     const fl = this.props.cards.filter(card => card.title === title);
@@ -66,10 +68,11 @@ class Filter extends Component {
       <MenuItem key={card.city} value={card.city} primaryText={card.city} />
     ));
   }
-  filterCity(event, index, value) {
-    this.setState({ city: value });
+
+  filterCity(event, index, city) {
+    this.setState({ city });
     const fl = this.props.cards.filter(card =>
-      card.city.toLowerCase().includes(value.toLowerCase()));
+      card.city.toLowerCase().includes(city.toLowerCase()));
     this.props.updateFilterCards(fl);
   }
 
