@@ -6,7 +6,7 @@ function initDistances(farthestDistance) {
   const START_FROM = 1;
   return Array(MENU_ITEMS)
     .fill(1)
-    .map((item, index) =>  (
+    .map((item, index) => (
       <MenuItem
         key={parseInt((farthestDistance / MENU_ITEMS) * (index + START_FROM), 10)}
         value={parseInt((farthestDistance / MENU_ITEMS) * (index + START_FROM), 10)}
