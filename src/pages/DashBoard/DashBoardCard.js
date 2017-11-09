@@ -14,7 +14,6 @@ const Card = styled.div`
   border-left: 5px solid ${({ color }) => color};
 `;
 const DashBoardCard = props => {
-  // console.log(props.children);
   const { gridArea, color } = props;
   return (
     <Card gridArea={gridArea} color={color}>
