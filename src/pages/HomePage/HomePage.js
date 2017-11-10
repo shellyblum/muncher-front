@@ -17,14 +17,18 @@ class HomePage extends Component {
   }
 
   onMarkerClick(cardId) {
-    // this.setState({ 's' });
     this.selectCard(cardId);
   }
 
-  selectCard(isSelected) {
-    const { filteredCards } = this.state;
-    const index = filteredCards.findIndex(card => card.id === isSelected);
-    filteredCards[index].selected = filteredCards[index].selected ? '' : '1px solid black';
+  selectCard(isSelected, borderType = '1px solid black') {
+    let { filteredCards } = this.state;
+    filteredCards = filteredCards.map(card => {
+      if (card.id === isSelected) {
+        const selected = card.selected ? '' : borderType;
+        return { ...card, selected };
+      }
+      return card;
+    });
     this.setState({ filteredCards });
   }
 
