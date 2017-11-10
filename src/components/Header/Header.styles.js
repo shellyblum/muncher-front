@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-
 export const HeaderStyle = styled.header`
-    display: flex;
-    flex-direction:column;
-    align-items: center;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
 
   @media (min-width: 1025px) {
     flex-direction: row;
@@ -19,7 +18,7 @@ export const Title = styled.h1`
 `;
 
 export const NavItem = styled.li`
-padding: 0 1em;
+  padding: 0 1em;
 `;
 
 export const Nav = styled.ul`
