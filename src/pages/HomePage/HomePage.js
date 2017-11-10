@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import GridListCards from '../../components/GridListCards/GridListCards';
-import { Main, Search, Left, BottomLeft } from './HomePage.styles';
+import { Main, Search, Left } from './HomePage.styles';
 import data from './data';
 import MapWithMarkers from '../../components/Maps/MapWithMarkers';
+import Filter from '../../components/Filter/filter';
+import BottomLeft from '../../components/FeaturedCard/FeaturedCard';
 
 class HomePage extends Component {
   constructor() {
+
+    const filteredCards = data.cards;
+    const { cards } = data;
+    this.state = { cards, filteredCards };
+    this.updateFilterCards = this.updateFilterCards.bind(this);
+
     super();
     this.state = { height: 0, isSelected: 1 };
     this.onMarkerClick = this.onMarkerClick.bind(this);
-    // this.toggleYourSelf=this.toggleYourSelf.bind(this);
   }
 
-  // componentWillMount() {
-  //   this.setState({ data });
-  // }
+
 
   onMarkerClick(cardId) {
     this.setState({ cardId });
@@ -30,9 +35,13 @@ class HomePage extends Component {
   applyStyle(id) {
     if (this.state.isSelected === id);
   }
+  updateFilterCards(fl) {
+    this.setState({ filteredCards: fl });
+  }
 
   render() {
     const { cardId } = this.state;
+    const { filteredCards, cards } = this.state;
     console.log(data);
     return (
       <div>
@@ -53,11 +62,11 @@ class HomePage extends Component {
             cardId={cardId}
             {...data}
           />
-          <BottomLeft gridArea="bottomLeft">Title component here</BottomLeft>
-        </Main>
+          </Main>
       </div>
-    );
+    )
   }
+
 }
 
 export default HomePage;

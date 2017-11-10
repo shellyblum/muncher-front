@@ -10,9 +10,9 @@ export default {
       text: 'Muncher - Text1: It is a long established fact that a reader will be distracted.',
       action: 'Call now',
       city: 'DSW Designer Shoe Warehouse, South State Street, Chicago, IL, United States',
-      orderType: 'takeOut',
-      lng: 32.794044,
-      lat: 34.989571
+      orderType: ['takeOut'],
+      lng: 34.443432,
+      lat: 34.4324323
     },
     {
       id: 1,
@@ -22,9 +22,9 @@ export default {
       text: 'Muncher - Text2: It is a long established fact that a reader will be distracted.',
       action: 'Book a seat',
       city: 'paris',
-      orderType: 'takeOut',
-      lng: 32.321457,
-      lat: 34.853195
+      orderType: ['takeOut'],
+      lng: 34.23423323,
+      lat: 34.32432432
     },
     {
       id: 2,
@@ -34,7 +34,7 @@ export default {
       text: 'Muncher - Text3: It is a long established fact that a reader will be distracted.',
       action: 'Book a seat',
       city: 'guatamala',
-      orderType: 'sit',
+      orderType: ['sit'],
       lng: 34.434343222,
       lat: 34.9999993
     },
@@ -46,7 +46,7 @@ export default {
       text: 'Muncher - Text4: It is a long established fact that a reader will be distracted.',
       action: 'Book a seat',
       city: 'israel',
-      orderType: 'takeOut',
+      orderType: ['takeOut'],
       lng: 34.333333,
       lat: 34.432432
     },
@@ -58,9 +58,9 @@ export default {
       text: 'Muncher - Text5: It is a long established fact that a reader will be distracted.',
       action: 'Call now',
       city: 'london',
-      orderType: 'sit',
-      lng: 32.105333,
-      lat: 34.855469
+      orderType: ['sit'],
+      lng: 34.6546565,
+      lat: 34.432432
     },
     {
       id: 5,
@@ -70,33 +70,9 @@ export default {
       text: 'Muncher - Text6: It is a long established fact that a reader will be distracted.',
       action: 'Book a seat',
       city: 'uganda',
-      orderType: 'takeOut',
-      lng: 32.109333,
-      lat: 34.855499
-    },
-    {
-      id: 6,
-      image:
-        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
-      title: 'Muncher - Title7',
-      text: 'Muncher - Text7: It is a long established fact that a reader will be distracted.',
-      action: 'Book a seat',
-      city: 'uganda',
-      orderType: 'takeOut',
-      lng: 32.109333,
-      lat: 34.855499
-    },
-    {
-      id: 7,
-      image:
-        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
-      title: 'Muncher - Title8',
-      text: 'Muncher - Text8: It is a long established fact that a reader will be distracted.',
-      action: 'Book a seat',
-      city: 'uganda',
-      orderType: 'takeOut',
-      lng: 32.109333,
-      lat: 34.855499
+      orderType: ['takeOut'],
+      lng: 34.5765765,
+      lat: 34.465465
     }
   ]
 };
