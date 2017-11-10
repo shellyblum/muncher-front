@@ -8,14 +8,12 @@ import BottomLeft from '../../components/FeaturedCard/FeaturedCard';
 
 class HomePage extends Component {
   constructor() {
+    super();
 
     const filteredCards = data.cards;
     const { cards } = data;
     this.state = { cards, filteredCards };
     this.updateFilterCards = this.updateFilterCards.bind(this);
-
-    super();
-    this.state = { height: 0, isSelected: 1 };
     this.onMarkerClick = this.onMarkerClick.bind(this);
   }
 
@@ -56,12 +54,7 @@ class HomePage extends Component {
               lng={32}
             />
           </Left>
-          <GridListCards
-            toggleYourSelf={this.toggleYourSelf}
-            height={this.state.height}
-            cardId={cardId}
-            {...data}
-          />
+          <GridListCards filteredCards={filteredCards} {...data} />
           </Main>
       </div>
     )
