@@ -33,12 +33,12 @@ const Header = () => (
           href="https://github.com/Alaev/muncher-front"
           target="_blank"
           secondary
-          style={{ fontSize: '30px'}}
+          style={{ fontSize: '30px' }}
         >
           <i
             className="fa fa-github"
             aria-hidden="true"
-            style={{color: 'white'}}
+            style={{ color: 'white' }}
           />
         </RaisedButton>
       </NavItem>
