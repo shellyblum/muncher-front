@@ -18,7 +18,8 @@ class HomePage extends Component {
   }
 
   onMarkerClick(cardId) {
-    this.setState({ cardId });
+    // this.setState({ 's' });
+    this.selectCard(cardId);
   }
 
   selectCard(isSelected) {
