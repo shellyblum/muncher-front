@@ -11,7 +11,7 @@ class HomePage extends Component {
     super();
     const filteredCards = data.cards;
     const { cards } = data;
-    this.state = { cards, filteredCards, toggleCTADialog: false };
+    this.state = { cards, filteredCards, toggleCTADialog: false, selectedRest: '' };
     this.updateFilterCards = this.updateFilterCards.bind(this);
     this.toggleCTADialog = this.toggleCTADialog.bind(this);
   }
@@ -21,9 +21,14 @@ class HomePage extends Component {
   }
 
   toggleCTADialog(restId) {
-    console.log(restId);
     const previosState = this.state.toggleCTADialog;
     this.setState({ toggleCTADialog: !previosState });
+    this.findRestById(restId);
+  }
+
+  findRestById(restId) {
+    const selectedRest = this.state.filteredCards.find(rest => rest.id === restId);
+    this.setState({ selectedRest });
   }
 
   render() {
@@ -44,7 +49,11 @@ class HomePage extends Component {
             {...data}
             toggleCTADialog={this.toggleCTADialog}
           />
-          <CallToActionDialog open={this.state.toggleCTADialog} />
+          <CallToActionDialog
+            selectedRest={this.state.selectedRest}
+            open={this.state.toggleCTADialog}
+            toggleCTADialog={this.toggleCTADialog}
+          />
 
           <BottomLeft gridArea="bottomLeft">Title component here</BottomLeft>
         </Main>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardActions, CardMedia, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import { red100 } from 'material-ui/styles/colors';
+import { red100, deepPurple100 } from 'material-ui/styles/colors';
 
 import {
   HoverEffect,
@@ -20,7 +20,13 @@ const CardWithImage = ({ image, title, text, action, id, toggleCTADialog }) => (
       </CardMedia>
       <CardText>{text}</CardText>
       <CardActions style={styleFlatButton}>
-        <FlatButton primary hoverColor={red100} label={action} onClick={toggleCTADialog} />
+        <FlatButton
+          primary
+          hoverColor={red100}
+          label={action}
+          onClick={() => toggleCTADialog(id)}
+        />
+        <FlatButton primary hoverColor={deepPurple100} label="Map" />
       </CardActions>
     </Card>
   </HoverEffect>
