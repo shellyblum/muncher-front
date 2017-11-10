@@ -11,7 +11,7 @@ import {
   styleCard
 } from '../CardWithImage/CardWithImage.styled';
 
-const CardWithImage = ({ image, title, text, action }) => (
+const CardWithImage = ({ image, title, text, action, toggleCTADialog }) => (
   <HoverEffect>
     <Card style={styleCard}>
       <CardText style={styleCardText}>{title}</CardText>
@@ -20,7 +20,8 @@ const CardWithImage = ({ image, title, text, action }) => (
       </CardMedia>
       <CardText>{text}</CardText>
       <CardActions style={styleFlatButton}>
-        <FlatButton primary hoverColor={red100} label={action} />
+        {/* <CallToActionDialog label={action} toggleCTADialog={toggleCTADialog} /> */}
+        {<FlatButton primary hoverColor={red100} label={action} onClick={toggleCTADialog} />}
       </CardActions>
     </Card>
   </HoverEffect>
@@ -34,8 +35,7 @@ CardWithImage.propTypes = {
 };
 
 CardWithImage.defaultProps = {
-  image:
-    'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
+  image: 'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
   title: 'Title unavailable',
   text: 'Text unavailable',
   action: 'Action button'

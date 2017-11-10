@@ -5,9 +5,11 @@ import Grid from './GridListCards.styled';
 
 import CardWithImage from '../CardWithImage/CardWithImage';
 
-const GridListCards = ({ gridColumns, gridArea, filteredCards }) => (
+const GridListCards = ({ gridColumns, gridArea, filteredCards, toggleCTADialog }) => (
   <Grid gridColumns={gridColumns} gridArea={gridArea}>
-    {filteredCards.map(tile => <CardWithImage key={tile.title} {...tile} />)}
+    {filteredCards.map(tile => (
+      <CardWithImage key={tile.title} {...tile} toggleCTADialog={toggleCTADialog} />
+    ))}
   </Grid>
 );
 
