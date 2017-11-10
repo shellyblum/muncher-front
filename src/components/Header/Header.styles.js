@@ -28,7 +28,7 @@ export const Nav = styled.ul`
   margin: 0;
   padding: 0;
 
-@media (min-width: 1025px) {
-  flex-direction: row;
-}
+  @media (min-width: 1025px) {
+    flex-direction: row;
+  }
 `;
