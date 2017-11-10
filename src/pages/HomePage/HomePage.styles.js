@@ -17,7 +17,6 @@ export const Search = styled.div`
 `;
 
 export const Left = styled.div`
-  border: 1px solid red;
   height: 450px;
   margin-bottom: 5px;
   margin-right: 5px;
