@@ -17,19 +17,14 @@ class HomePage extends Component {
     this.onMarkerClick = this.onMarkerClick.bind(this);
   }
 
-
-
   onMarkerClick(cardId) {
     this.setState({ cardId });
-  }
-
-  updateHeight(height) {
-    this.setState({ height });
   }
 
   selectCard(isSelected) {
     this.setState({ isSelected });
   }
+
   applyStyle(id) {
     if (this.state.isSelected === id);
   }
@@ -38,13 +33,17 @@ class HomePage extends Component {
   }
 
   render() {
-    const { cardId } = this.state;
     const { filteredCards, cards } = this.state;
-    console.log(data);
     return (
       <div>
         <Main>
-          <Search gridArea="search">Search will be here</Search>
+          <Search gridArea="search">
+            <Filter
+              cards={cards}
+              filteredCards={filteredCards}
+              updateFilterCards={this.updateFilterCards}
+            />
+          </Search>
           <Left gridArea="left">
             <MapWithMarkers
               onMarkerClick={this.onMarkerClick}
@@ -55,11 +54,11 @@ class HomePage extends Component {
             />
           </Left>
           <GridListCards filteredCards={filteredCards} {...data} />
-          </Main>
+          <BottomLeft gridArea="bottomLeft">Title component here</BottomLeft>
+        </Main>
       </div>
-    )
+    );
   }
-
 }
 
 export default HomePage;
