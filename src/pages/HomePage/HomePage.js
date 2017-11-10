@@ -10,9 +10,8 @@ class HomePage extends Component {
   constructor() {
     super();
 
-    const filteredCards = data.cards;
     const { cards } = data;
-    this.state = { cards, filteredCards };
+    this.state = { cards, filteredCards: cards };
     this.updateFilterCards = this.updateFilterCards.bind(this);
     this.onMarkerClick = this.onMarkerClick.bind(this);
   }
@@ -23,14 +22,18 @@ class HomePage extends Component {
   }
 
   selectCard(isSelected) {
-    this.setState({ isSelected });
+    const { filteredCards } = this.state;
+    const index = filteredCards.findIndex(card => card.id === isSelected);
+    filteredCards[index].selected = filteredCards[index].selected ? '' : '1px solid black';
+    this.setState({ filteredCards });
   }
 
   applyStyle(id) {
     if (this.state.isSelected === id);
   }
-  updateFilterCards(fl) {
-    this.setState({ filteredCards: fl });
+
+  updateFilterCards(filteredCards) {
+    this.setState({ filteredCards });
   }
 
   render() {
@@ -54,7 +57,7 @@ class HomePage extends Component {
               lng={32}
             />
           </Left>
-          <GridListCards filteredCards={filteredCards} {...data} />
+          <GridListCards filteredCards={filteredCards} />
           <BottomLeft gridArea="bottomLeft">Title component here</BottomLeft>
         </Main>
       </div>

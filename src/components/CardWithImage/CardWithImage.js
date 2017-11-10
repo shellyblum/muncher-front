@@ -10,8 +10,8 @@ import {
   styleCard
 } from '../CardWithImage/CardWithImage.styled';
 
-const CardWithImage = ({ id, image, title, text, action, lat, lng }) => (
-  <HoverEffect>
+const CardWithImage = ({ id, image, title, text, action, lat, lng, selected }) => (
+  <HoverEffect selected={selected}>
     <Card style={styleCard}>
       <CardText style={styleCardText}>{title}</CardText>
       <CardMedia>
@@ -35,14 +35,16 @@ CardWithImage.propTypes = {
   text: PropTypes.string,
   action: PropTypes.string,
   lat: PropTypes.number.isRequired,
-  lng: PropTypes.number.isRequired
+  lng: PropTypes.number.isRequired,
+  selected: PropTypes.string
 };
 
 CardWithImage.defaultProps = {
   image: 'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
   title: 'Title unavailable',
   text: 'Text unavailable',
-  action: 'Action button'
+  action: 'Action button',
+  selected: ''
 };
 
 export default CardWithImage;
