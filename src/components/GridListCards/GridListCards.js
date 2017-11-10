@@ -13,14 +13,10 @@ const GridListCards = ({ gridColumns, gridArea, filteredCards, toggleCTADialog }
   </Grid>
 );
 
-GridListCards.defaultProps = {
-  gridColumns: 3,
-  gridArea: 'right'
-};
-
 GridListCards.propTypes = {
   gridColumns: PropTypes.number,
   gridArea: PropTypes.string,
+  toggleCTADialog: PropTypes.func,
   filteredCards: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string,
     title: PropTypes.string,
@@ -32,4 +28,11 @@ GridListCards.propTypes = {
     lat: PropTypes.number
   })).isRequired
 };
+
+GridListCards.defaultProps = {
+  gridColumns: 3,
+  gridArea: 'right',
+  toggleCTADialog: () => null
+};
+
 export default GridListCards;

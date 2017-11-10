@@ -20,11 +20,10 @@ class HomePage extends Component {
     this.setState({ filteredCards: fl });
   }
 
-  toggleCTADialog() {
+  toggleCTADialog(restId) {
+    console.log(restId);
     const previosState = this.state.toggleCTADialog;
     this.setState({ toggleCTADialog: !previosState });
-
-    console.log(this.state.toggleCTADialog);
   }
 
   render() {
