@@ -7,10 +7,16 @@ import { HeaderStyle, Title, Nav, NavItem } from './Header.styles';
 
 const Header = () => (
   <HeaderStyle>
-    <img src={logo} style={{ width: '50px' }} alt="logo" />
-    <Link to="/" style={{ textDecoration: 'none' }}>
-      <Title>Muncher</Title>
-    </Link>
+    <Nav>
+      <NavItem>
+        <img src={logo} style={{ width: '50px' }} alt="logo" />
+      </NavItem>
+      <NavItem>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Title>Muncher</Title>
+        </Link>
+      </NavItem>
+    </Nav>
     <Nav>
       <NavItem>
         <LoginDialog />
