@@ -5,20 +5,18 @@ import Grid from './GridListCards.styled';
 
 import CardWithImage from '../CardWithImage/CardWithImage';
 
-const GridListCards = ({ gridColumns, gridArea, filteredCards }) => (
+const GridListCards = ({ gridColumns, gridArea, filteredCards, toggleCTADialog }) => (
   <Grid gridColumns={gridColumns} gridArea={gridArea}>
-    {filteredCards.map(tile => <CardWithImage key={tile.title} {...tile} />)}
+    {filteredCards.map(tile => (
+      <CardWithImage key={tile.title} {...tile} toggleCTADialog={toggleCTADialog} />
+    ))}
   </Grid>
 );
-
-GridListCards.defaultProps = {
-  gridColumns: 3,
-  gridArea: 'right'
-};
 
 GridListCards.propTypes = {
   gridColumns: PropTypes.number,
   gridArea: PropTypes.string,
+  toggleCTADialog: PropTypes.func,
   filteredCards: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string,
     title: PropTypes.string,
@@ -30,4 +28,11 @@ GridListCards.propTypes = {
     lat: PropTypes.number
   })).isRequired
 };
+
+GridListCards.defaultProps = {
+  gridColumns: 3,
+  gridArea: 'right',
+  toggleCTADialog: () => null
+};
+
 export default GridListCards;

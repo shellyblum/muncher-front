@@ -1,9 +1,8 @@
 import React from 'react';
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import PropTypes from 'prop-types';
-
-const { compose, withProps, withHandlers } = require('recompose');
-const { withScriptjs, withGoogleMap, GoogleMap, Marker } = require('react-google-maps');
+import { compose, withProps, withHandlers } from 'recompose';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 const MapWithAMarkerClusterer = compose(
   withProps({
@@ -26,10 +25,7 @@ const MapWithAMarkerClusterer = compose(
     >
       {props.markers.map(marker => (
         <Marker
-          onClick={() => {
-            window.scrollTo(0, 150);
-            props.onMarkerClick(marker.id);
-          }}
+          onClick={() => props.onMarkerClick(marker.id)}
           key={marker.title}
           position={{ lat: marker.lat, lng: marker.lng }}
           title={marker.title}
