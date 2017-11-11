@@ -1,9 +1,8 @@
 import React from 'react';
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import PropTypes from 'prop-types';
-
-const { compose, withProps, withHandlers } = require('recompose');
-const { withScriptjs, withGoogleMap, GoogleMap, Marker } = require('react-google-maps');
+import { compose, withProps, withHandlers } from 'recompose';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 const MapWithAMarkerClusterer = compose(
   withProps({
