@@ -25,10 +25,7 @@ const MapWithAMarkerClusterer = compose(
     >
       {props.markers.map(marker => (
         <Marker
-          onClick={() => {
-            window.scrollTo(0, 150);
-            props.onMarkerClick(marker.id);
-          }}
+          onClick={() => props.onMarkerClick(marker.id)}
           key={marker.title}
           position={{ lat: marker.lat, lng: marker.lng }}
           title={marker.title}
