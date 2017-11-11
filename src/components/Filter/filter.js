@@ -4,7 +4,13 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import geolib from 'geolib';
 import FlatButton from 'material-ui/FlatButton';
-import { FilterStyle, SelectItem, ButtonItem, DistanceItem,ButtonItemFilter } from './filter.styled';
+import {
+  FilterStyle,
+  SelectItem,
+  ButtonItem,
+  DistanceItem,
+  ButtonItemFilter
+} from './filter.styled';
 import filterHelper from './filterHelper';
 
 class Filter extends Component {
@@ -13,7 +19,7 @@ class Filter extends Component {
     this.state = {
       orderType: '',
       city: '',
-      distance: 100000000000,
+      distance: 100000000,
       menuDistances: [],
       myPosition: {
         latitude: -1,
@@ -75,27 +81,15 @@ class Filter extends Component {
   filterAll() {
     const { city, myPosition, distance, orderType } = this.state;
     const fl = this.props.cards.filter(card =>
-      this.checkCity(card, city) &&
-        this.checkDistance(card, myPosition, distance) &&
-        this.checkOrderType(card, orderType));
+      filterHelper.checkCity(card, city) &&
+        filterHelper.checkDistance(card, myPosition, distance) &&
+        filterHelper.checkOrderType(card, orderType));
     this.props.updateFilterCards(fl);
   }
 
-  checkCity(card, city) {
-    return card.city.toLowerCase().includes(city.toLowerCase());
-  }
-
-  checkDistance(card, myPosition, distance) {
-    let dist = geolib.getDistance(myPosition, { latitude: card.lng, longitude: card.lat });
-    dist /= 1000;
-    return dist < distance;
-  }
-  checkOrderType(card, orderType) {
-    return filterHelper.findTypeInArray(card, orderType);
-  }
   clearFilter() {
-    const { max } = this.state;
-    this.setState({ orderType: '', city: '', distance: max });
+    // const { max } = this.state;
+    this.setState({ orderType: '', city: '', distance: 100000000 });
     this.props.updateFilterCards(this.props.cards);
   }
 
