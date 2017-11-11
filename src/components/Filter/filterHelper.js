@@ -4,16 +4,13 @@ import MenuItem from 'material-ui/MenuItem';
 
 function initDistances(farthestDistance) {
   const MENU_ITEMS = 9;
-  const START_FROM = 1;
+  const section = farthestDistance / MENU_ITEMS;
   return Array(MENU_ITEMS)
     .fill(1)
-    .map((item, index) => (
-      <MenuItem
-        key={parseInt(farthestDistance / MENU_ITEMS * (index + START_FROM), 10)}
-        value={parseInt(farthestDistance / MENU_ITEMS * (index + START_FROM), 10)}
-        primaryText={parseInt(farthestDistance / MENU_ITEMS * (index + START_FROM), 10)}
-      />
-    ));
+    .map((item, index) => {
+      const value = parseInt(section * (index + 1), 10);
+      return <MenuItem key={value} value={value} primaryText={value} />;
+    });
 }
 
 function findTypeInArray(card, cardType) {
