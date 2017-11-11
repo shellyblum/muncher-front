@@ -4,63 +4,42 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import geolib from 'geolib';
 import FlatButton from 'material-ui/FlatButton';
-import { FilterStyle, SelectItem, ButtonItem, DistanceItem } from './filter.styled';
+import { FilterStyle, SelectItem, ButtonItem, DistanceItem,ButtonItemFilter } from './filter.styled';
 import filterHelper from './filterHelper';
 
-const KM = 1000;
 class Filter extends Component {
   constructor(props) {
     super(props);
-    const farthestDistance = this.checkFarthestPoint();
-    const menuDistances = filterHelper.initDistances(farthestDistance);
     this.state = {
       orderType: '',
-      title: '',
       city: '',
-      distance: farthestDistance,
-      menuDistances
+      distance: 100000000000,
+      menuDistances: [],
+      myPosition: {
+        latitude: -1,
+        longitude: -1
+      }
     };
 
-    this.filterOrderType = this.filterOrderType.bind(this);
-    this.filterTitle = this.filterTitle.bind(this);
-    this.filterCity = this.filterCity.bind(this);
-    this.filterDist = this.filterDist.bind(this);
+    this.getMyLocation();
+    this.updateOrderType = this.updateOrderType.bind(this);
+    this.updateCity = this.updateCity.bind(this);
+    this.updateDist = this.updateDist.bind(this);
     this.clearFilter = this.clearFilter.bind(this);
+    this.filterAll = this.filterAll.bind(this);
   }
 
-  getTitleMenuItems() {
-    return this.props.cards.map(item => (
-      <MenuItem key={item.title} value={item.title} primaryText={item.title} />
-    ));
-  }
-
-  checkFarthestPoint() {
-    const currLocation = { latitude: 34.518611, longitude: 34.408056 };
-    let dist;
-    return (
-      this.props.filteredCards.reduce((maxDist, card) => {
-        dist = geolib.getDistance(currLocation, { latitude: card.lng, longitude: card.lat });
-        return Math.max(dist, maxDist);
-      }, 0) / KM
+  getMyLocation() {
+    navigator.geolocation.getCurrentPosition(
+      myPosition1 => {
+        const { latitude, longitude } = myPosition1.coords;
+        const myPosition = { latitude, longitude };
+        this.setState({ myPosition });
+        this.checkFarthestPoint(myPosition);
+      },
+      error => alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
-  }
-
-  clearFilter() {
-    const { max } = this.state;
-    this.setState({ orderType: '', title: '', city: '', distance: max });
-    this.props.updateFilterCards(this.props.cards);
-  }
-
-  filterOrderType(event, index, orderType) {
-    this.setState({ orderType });
-    const fl = this.props.cards.filter(card => filterHelper.findTypeInArray(card, orderType));
-    this.props.updateFilterCards(fl);
-  }
-
-  filterTitle(event, index, title) {
-    this.setState({ title });
-    const fl = this.props.cards.filter(card => card.title === title);
-    this.props.updateFilterCards(fl);
   }
 
   initCities() {
@@ -68,75 +47,95 @@ class Filter extends Component {
       <MenuItem key={card.city} value={card.city} primaryText={card.city} />
     ));
   }
+  updateCity(event, index, value) {
+    this.setState({ city: value });
+  }
 
-  filterCity(event, index, city) {
-    this.setState({ city });
+  updateDist(event, index, distance) {
+    this.setState({ distance });
+  }
+
+  updateOrderType(event, index, orderType) {
+    this.setState({ orderType });
+  }
+
+  checkFarthestPoint(myPosition) {
+    const km = 1000;
+    let dist;
+    let distance =
+      this.props.filteredCards.reduce((maxDist, card) => {
+        dist = geolib.getDistance(myPosition, { latitude: card.lng, longitude: card.lat });
+        return Math.max(dist, maxDist);
+      }, 0) / km;
+    distance += 1;
+    const menuDistances = filterHelper.initDistances(distance);
+    this.setState({ distance, menuDistances });
+  }
+
+  filterAll() {
+    const { city, myPosition, distance, orderType } = this.state;
     const fl = this.props.cards.filter(card =>
-      card.city.toLowerCase().includes(city.toLowerCase()));
+      this.checkCity(card, city) &&
+        this.checkDistance(card, myPosition, distance) &&
+        this.checkOrderType(card, orderType));
     this.props.updateFilterCards(fl);
   }
 
-  filterDist(event, index, distance) {
-    this.setState({ distance });
-    // Working with W3C Geolocation API
-    let dist;
-    const currLocation = { latitude: 34.518611, longitude: 34.408056 };
-    const fl = this.props.cards.filter(card => {
-      dist = geolib.getDistance(currLocation, { latitude: card.lng, longitude: card.lat });
-      dist /= KM;
-      return dist < distance;
-    });
-    this.props.updateFilterCards(fl);
+  checkCity(card, city) {
+    return card.city.toLowerCase().includes(city.toLowerCase());
+  }
+
+  checkDistance(card, myPosition, distance) {
+    let dist = geolib.getDistance(myPosition, { latitude: card.lng, longitude: card.lat });
+    dist /= 1000;
+    return dist < distance;
+  }
+  checkOrderType(card, orderType) {
+    return filterHelper.findTypeInArray(card, orderType);
+  }
+  clearFilter() {
+    const { max } = this.state;
+    this.setState({ orderType: '', city: '', distance: max });
+    this.props.updateFilterCards(this.props.cards);
   }
 
   render() {
-    const { orderType, title, city, distance, menuDistances } = this.state;
-
+    const { orderType, city, distance, menuDistances } = this.state;
     return (
       <FilterStyle>
         <SelectField
           style={SelectItem}
           floatingLabelText="Order-Type"
           value={orderType}
-          onChange={this.filterOrderType}
+          onChange={this.updateOrderType}
         >
-          <MenuItem value={null} primaryText="" />
           <MenuItem value="takeOut" primaryText="take out" />
           <MenuItem value="sit" primaryText="sit" />
         </SelectField>
 
         <SelectField
           style={SelectItem}
-          floatingLabelText="title"
-          value={title}
-          onChange={this.filterTitle}
-        >
-          <MenuItem value={null} primaryText="" />
-          {this.getTitleMenuItems()}
-        </SelectField>
-
-        <SelectField
-          style={SelectItem}
           floatingLabelText="location"
           value={city}
-          onChange={this.filterCity}
+          onChange={this.updateCity}
         >
-          <MenuItem value={null} primaryText="" />
           {this.initCities()}
         </SelectField>
 
         <SelectField
           style={SelectItem}
+          labelStyle={{ color: 'green' }}
           floatingLabelText="distance"
           value={distance}
-          onChange={this.filterDist}
+          onChange={this.updateDist}
         >
           {menuDistances}
         </SelectField>
 
-        <DistanceItem>{distance || 0} KM</DistanceItem>
+        <DistanceItem>{distance || 0} km</DistanceItem>
 
         <FlatButton style={ButtonItem} label="Clear" primary onClick={this.clearFilter} />
+        <FlatButton style={ButtonItemFilter} label="filter" primary onClick={this.filterAll} />
       </FilterStyle>
     );
   }

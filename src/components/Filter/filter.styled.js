@@ -15,7 +15,18 @@ export const SelectItem = {
 
 export const ButtonItem = {
   position: 'relative',
-  top: '-10px'
+  top: '-10px',
+  backgroundColor: 'green',
+  color: 'white',
+  marginLeft: '6em'
+};
+
+export const ButtonItemFilter = {
+  position: 'relative',
+  top: '-10px',
+  backgroundColor: 'green',
+  color: 'white',
+  marginRight: '6em'
 };
 
 export const DistanceItem = styled.div``;
