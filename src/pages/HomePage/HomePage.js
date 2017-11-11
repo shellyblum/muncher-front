@@ -10,9 +10,8 @@ import CallToActionDialog from '../../components/CallToActionDialog/CallToAction
 class HomePage extends Component {
   constructor() {
     super();
-
     const { cards } = data;
-    this.state = { cards, filteredCards: cards, toggleCTADialog: false, selectedRest: undefined };
+    this.state = { cards, filteredCards: cards, toggleCTADialog: false, selectedRest: {} };
     this.updateFilterCards = this.updateFilterCards.bind(this);
     this.toggleCTADialog = this.toggleCTADialog.bind(this);
     this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -24,8 +23,10 @@ class HomePage extends Component {
 
   selectCard(isSelected, borderType = '1px solid black') {
     const { filteredCards } = this.state;
-    const selectedCard = filteredCards.map(card =>
-      (card.id === isSelected ? { ...card, selected: borderType } : { ...card, selected: null }));
+    const selectedCard = filteredCards.map(card => (
+      card.id === isSelected
+        ? { ...card, selected: borderType }
+        : { ...card, selected: null }));
     this.setState({ filteredCards: selectedCard });
   }
 
@@ -60,7 +61,10 @@ class HomePage extends Component {
               updateFilterCards={this.updateFilterCards}
             />
           </Search>
-          <GridListCards filteredCards={filteredCards} toggleCTADialog={this.toggleCTADialog} />
+          <GridListCards
+            filteredCards={filteredCards}
+            toggleCTADialog={this.toggleCTADialog}
+           />
           <CallToActionDialog
             selectedRest={this.state.selectedRest}
             open={this.state.toggleCTADialog}

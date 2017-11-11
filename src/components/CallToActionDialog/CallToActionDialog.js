@@ -26,13 +26,24 @@ const CallToActionDialog = ({ open, selectedRest, toggleCTADialog }) => {
 
 CallToActionDialog.propTypes = {
   open: PropTypes.bool,
-  selectedRest: PropTypes.string, // Will change to PropTypes - object later
+  selectedRest: PropTypes.shape({
+    image: PropTypes.string,
+    title: PropTypes.string,
+    text: PropTypes.string,
+    action: PropTypes.string,
+    city: PropTypes.string,
+    orderType: PropTypes.arrayOf(PropTypes.string),
+    lng: PropTypes.number,
+    lat: PropTypes.number
+  }),
   toggleCTADialog: PropTypes.func
 };
 
 CallToActionDialog.defaultProps = {
   open: false,
-  selectedRest: 'No restaurant name',
+  selectedRest: {
+    message: 'No restaurant name'
+  },
   toggleCTADialog: () => null
 };
 
