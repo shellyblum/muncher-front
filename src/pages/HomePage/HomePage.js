@@ -21,15 +21,13 @@ class HomePage extends Component {
   }
 
   selectCard(isSelected, borderType = '1px solid black') {
-    let { filteredCards } = this.state;
-    filteredCards = filteredCards.map(card => {
-      if (card.id === isSelected) {
-        const selected = card.selected ? '' : borderType;
-        return { ...card, selected };
-      }
-      return card;
-    });
-    this.setState({ filteredCards });
+    const { filteredCards } = this.state;
+    const selectedCard = filteredCards.map(card => (
+      card.id === isSelected
+        ? { ...card, selected: borderType }
+        : { ...card, selected: null }
+    ));
+    this.setState({ filteredCards: selectedCard });
   }
 
   applyStyle(id) {
