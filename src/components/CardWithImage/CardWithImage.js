@@ -10,8 +10,8 @@ import {
   styleCard
 } from '../CardWithImage/CardWithImage.styled';
 
-const CardWithImage = ({ image, title, text, action, id, toggleCTADialog }) => (
-  <HoverEffect>
+const CardWithImage = ({ id, image, title, text, action, lat, lng, selected, toggleCTADialog }) => (
+  <HoverEffect selected={selected}>
     <Card style={styleCard}>
       <CardText style={styleCardText}>{title}</CardText>
       <CardMedia>
@@ -27,16 +27,22 @@ const CardWithImage = ({ image, title, text, action, id, toggleCTADialog }) => (
         />
         <FlatButton primary hoverColor={deepPurple100} label="Map" />
       </CardActions>
+      <button onClick={() => {}}>
+        {lat} ,{lng},{id}
+      </button>
     </Card>
   </HoverEffect>
 );
 
 CardWithImage.propTypes = {
+  id: PropTypes.string.isRequired,
   image: PropTypes.string,
   title: PropTypes.string,
   text: PropTypes.string,
   action: PropTypes.string,
-  id: PropTypes.string,
+  lat: PropTypes.number.isRequired,
+  lng: PropTypes.number.isRequired,
+  selected: PropTypes.string,
   toggleCTADialog: PropTypes.func
 };
 
@@ -45,7 +51,7 @@ CardWithImage.defaultProps = {
   title: 'Title unavailable',
   text: 'Text unavailable',
   action: 'Action button',
-  id: '0',
+  selected: null,
   toggleCTADialog: () => null
 };
 
