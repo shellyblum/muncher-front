@@ -44,7 +44,7 @@ CardWithImage.defaultProps = {
   title: 'Title unavailable',
   text: 'Text unavailable',
   action: 'Action button',
-  selected: ''
+  selected: null
 };
 
 export default CardWithImage;
