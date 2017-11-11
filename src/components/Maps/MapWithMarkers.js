@@ -1,11 +1,10 @@
 import React from 'react';
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import PropTypes from 'prop-types';
-// import data from '../../pages/HomePage/data'
 
 const { compose, withProps, withHandlers } = require('recompose');
 const { withScriptjs, withGoogleMap, GoogleMap, Marker } = require('react-google-maps');
-// const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
+
 const MapWithAMarkerClusterer = compose(
   withProps({
     googleMapURL:
@@ -14,11 +13,7 @@ const MapWithAMarkerClusterer = compose(
     containerElement: <div style={{ height: '450px' }} />,
     mapElement: <div style={{ height: '100%' }} />
   }),
-  withHandlers({
-    // onMarkerClustererClick: () => markerClusterer => {
-    //   // const clickedMarkers = markerClusterer.getMarkers();
-    // }
-  }),
+  withHandlers({}),
   withScriptjs,
   withGoogleMap
 )(props => (
@@ -56,8 +51,6 @@ export default class MapWithMarkers extends React.PureComponent {
   }
 
   render() {
-    // alert(this.props.onMarkerClick)
-    // const { dataMarkers, height, lat, lng } = this.props;
     return (
       <MapWithAMarkerClusterer
         onMarkerClick={this.props.onMarkerClick}
