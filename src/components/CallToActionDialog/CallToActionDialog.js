@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-
 import LoginForm from '../../components/LoginForm/LoginForm';
 import messages from '../../helpers/messages';
 

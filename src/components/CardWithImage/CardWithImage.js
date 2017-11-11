@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Card, CardActions, CardMedia, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { red100, deepPurple100 } from 'material-ui/styles/colors';
-
 import {
   HoverEffect,
   styleCardText,
@@ -37,6 +36,7 @@ CardWithImage.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   action: PropTypes.string,
+  id: PropTypes.string,
   toggleCTADialog: PropTypes.func
 };
 
@@ -45,6 +45,7 @@ CardWithImage.defaultProps = {
   title: 'Title unavailable',
   text: 'Text unavailable',
   action: 'Action button',
+  id: '0',
   toggleCTADialog: () => null
 };
 
