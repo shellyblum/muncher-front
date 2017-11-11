@@ -24,11 +24,8 @@ class HomePage extends Component {
 
   selectCard(isSelected, borderType = '1px solid black') {
     const { filteredCards } = this.state;
-    const selectedCard = filteredCards.map(card => (
-      card.id === isSelected
-        ? { ...card, selected: borderType }
-        : { ...card, selected: null }
-    ));
+    const selectedCard = filteredCards.map(card =>
+      (card.id === isSelected ? { ...card, selected: borderType } : { ...card, selected: null }));
     this.setState({ filteredCards: selectedCard });
   }
 
@@ -63,11 +60,7 @@ class HomePage extends Component {
               updateFilterCards={this.updateFilterCards}
             />
           </Search>
-          <GridListCards
-            filteredCards={filteredCards}
-            {...data}
-            toggleCTADialog={this.toggleCTADialog}
-          />
+          <GridListCards filteredCards={filteredCards} toggleCTADialog={this.toggleCTADialog} />
           <CallToActionDialog
             selectedRest={this.state.selectedRest}
             open={this.state.toggleCTADialog}
@@ -82,7 +75,6 @@ class HomePage extends Component {
               lng={32}
             />
           </Left>
-          <GridListCards filteredCards={filteredCards} />
           <BottomLeft gridArea="bottomLeft">Title component here</BottomLeft>
         </Main>
       </div>
