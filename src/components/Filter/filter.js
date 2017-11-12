@@ -15,11 +15,12 @@ import filterHelper from './filterHelper';
 
 class Filter extends Component {
   constructor(props) {
+    const INITIAL_DIST = 100000000;
     super(props);
     this.state = {
       orderType: '',
       city: '',
-      distance: 100000000,
+      distance: INITIAL_DIST,
       menuDistances: [],
       myPosition: {
         latitude: -1,
@@ -27,7 +28,6 @@ class Filter extends Component {
       }
     };
 
-    this.getMyLocation();
     this.updateOrderType = this.updateOrderType.bind(this);
     this.updateCity = this.updateCity.bind(this);
     this.updateDist = this.updateDist.bind(this);
@@ -35,16 +35,19 @@ class Filter extends Component {
     this.filterAll = this.filterAll.bind(this);
   }
 
+  componentDidMount() {
+    this.getMyLocation();
+  }
   getMyLocation() {
     navigator.geolocation.getCurrentPosition(
       myPosition1 => {
         const { latitude, longitude } = myPosition1.coords;
         const myPosition = { latitude, longitude };
-        this.setState({ myPosition });
         this.checkFarthestPoint(myPosition);
+        this.setState({ myPosition });
       },
       error => alert(error.message),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      { enableHighAccuracy: true, timeout: 5000, maximumAge: 1000 }
     );
   }
 
@@ -66,13 +69,13 @@ class Filter extends Component {
   }
 
   checkFarthestPoint(myPosition) {
-    const km = 1000;
+    const KM = 1000;
     let dist;
     let distance =
       this.props.filteredCards.reduce((maxDist, card) => {
         dist = geolib.getDistance(myPosition, { latitude: card.lng, longitude: card.lat });
         return Math.max(dist, maxDist);
-      }, 0) / km;
+      }, 0) / KM;
     distance += 1;
     const menuDistances = filterHelper.initDistances(distance);
     this.setState({ distance, menuDistances });
@@ -80,16 +83,18 @@ class Filter extends Component {
 
   filterAll() {
     const { city, myPosition, distance, orderType } = this.state;
-    const fl = this.props.cards.filter(card =>
-      filterHelper.checkCity(card, city) &&
-        filterHelper.checkDistance(card, myPosition, distance) &&
-        filterHelper.checkOrderType(card, orderType));
-    this.props.updateFilterCards(fl);
+    const filteredList = this.props.cards.filter(card => {
+      const cityFlag = city ? filterHelper.checkCity(card, city) : 1;
+      const orderTypeFlag = orderType ? filterHelper.checkOrderType(card, orderType) : 1;
+      return filterHelper.checkDistance(card, myPosition, distance) && cityFlag && orderTypeFlag;
+    });
+
+    this.props.updateFilterCards(filteredList);
   }
 
   clearFilter() {
-    // const { max } = this.state;
-    this.setState({ orderType: '', city: '', distance: 100000000 });
+    const INITIAL_DISTANCE = 100000000;
+    this.setState({ orderType: '', city: '', distance: INITIAL_DISTANCE });
     this.props.updateFilterCards(this.props.cards);
   }
 
@@ -126,7 +131,7 @@ class Filter extends Component {
           {menuDistances}
         </SelectField>
 
-        <DistanceItem>{distance || 0} km</DistanceItem>
+        <DistanceItem>{distance || 0} KM</DistanceItem>
 
         <FlatButton style={ButtonItem} label="Clear" primary onClick={this.clearFilter} />
         <FlatButton style={ButtonItemFilter} label="filter" primary onClick={this.filterAll} />

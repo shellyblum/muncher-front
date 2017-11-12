@@ -18,7 +18,7 @@ export const ButtonItem = {
   top: '-10px',
   backgroundColor: 'green',
   color: 'white',
-  marginLeft: '6em'
+  marginLeft: '6%'
 };
 
 export const ButtonItemFilter = {
@@ -26,7 +26,7 @@ export const ButtonItemFilter = {
   top: '-10px',
   backgroundColor: 'green',
   color: 'white',
-  marginRight: '6em'
+  marginRight: '6%'
 };
 
 export const DistanceItem = styled.div``;
