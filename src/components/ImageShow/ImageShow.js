@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Image from './Image';
 
+const MainImage = styled.img`
+width:100%;
+`;
 const ImageWrapper = styled.div`
 border: 1px solid black;
-width:100%;
+width: 100%;
+box-sizing: border-box;
 `;
 const ListWrapper = styled.div`
 display:grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
 grid-gap: 1rem;
 padding : 1rem;
-
 `;
-
 
 class ImageShow extends Component {
   constructor(props) {
@@ -30,7 +32,7 @@ class ImageShow extends Component {
     return (
       <ImageWrapper>
         <div>
-          <img src={this.state.mainImage.image} alt={this.state.mainImage.alt} />
+          <MainImage src={this.state.mainImage.image} alt={this.state.mainImage.alt} />
           <ListWrapper>
             {Images}
           </ListWrapper>
@@ -41,6 +43,6 @@ class ImageShow extends Component {
 }
 export default ImageShow;
 
-// Image.propTypes = {
-//   data: PropTypes.object.isRequired
-// };
+Image.propTypes = {
+  data: PropTypes.object.isRequired
+};
