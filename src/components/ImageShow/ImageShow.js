@@ -42,7 +42,6 @@ class ImageShow extends Component {
   }
 }
 export default ImageShow;
-
-Image.propTypes = {
-  data: PropTypes.object.isRequired
+ImageShow.propTypes = {
+  data: PropTypes.arrayOf(Object)
 };
