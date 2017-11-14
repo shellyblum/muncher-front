@@ -1,18 +1,13 @@
+import 'antd/lib/select/style/css';
+import 'antd/lib/button/style/css';
+import { Button, Select } from 'antd';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import geolib from 'geolib';
-import FlatButton from 'material-ui/FlatButton';
-import {
-  FilterStyle,
-  SelectItem,
-  ButtonItem,
-  DistanceItem,
-  ButtonItemFilter
-} from './filter.styled';
+import { FilterStyle, ButtonItem, DistanceItem } from './filter.styled';
 import filterHelper from './filterHelper';
 
+const { Option } = Select;
 let INITIAL_DIST = -1;
 
 class Filter extends Component {
@@ -50,9 +45,7 @@ class Filter extends Component {
   }
 
   initCities() {
-    return this.props.cards.map(card => (
-      <MenuItem key={card.city} value={card.city} primaryText={card.city} />
-    ));
+    return this.props.cards.map(card => <Option value={card.city}>{card.city}</Option>);
   }
 
   checkFarthestPoint(myPosition) {
@@ -89,48 +82,65 @@ class Filter extends Component {
   }
 
   render() {
-    const { orderType, city, distance, menuDistances } = this.state;
+    const { distance, menuDistances } = this.state;
     return (
       <FilterStyle>
-        <SelectField
-          style={SelectItem}
-          floatingLabelText="Order-Type"
-          value={orderType}
-          onChange={(e, index, value) => {
+        <Select
+          showSearch
+          size="large"
+          style={{ width: 200 }}
+          placeholder="Select order type"
+          optionFilterProp="children"
+          onChange={value => {
             this.setState({ orderType: value });
           }}
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
         >
-          <MenuItem value="takeOut" primaryText="take out" />
-          <MenuItem value="sit" primaryText="sit" />
-        </SelectField>
+          <Option value="takeOut">takeOut</Option>
+          <Option value="sit">sit</Option>
+        </Select>
 
-        <SelectField
-          style={SelectItem}
-          floatingLabelText="location"
-          value={city}
-          onChange={(e, index, value) => {
+        <Select
+          showSearch
+          size="large"
+          style={{ width: 200 }}
+          placeholder="Select city"
+          optionFilterProp="children"
+          onChange={value => {
             this.setState({ city: value });
           }}
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
         >
           {this.initCities()}
-        </SelectField>
+        </Select>
 
-        <SelectField
-          style={SelectItem}
-          labelStyle={{ color: 'green' }}
-          floatingLabelText="distance"
-          value={distance}
-          onChange={(e, index, value) => {
+        <Select
+          showSearch
+          size="large"
+          style={{ width: 200 }}
+          placeholder="Select distance"
+          optionFilterProp="children"
+          onChange={value => {
             this.setState({ distance: value });
           }}
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
         >
           {menuDistances}
-        </SelectField>
-
+        </Select>
         <DistanceItem>{distance || 0} KM</DistanceItem>
 
-        <FlatButton style={ButtonItem} label="Clear" primary onClick={this.clearFilter} />
-        <FlatButton style={ButtonItemFilter} label="filter" primary onClick={this.filterAll} />
+        <Button type="primary" size="large" style={ButtonItem} onClick={this.clearFilter}>
+          Clear
+        </Button>
+        <Button type="primary" size="large" style={ButtonItem} onClick={this.filterAll}>
+          Filter
+        </Button>
       </FilterStyle>
     );
   }

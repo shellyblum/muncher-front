@@ -1,6 +1,9 @@
+import 'antd/lib/select/style/css';
+import { Select } from 'antd';
 import React from 'react';
 import geolib from 'geolib';
-import MenuItem from 'material-ui/MenuItem';
+
+const { Option } = Select;
 
 function initDistances(farthestDistance) {
   const MENU_ITEMS = 9;
@@ -10,7 +13,11 @@ function initDistances(farthestDistance) {
     .fill(1)
     .map((item, index) => {
       const value = parseInt(section * (index + START_FROM), 10);
-      return <MenuItem key={value} value={value} primaryText={value} />;
+      return (
+        <Option key={value} value={value}>
+          {value}
+        </Option>
+      );
     });
 }
 
