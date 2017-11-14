@@ -48,7 +48,6 @@ class HomePage extends Component {
     const selectedRest = this.state.filteredCards.find(rest => rest.id === restId);
     this.setState({ selectedRest });
   }
-
   render() {
     const { filteredCards, cards } = this.state;
     return (
