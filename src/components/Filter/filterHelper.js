@@ -14,21 +14,10 @@ function initDistances(farthestDistance) {
     });
 }
 
-function findTypeInArray(card, cardType) {
-  return card.orderType.find(type => type === cardType);
-}
-
-function checkCity(card, city) {
-  return card.city.toLowerCase().includes(city.toLowerCase());
-}
-
 function checkDistance(card, myPosition, distance) {
   let dist = geolib.getDistance(myPosition, { latitude: card.lng, longitude: card.lat });
   dist /= 1000;
   return dist < distance;
 }
-function checkOrderType(card, orderType) {
-  return findTypeInArray(card, orderType);
-}
 
-export default { initDistances, findTypeInArray, checkOrderType, checkCity, checkDistance };
+export default { initDistances, checkDistance };

@@ -13,9 +13,10 @@ import {
 } from './filter.styled';
 import filterHelper from './filterHelper';
 
+let INITIAL_DIST = -1;
+
 class Filter extends Component {
   constructor(props) {
-    const INITIAL_DIST = 100000000;
     super(props);
     this.state = {
       orderType: '',
@@ -28,9 +29,6 @@ class Filter extends Component {
       }
     };
 
-    this.updateOrderType = this.updateOrderType.bind(this);
-    this.updateCity = this.updateCity.bind(this);
-    this.updateDist = this.updateDist.bind(this);
     this.clearFilter = this.clearFilter.bind(this);
     this.filterAll = this.filterAll.bind(this);
   }
@@ -56,17 +54,6 @@ class Filter extends Component {
       <MenuItem key={card.city} value={card.city} primaryText={card.city} />
     ));
   }
-  updateCity(event, index, value) {
-    this.setState({ city: value });
-  }
-
-  updateDist(event, index, distance) {
-    this.setState({ distance });
-  }
-
-  updateOrderType(event, index, orderType) {
-    this.setState({ orderType });
-  }
 
   checkFarthestPoint(myPosition) {
     const KM = 1000;
@@ -77,15 +64,18 @@ class Filter extends Component {
         return Math.max(dist, maxDist);
       }, 0) / KM;
     distance += 1;
+    distance = parseInt(distance, 10);
     const menuDistances = filterHelper.initDistances(distance);
+    INITIAL_DIST = distance;
     this.setState({ distance, menuDistances });
   }
 
   filterAll() {
     const { city, myPosition, distance, orderType } = this.state;
-    const filteredList = this.props.cards.filter(card => {
-      const cityFlag = city ? filterHelper.checkCity(card, city) : 1;
-      const orderTypeFlag = orderType ? filterHelper.checkOrderType(card, orderType) : 1;
+    const { cards } = this.props;
+    const filteredList = cards.filter(card => {
+      const cityFlag = city ? card.city.toLowerCase().includes(city.toLowerCase()) : 1;
+      const orderTypeFlag = orderType ? card.orderType.find(type => type === orderType) : 1;
       return filterHelper.checkDistance(card, myPosition, distance) && cityFlag && orderTypeFlag;
     });
 
@@ -93,9 +83,9 @@ class Filter extends Component {
   }
 
   clearFilter() {
-    const INITIAL_DISTANCE = 100000000;
-    this.setState({ orderType: '', city: '', distance: INITIAL_DISTANCE });
-    this.props.updateFilterCards(this.props.cards);
+    const { cards } = this.props;
+    this.setState({ orderType: '', city: '', distance: INITIAL_DIST });
+    this.props.updateFilterCards(cards);
   }
 
   render() {
@@ -106,7 +96,9 @@ class Filter extends Component {
           style={SelectItem}
           floatingLabelText="Order-Type"
           value={orderType}
-          onChange={this.updateOrderType}
+          onChange={(e, index, value) => {
+            this.setState({ orderType: value });
+          }}
         >
           <MenuItem value="takeOut" primaryText="take out" />
           <MenuItem value="sit" primaryText="sit" />
@@ -116,7 +108,9 @@ class Filter extends Component {
           style={SelectItem}
           floatingLabelText="location"
           value={city}
-          onChange={this.updateCity}
+          onChange={(e, index, value) => {
+            this.setState({ city: value });
+          }}
         >
           {this.initCities()}
         </SelectField>
@@ -126,7 +120,9 @@ class Filter extends Component {
           labelStyle={{ color: 'green' }}
           floatingLabelText="distance"
           value={distance}
-          onChange={this.updateDist}
+          onChange={(e, index, value) => {
+            this.setState({ distance: value });
+          }}
         >
           {menuDistances}
         </SelectField>
