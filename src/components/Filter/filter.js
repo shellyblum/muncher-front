@@ -5,12 +5,28 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import geolib from 'geolib';
 import { FilterStyle, ButtonItem, DistanceItem } from './filter.styled';
-import filterHelper from './filterHelper';
+// import filterHelper from './filterHelper';
 
 const { Option } = Select;
 let INITIAL_DIST = -1;
+const KM = 1000;
 
 class Filter extends Component {
+  static initDistances(farthestDistance) {
+    const MENU_ITEMS = 9;
+    const START_FROM = 1;
+    return Array(MENU_ITEMS)
+      .fill(1)
+      .map((item, index) => {
+        const value = parseInt(farthestDistance / MENU_ITEMS * (index + START_FROM), 10);
+        return (
+          <Option key={value} value={value}>
+            {value}
+          </Option>
+        );
+      });
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -49,7 +65,6 @@ class Filter extends Component {
   }
 
   checkFarthestPoint(myPosition) {
-    const KM = 1000;
     let dist;
     let distance =
       this.props.filteredCards.reduce((maxDist, card) => {
@@ -58,9 +73,8 @@ class Filter extends Component {
       }, 0) / KM;
     distance += 1;
     distance = parseInt(distance, 10);
-    const menuDistances = filterHelper.initDistances(distance);
     INITIAL_DIST = distance;
-    this.setState({ distance, menuDistances });
+    this.setState({ distance, menuDistances: Filter.initDistances(distance) });
   }
 
   filterAll() {
@@ -69,7 +83,11 @@ class Filter extends Component {
     const filteredList = cards.filter(card => {
       const cityFlag = city ? card.city.toLowerCase().includes(city.toLowerCase()) : 1;
       const orderTypeFlag = orderType ? card.orderType.find(type => type === orderType) : 1;
-      return filterHelper.checkDistance(card, myPosition, distance) && cityFlag && orderTypeFlag;
+      const geoDistance = geolib.getDistance(myPosition, {
+        latitude: card.lng,
+        longitude: card.lat
+      });
+      return geoDistance / KM < distance && cityFlag && orderTypeFlag;
     });
 
     this.props.updateFilterCards(filteredList);
@@ -95,8 +113,7 @@ class Filter extends Component {
             this.setState({ orderType: value });
           }}
           filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           <Option value="takeOut">takeOut</Option>
           <Option value="sit">sit</Option>
@@ -112,8 +129,7 @@ class Filter extends Component {
             this.setState({ city: value });
           }}
           filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           {this.initCities()}
         </Select>
@@ -128,8 +144,7 @@ class Filter extends Component {
             this.setState({ distance: value });
           }}
           filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           {menuDistances}
         </Select>
