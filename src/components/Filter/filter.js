@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import geolib from 'geolib';
 import { FilterStyle, ButtonItem, DistanceItem } from './filter.styled';
-// import filterHelper from './filterHelper';
 
 const { Option } = Select;
 let INITIAL_DIST = -1;
@@ -15,10 +14,11 @@ class Filter extends Component {
   static initDistances(farthestDistance) {
     const MENU_ITEMS = 9;
     const START_FROM = 1;
+    const section = farthestDistance / MENU_ITEMS;
     return Array(MENU_ITEMS)
       .fill(1)
       .map((item, index) => {
-        const value = parseInt(farthestDistance / MENU_ITEMS * (index + START_FROM), 10);
+        const value = parseInt(section * (index + START_FROM), 10);
         return (
           <Option key={value} value={value}>
             {value}
