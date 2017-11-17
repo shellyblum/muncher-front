@@ -9,7 +9,7 @@ width:100%;
 const ImageWrapper = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 10px;
-  border-radius: 10px; 
+  border-radius: 10px;
   width: 100%;
   box-sizing: border-box;
   `;
@@ -31,7 +31,7 @@ class ImageShow extends Component {
     this.setState({ mainImage: { image: e.target.src, alt: e.target.alt } });
   }
   render() {
-    const Images = this.props.data.map((image, index) => <Image key={index} data={image} click={this.handleOnClick} />);
+    const Images = this.props.data.map((image) => <Image key={image.image} data={image} click={this.handleOnClick} />);
     return (
       <ImageWrapper>
         <div>
