@@ -13,10 +13,10 @@ width:3fr;
   height: 100%;
   width: 4px;
   background: #d7e4ed;
-} 
+}
 `;
 function ReviewList({ data }) {
-  const Reviews = data.map((review, index) => <Review key={index} data={review} />);
+  const Reviews = data.map((review) => <Review key={data.title} data={review} />);
   return (
     <div>
       <h1>Reviews</h1>
