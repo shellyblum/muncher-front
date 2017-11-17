@@ -49,6 +49,7 @@ class Filter extends Component {
   componentDidMount() {
     this.getMyLocation();
   }
+
   getMyLocation() {
     navigator.geolocation.getCurrentPosition(
       myPosition1 => {

@@ -4,14 +4,20 @@
     // "./node_modules/eslint-config-react-app/index.js",
     "airbnb"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2017,
     "ecmaFeatures": {
+      "modules": true,
       "experimentalObjectRestSpread": true,
       "jsx": true
     },
     "sourceType": "module"
   },
+  "plugins": [
+    "react",
+    "class-property"
+  ],
   "rules": {
     "max-len":0,
     "linebreak-style": 0,

@@ -7,17 +7,16 @@ import Filter from '../../components/Filter/filter';
 import BottomLeft from '../../components/FeaturedCard/FeaturedCard';
 import CallToActionDialog from '../../components/CallToActionDialog/CallToActionDialog';
 
+const { cards } = data;
 class HomePage extends Component {
-  constructor() {
-    super();
-    const { cards } = data;
-    this.state = { cards, filteredCards: cards, toggleCTADialog: false, selectedRest: {} };
-    this.updateFilterCards = this.updateFilterCards.bind(this);
-    this.toggleCTADialog = this.toggleCTADialog.bind(this);
-    this.onMarkerClick = this.onMarkerClick.bind(this);
-  }
+    state = { cards, filteredCards: cards, toggleCTADialog: false, selectedRest: {} };
 
-  onMarkerClick(cardId) {
+    // updateFilterCards = this.updateFilterCards.bind(this);
+    // toggleCTADialog = this.toggleCTADialog.bind(this);
+    // onMarkerClick = this.onMarkerClick.bind(this);
+
+
+  onMarkerClick = (cardId) => {
     this.selectCard(cardId);
   }
 
