@@ -13,6 +13,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "max-len":0,
     "linebreak-style": 0,
     "quotes": [
       "error",
