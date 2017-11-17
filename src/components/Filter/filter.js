@@ -13,23 +13,23 @@ const { Option } = Select;
 let INITIAL_DIST = -1;
 const KM = 1000;
 
-class Filter extends Component {
-  static initDistances(farthestDistance) {
-    const MENU_ITEMS = 9;
-    const START_FROM = 1;
-    const section = farthestDistance / MENU_ITEMS;
-    return Array(MENU_ITEMS)
-      .fill(1)
-      .map((item, index) => {
-        const value = parseInt(section * (index + START_FROM), 10);
-        return (
-          <Option key={value} value={value}>
-            {value}
-          </Option>
-        );
-      });
-  }
+const initDistances = (farthestDistance) => {
+  const MENU_ITEMS = 9;
+  const START_FROM = 1;
+  const section = farthestDistance / MENU_ITEMS;
+  return Array(MENU_ITEMS)
+    .fill(1)
+    .map((item, index) => {
+      const value = parseInt(section * (index + START_FROM), 10);
+      return (
+        <Option key={value} value={value}>
+          {value}
+        </Option>
+      );
+    });
+};
 
+class Filter extends Component {
   state = {
     orderType: '',
     city: '',
@@ -72,7 +72,7 @@ class Filter extends Component {
     distance += 1;
     distance = parseInt(distance, 10);
     INITIAL_DIST = distance;
-    this.setState({ distance, menuDistances: Filter.initDistances(distance) });
+    this.setState({ distance, menuDistances: initDistances(distance) });
   }
 
   filterAll = () => {
