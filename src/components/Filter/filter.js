@@ -1,142 +1,161 @@
+import 'antd/lib/select/style/css';
+import 'antd/lib/button/style/css';
+import { Button, Select } from 'antd';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import geolib from 'geolib';
-import FlatButton from 'material-ui/FlatButton';
-import { FilterStyle, SelectItem, ButtonItem, DistanceItem } from './filter.styled';
-import filterHelper from './filterHelper';
+import { FilterStyle, ButtonItem, DistanceItem } from './filter.styled';
 
+const { Option } = Select;
+let INITIAL_DIST = -1;
 const KM = 1000;
+
 class Filter extends Component {
+  static initDistances(farthestDistance) {
+    const MENU_ITEMS = 9;
+    const START_FROM = 1;
+    const section = farthestDistance / MENU_ITEMS;
+    return Array(MENU_ITEMS)
+      .fill(1)
+      .map((item, index) => {
+        const value = parseInt(section * (index + START_FROM), 10);
+        return (
+          <Option key={value} value={value}>
+            {value}
+          </Option>
+        );
+      });
+  }
+
   constructor(props) {
     super(props);
-    const farthestDistance = this.checkFarthestPoint();
-    const menuDistances = filterHelper.initDistances(farthestDistance);
     this.state = {
       orderType: '',
-      title: '',
       city: '',
-      distance: farthestDistance,
-      menuDistances
+      distance: INITIAL_DIST,
+      menuDistances: [],
+      myPosition: {
+        latitude: -1,
+        longitude: -1
+      }
     };
 
-    this.filterOrderType = this.filterOrderType.bind(this);
-    this.filterTitle = this.filterTitle.bind(this);
-    this.filterCity = this.filterCity.bind(this);
-    this.filterDist = this.filterDist.bind(this);
     this.clearFilter = this.clearFilter.bind(this);
+    this.filterAll = this.filterAll.bind(this);
   }
 
-  getTitleMenuItems() {
-    return this.props.cards.map(item => (
-      <MenuItem key={item.title} value={item.title} primaryText={item.title} />
-    ));
+  componentDidMount() {
+    this.getMyLocation();
   }
-
-  checkFarthestPoint() {
-    const currLocation = { latitude: 34.518611, longitude: 34.408056 };
-    let dist;
-    return (
-      this.props.filteredCards.reduce((maxDist, card) => {
-        dist = geolib.getDistance(currLocation, { latitude: card.lng, longitude: card.lat });
-        return Math.max(dist, maxDist);
-      }, 0) / KM
+  getMyLocation() {
+    navigator.geolocation.getCurrentPosition(
+      myPosition1 => {
+        const { latitude, longitude } = myPosition1.coords;
+        const myPosition = { latitude, longitude };
+        this.checkFarthestPoint(myPosition);
+        this.setState({ myPosition });
+      },
+      error => alert(error.message),
+      { enableHighAccuracy: true, timeout: 5000, maximumAge: 1000 }
     );
   }
 
-  clearFilter() {
-    const { max } = this.state;
-    this.setState({ orderType: '', title: '', city: '', distance: max });
-    this.props.updateFilterCards(this.props.cards);
-  }
-
-  filterOrderType(event, index, orderType) {
-    this.setState({ orderType });
-    const fl = this.props.cards.filter(card => filterHelper.findTypeInArray(card, orderType));
-    this.props.updateFilterCards(fl);
-  }
-
-  filterTitle(event, index, title) {
-    this.setState({ title });
-    const fl = this.props.cards.filter(card => card.title === title);
-    this.props.updateFilterCards(fl);
-  }
-
   initCities() {
-    return this.props.cards.map(card => (
-      <MenuItem key={card.city} value={card.city} primaryText={card.city} />
-    ));
+    return this.props.cards.map(card => <Option value={card.city}>{card.city}</Option>);
   }
 
-  filterCity(event, index, city) {
-    this.setState({ city });
-    const fl = this.props.cards.filter(card =>
-      card.city.toLowerCase().includes(city.toLowerCase()));
-    this.props.updateFilterCards(fl);
-  }
-
-  filterDist(event, index, distance) {
-    this.setState({ distance });
-    // Working with W3C Geolocation API
+  checkFarthestPoint(myPosition) {
     let dist;
-    const currLocation = { latitude: 34.518611, longitude: 34.408056 };
-    const fl = this.props.cards.filter(card => {
-      dist = geolib.getDistance(currLocation, { latitude: card.lng, longitude: card.lat });
-      dist /= KM;
-      return dist < distance;
+    let distance =
+      this.props.filteredCards.reduce((maxDist, card) => {
+        dist = geolib.getDistance(myPosition, { latitude: card.lng, longitude: card.lat });
+        return Math.max(dist, maxDist);
+      }, 0) / KM;
+    distance += 1;
+    distance = parseInt(distance, 10);
+    INITIAL_DIST = distance;
+    this.setState({ distance, menuDistances: Filter.initDistances(distance) });
+  }
+
+  filterAll() {
+    const { city, myPosition, distance, orderType } = this.state;
+    const { cards } = this.props;
+    const filteredList = cards.filter(card => {
+      const cityFlag = city ? card.city.toLowerCase().includes(city.toLowerCase()) : 1;
+      const orderTypeFlag = orderType ? card.orderType.find(type => type === orderType) : 1;
+      const geoDistance = geolib.getDistance(myPosition, {
+        latitude: card.lng,
+        longitude: card.lat
+      });
+      return geoDistance / KM < distance && cityFlag && orderTypeFlag;
     });
-    this.props.updateFilterCards(fl);
+
+    this.props.updateFilterCards(filteredList);
+  }
+
+  clearFilter() {
+    const { cards } = this.props;
+    this.setState({ orderType: '', city: '', distance: INITIAL_DIST });
+    this.props.updateFilterCards(cards);
   }
 
   render() {
-    const { orderType, title, city, distance, menuDistances } = this.state;
-
+    const { distance, menuDistances } = this.state;
     return (
       <FilterStyle>
-        <SelectField
-          style={SelectItem}
-          floatingLabelText="Order-Type"
-          value={orderType}
-          onChange={this.filterOrderType}
+        <Select
+          showSearch
+          size="large"
+          style={{ width: 200 }}
+          placeholder="Select order type"
+          optionFilterProp="children"
+          onChange={value => {
+            this.setState({ orderType: value });
+          }}
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
-          <MenuItem value={null} primaryText="" />
-          <MenuItem value="takeOut" primaryText="take out" />
-          <MenuItem value="sit" primaryText="sit" />
-        </SelectField>
+          <Option value="takeOut">takeOut</Option>
+          <Option value="sit">sit</Option>
+        </Select>
 
-        <SelectField
-          style={SelectItem}
-          floatingLabelText="title"
-          value={title}
-          onChange={this.filterTitle}
+        <Select
+          showSearch
+          size="large"
+          style={{ width: 200 }}
+          placeholder="Select city"
+          optionFilterProp="children"
+          onChange={value => {
+            this.setState({ city: value });
+          }}
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
-          <MenuItem value={null} primaryText="" />
-          {this.getTitleMenuItems()}
-        </SelectField>
-
-        <SelectField
-          style={SelectItem}
-          floatingLabelText="location"
-          value={city}
-          onChange={this.filterCity}
-        >
-          <MenuItem value={null} primaryText="" />
           {this.initCities()}
-        </SelectField>
+        </Select>
 
-        <SelectField
-          style={SelectItem}
-          floatingLabelText="distance"
-          value={distance}
-          onChange={this.filterDist}
+        <Select
+          showSearch
+          size="large"
+          style={{ width: 200 }}
+          placeholder="Select distance"
+          optionFilterProp="children"
+          onChange={value => {
+            this.setState({ distance: value });
+          }}
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           {menuDistances}
-        </SelectField>
-
+        </Select>
         <DistanceItem>{distance || 0} KM</DistanceItem>
 
-        <FlatButton style={ButtonItem} label="Clear" primary onClick={this.clearFilter} />
+        <Button type="primary" size="large" style={ButtonItem} onClick={this.clearFilter}>
+          Clear
+        </Button>
+        <Button type="primary" size="large" style={ButtonItem} onClick={this.filterAll}>
+          Filter
+        </Button>
       </FilterStyle>
     );
   }

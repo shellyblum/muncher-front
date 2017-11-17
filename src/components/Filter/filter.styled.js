@@ -4,18 +4,13 @@ export const FilterStyle = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  height: 100%;
 `;
 
-export const SelectItem = {
-  position: 'relative',
-  top: '-22px',
-  padding: 0
-};
-
 export const ButtonItem = {
-  position: 'relative',
-  top: '-10px'
+  width: '150px'
 };
-
-export const DistanceItem = styled.div``;
+export const DistanceItem = styled.div`
+  font-size: 18px;
+`;
