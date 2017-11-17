@@ -1,3 +1,5 @@
+/* eslint no-console: "off" */
+
 import 'antd/lib/select/style/css';
 import 'antd/lib/button/style/css';
 import { Button, Select } from 'antd';
