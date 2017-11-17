@@ -10,16 +10,11 @@ import CallToActionDialog from '../../components/CallToActionDialog/CallToAction
 class HomePage extends Component {
     state = { cards: data.cards, filteredCards: data.cards, toggleCTADialog: false, selectedRest: {} };
 
-    // updateFilterCards = this.updateFilterCards.bind(this);
-    // toggleCTADialog = this.toggleCTADialog.bind(this);
-    // onMarkerClick = this.onMarkerClick.bind(this);
-
-
   onMarkerClick = (cardId) => {
     this.selectCard(cardId);
   }
 
-  selectCard(isSelected, borderType = '1px solid black') {
+  selectCard = (isSelected, borderType = '1px solid black') => {
     const { filteredCards } = this.state;
     const selectedCard = filteredCards.map(card => (
       card.id === isSelected
@@ -28,26 +23,28 @@ class HomePage extends Component {
     this.setState({ filteredCards: selectedCard });
   }
 
-  applyStyle(id) {
+  applyStyle = (id) => {
     if (this.state.isSelected === id);
   }
 
-  updateFilterCards(filteredCards) {
+  updateFilterCards = (filteredCards) => {
     this.setState({ filteredCards });
   }
 
-  toggleCTADialog(restId) {
+  toggleCTADialog = (restId) => {
     const previousState = this.state.toggleCTADialog;
     this.setState({ toggleCTADialog: !previousState });
     this.findRestById(restId);
   }
 
-  findRestById(restId) {
+  findRestById = (restId) => {
     const selectedRest = this.state.filteredCards.find(rest => rest.id === restId);
     this.setState({ selectedRest });
   }
+
   render() {
     const { filteredCards, cards } = this.state;
+
     return (
       <div>
         <Main>
