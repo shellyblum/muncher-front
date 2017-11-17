@@ -21,7 +21,6 @@ function Image({ data, click }) {
     </div>
   );
 }
-export default Image;
 
 Image.propTypes = {
   data: PropTypes.shape({
@@ -31,3 +30,5 @@ Image.propTypes = {
   }).isRequired,
   click: PropTypes.func.isRequired
 };
+
+export default Image;

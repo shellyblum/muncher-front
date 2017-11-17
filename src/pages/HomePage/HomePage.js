@@ -8,39 +8,41 @@ import BottomLeft from '../../components/FeaturedCard/FeaturedCard';
 import CallToActionDialog from '../../components/CallToActionDialog/CallToActionDialog';
 
 class HomePage extends Component {
-    state = { cards: data.cards, filteredCards: data.cards, toggleCTADialog: false, selectedRest: {} };
+  state = {
+    cards: data.cards,
+    filteredCards: data.cards,
+    toggleCTADialog: false,
+    selectedRest: {}
+  };
 
-  onMarkerClick = (cardId) => {
+  onMarkerClick = cardId => {
     this.selectCard(cardId);
-  }
+  };
 
   selectCard = (isSelected, borderType = '1px solid black') => {
     const { filteredCards } = this.state;
-    const selectedCard = filteredCards.map(card => (
-      card.id === isSelected
-        ? { ...card, selected: borderType }
-        : { ...card, selected: null }));
+    const selectedCard = filteredCards.map(card => (card.id === isSelected ? { ...card, selected: borderType } : { ...card, selected: null }));
     this.setState({ filteredCards: selectedCard });
-  }
+  };
 
-  applyStyle = (id) => {
+  applyStyle = id => {
     if (this.state.isSelected === id);
-  }
+  };
 
-  updateFilterCards = (filteredCards) => {
+  updateFilterCards = filteredCards => {
     this.setState({ filteredCards });
-  }
+  };
 
-  toggleCTADialog = (restId) => {
+  toggleCTADialog = restId => {
     const previousState = this.state.toggleCTADialog;
     this.setState({ toggleCTADialog: !previousState });
     this.findRestById(restId);
-  }
+  };
 
-  findRestById = (restId) => {
+  findRestById = restId => {
     const selectedRest = this.state.filteredCards.find(rest => rest.id === restId);
     this.setState({ selectedRest });
-  }
+  };
 
   render() {
     const { filteredCards, cards } = this.state;
@@ -49,29 +51,12 @@ class HomePage extends Component {
       <div>
         <Main>
           <Search gridArea="search">
-            <Filter
-              cards={cards}
-              filteredCards={filteredCards}
-              updateFilterCards={this.updateFilterCards}
-            />
+            <Filter cards={cards} filteredCards={filteredCards} updateFilterCards={this.updateFilterCards} />
           </Search>
-          <GridListCards
-            filteredCards={filteredCards}
-            toggleCTADialog={this.toggleCTADialog}
-           />
-          <CallToActionDialog
-            selectedRest={this.state.selectedRest}
-            open={this.state.toggleCTADialog}
-            toggleCTADialog={this.toggleCTADialog}
-          />
+          <GridListCards filteredCards={filteredCards} toggleCTADialog={this.toggleCTADialog} />
+          <CallToActionDialog selectedRest={this.state.selectedRest} open={this.state.toggleCTADialog} toggleCTADialog={this.toggleCTADialog} />
           <Left gridArea="left">
-            <MapWithMarkers
-              onMarkerClick={this.onMarkerClick}
-              dataMarkers={data.cards}
-              height={150}
-              lat={34}
-              lng={32}
-            />
+            <MapWithMarkers onMarkerClick={this.onMarkerClick} dataMarkers={data.cards} height={150} lat={34} lng={32} />
           </Left>
           <BottomLeft gridArea="bottomLeft">Title component here</BottomLeft>
         </Main>

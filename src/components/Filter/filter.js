@@ -2,6 +2,7 @@
 
 import 'antd/lib/select/style/css';
 import 'antd/lib/button/style/css';
+
 import { Button, Select } from 'antd';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -29,22 +30,16 @@ class Filter extends Component {
       });
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      orderType: '',
-      city: '',
-      distance: INITIAL_DIST,
-      menuDistances: [],
-      myPosition: {
-        latitude: -1,
-        longitude: -1
-      }
-    };
-
-    this.clearFilter = this.clearFilter.bind(this);
-    this.filterAll = this.filterAll.bind(this);
-  }
+  state = {
+    orderType: '',
+    city: '',
+    distance: INITIAL_DIST,
+    menuDistances: [],
+    myPosition: {
+      latitude: -1,
+      longitude: -1
+    }
+  };
 
   componentDidMount() {
     this.getMyLocation();
@@ -64,7 +59,7 @@ class Filter extends Component {
   }
 
   initCities() {
-    return this.props.cards.map(card => <Option value={card.city}>{card.city}</Option>);
+    return this.props.cards.map(card => <Option key={card.city} value={card.city}>{card.city}</Option>);
   }
 
   checkFarthestPoint(myPosition) {
@@ -80,7 +75,7 @@ class Filter extends Component {
     this.setState({ distance, menuDistances: Filter.initDistances(distance) });
   }
 
-  filterAll() {
+  filterAll = () => {
     const { city, myPosition, distance, orderType } = this.state;
     const { cards } = this.props;
     const filteredList = cards.filter(card => {
@@ -94,13 +89,13 @@ class Filter extends Component {
     });
 
     this.props.updateFilterCards(filteredList);
-  }
+  };
 
-  clearFilter() {
+  clearFilter = () => {
     const { cards } = this.props;
     this.setState({ orderType: '', city: '', distance: INITIAL_DIST });
     this.props.updateFilterCards(cards);
-  }
+  };
 
   render() {
     const { distance, menuDistances } = this.state;
@@ -115,8 +110,7 @@ class Filter extends Component {
           onChange={value => {
             this.setState({ orderType: value });
           }}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           <Option value="takeOut">takeOut</Option>
           <Option value="sit">sit</Option>
@@ -131,8 +125,7 @@ class Filter extends Component {
           onChange={value => {
             this.setState({ city: value });
           }}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           {this.initCities()}
         </Select>
@@ -146,8 +139,7 @@ class Filter extends Component {
           onChange={value => {
             this.setState({ distance: value });
           }}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           {menuDistances}
         </Select>

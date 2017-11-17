@@ -6,25 +6,20 @@ import { loginSignupRequest } from '../../actions/user';
 import messages from '../../helpers/messages';
 
 class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-      errors: { usernameError: '', passwordError: '' }
-    };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  state = {
+    username: '',
+    password: '',
+    errors: { usernameError: '', passwordError: '' }
+  };
 
-  handleInputChange({ target }) {
+  handleInputChange = ({ target }) => {
     this.setState({
       [target.name]: target.value,
       errors: { ...this.state.errors, [`${target.name}Error`]: '' }
     });
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     const { dispatch } = this.props;
     const { username, password } = this.state;
     if (username && password) {
@@ -44,6 +39,7 @@ class LoginForm extends Component {
       { name: 'username', type: 'text', placeHolder: 'Username' },
       { name: 'password', type: 'password', placeHolder: 'Password' }
     ];
+
     return (
       <ReusableForm
         fields={fields}

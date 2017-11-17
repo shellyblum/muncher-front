@@ -35,16 +35,13 @@ const MapWithAMarkerClusterer = compose(
   </GoogleMap>
 ));
 
-export default class MapWithMarkers extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      markers: this.props.dataMarkers,
-      height: this.props.height,
-      lat: this.props.lat,
-      lng: this.props.lng
-    };
-  }
+class MapWithMarkers extends React.PureComponent {
+  state = {
+    markers: this.props.dataMarkers,
+    height: this.props.height,
+    lat: this.props.lat,
+    lng: this.props.lng
+  };
 
   render() {
     return (
@@ -66,3 +63,5 @@ MapWithMarkers.propTypes = {
   lat: PropTypes.number.isRequired,
   lng: PropTypes.number.isRequired
 };
+
+export default MapWithMarkers;

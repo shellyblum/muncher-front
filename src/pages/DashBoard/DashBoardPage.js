@@ -8,7 +8,8 @@ const Grid = styled.div`
   padding: 1em;
   background: #edecec;
   display: grid;
-  grid-template-areas: 'header header header' 'left-top middle right'
+  grid-template-areas:
+    'header header header' 'left-top middle right'
     'left-bottom middle right';
 `;
 const SubTitle = styled.h3`
@@ -25,15 +26,11 @@ const Icon = styled.i`
 `;
 
 class DashBoard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { navbarOpen: true };
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-  }
+  state = { navbarOpen: true };
 
-  toggleNavbar() {
+  toggleNavbar = () => {
     this.setState({ navbarOpen: !this.state.navbarOpen });
-  }
+  };
 
   render() {
     return (

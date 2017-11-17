@@ -11,6 +11,7 @@ const ImageWrapp = styled.img`
   position: absolute;
   margin-top: 20px;
 `;
+
 const ReviewWrapper = styled.div`
   margin-top: 2em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -18,7 +19,6 @@ const ReviewWrapper = styled.div`
   border-radius: 10px;
   margin-left: 100px;
 `;
-
 
 function Review({ data }) {
   return (
@@ -32,7 +32,6 @@ function Review({ data }) {
     </div>
   );
 }
-export default Review;
 
 Review.propTypes = {
   data: PropTypes.shape({
@@ -42,3 +41,5 @@ Review.propTypes = {
     date: PropTypes.string
   }).isRequired
 };
+
+export default Review;
