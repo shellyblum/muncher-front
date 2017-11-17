@@ -7,9 +7,8 @@ import Filter from '../../components/Filter/filter';
 import BottomLeft from '../../components/FeaturedCard/FeaturedCard';
 import CallToActionDialog from '../../components/CallToActionDialog/CallToActionDialog';
 
-const { cards } = data;
 class HomePage extends Component {
-    state = { cards, filteredCards: cards, toggleCTADialog: false, selectedRest: {} };
+    state = { cards: data.cards, filteredCards: data.cards, toggleCTADialog: false, selectedRest: {} };
 
     // updateFilterCards = this.updateFilterCards.bind(this);
     // toggleCTADialog = this.toggleCTADialog.bind(this);
