@@ -55,7 +55,7 @@ class Filter extends Component {
         this.checkFarthestPoint(myPosition);
         this.setState({ myPosition });
       },
-      error => alert(error.message),
+      error => console.log(error.message),
       { enableHighAccuracy: true, timeout: 5000, maximumAge: 1000 }
     );
   }
