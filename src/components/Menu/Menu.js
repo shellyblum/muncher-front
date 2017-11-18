@@ -6,14 +6,11 @@ import Body from './Menu.styles';
 import data from './data';
 
 class Menu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 'drinks'
-    };
-  }
+  state = { value: 'drinks' };
+
   render() {
     const { grid } = this.props;
+
     return (
       <Body width={grid}>
         <Tabs

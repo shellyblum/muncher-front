@@ -4,19 +4,21 @@ import PropTypes from 'prop-types';
 import Review from './Review';
 
 const ReviewsWrapper = styled.div`
-position: relative;
-width:3fr;
-&:before {
-  content: '';
-  position: absolute;
-  left: 30px;
-  height: 100%;
-  width: 4px;
-  background: #d7e4ed;
-}
+  position: relative;
+  width:3fr;
+  &:before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    height: 100%;
+    width: 4px;
+    background: #d7e4ed;
+  }
 `;
+
 function ReviewList({ data }) {
   const Reviews = data.map((review) => <Review key={data.title} data={review} />);
+
   return (
     <div>
       <h1>Reviews</h1>
@@ -26,7 +28,7 @@ function ReviewList({ data }) {
     </div>
   );
 }
-export default ReviewList;
+
 ReviewList.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string,
@@ -35,3 +37,5 @@ ReviewList.propTypes = {
     date: PropTypes.string
   }).isRequired).isRequired
 };
+
+export default ReviewList;
