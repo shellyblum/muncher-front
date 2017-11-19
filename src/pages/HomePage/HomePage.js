@@ -17,12 +17,29 @@ class HomePage extends Component {
 
   onMarkerClick = cardId => {
     this.selectCard(cardId);
+    this.showInfoBox(cardId);
   };
 
-  selectCard = (isSelected, borderType = '1px solid black') => {
+  showOnMap = restId => {
+    this.selectCard(restId);
+    // console.log(this.state.filteredCards[restId].selected);
+    this.showInfoBox(restId);
+  };
+
+  selectCard = async (isSelected, borderType = '1px solid black') => {
+    console.log(isSelected);
+    // const { filteredCards } = this.state;
+    const selectedCard = this.state.filteredCards.map(card => (card.id === isSelected ? { ...card, selected: borderType } : { ...card, selected: null }));
+    console.log(selectedCard);
+    await this.setState({ filteredCards: selectedCard });
+    console.log(this.state.filteredCards);
+  };
+
+  showInfoBox = id => {
     const { filteredCards } = this.state;
-    const selectedCard = filteredCards.map(card => (card.id === isSelected ? { ...card, selected: borderType } : { ...card, selected: null }));
-    this.setState({ filteredCards: selectedCard });
+    const newState = filteredCards.map(card => (card.id === id ? { ...card, showInfo: !card.showInfo } : { ...card, showInfo: false }));
+    this.setState({ filteredCards: newState });
+    // console.log(this.state.filteredCards[id].showInfo);
   };
 
   applyStyle = id => {
@@ -53,10 +70,24 @@ class HomePage extends Component {
           <Search gridArea="search">
             <Filter cards={cards} filteredCards={filteredCards} updateFilterCards={this.updateFilterCards} />
           </Search>
-          <GridListCards filteredCards={filteredCards} toggleCTADialog={this.toggleCTADialog} />
-          <CallToActionDialog selectedRest={this.state.selectedRest} open={this.state.toggleCTADialog} toggleCTADialog={this.toggleCTADialog} />
+          <GridListCards
+            filteredCards={filteredCards}
+            toggleCTADialog={this.toggleCTADialog}
+            showOnMap={this.showOnMap}
+          />
+          <CallToActionDialog
+            selectedRest={this.state.selectedRest}
+            open={this.state.toggleCTADialog}
+            toggleCTADialog={this.toggleCTADialog}
+          />
           <Left gridArea="left">
-            <MapWithMarkers onMarkerClick={this.onMarkerClick} dataMarkers={data.cards} height={150} lat={34} lng={32} />
+            <MapWithMarkers
+              onMarkerClick={this.onMarkerClick}
+              dataMarkers={this.state.filteredCards}
+              height={150}
+              lat={34}
+              lng={32}
+            />
           </Left>
           <BottomLeft gridArea="bottomLeft">Title component here</BottomLeft>
         </Main>

@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 import { Card, CardActions, CardMedia, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { red100, deepPurple100 } from 'material-ui/styles/colors';
-import {
-  HoverEffect,
-  styleCardText,
-  styleFlatButton,
-  styleCard
-} from '../CardWithImage/CardWithImage.styled';
+import { HoverEffect, styleCardText, styleFlatButton, styleCard } from '../CardWithImage/CardWithImage.styled';
 
-const CardWithImage = ({ id, image, title, text, action, lat, lng, selected, toggleCTADialog }) => (
+const CardWithImage = ({ id, image, title, text, action, lat, lng, selected, toggleCTADialog, showOnMap }) => (
   <HoverEffect selected={selected}>
     <Card style={styleCard}>
       <CardText style={styleCardText}>{title}</CardText>
@@ -19,17 +14,9 @@ const CardWithImage = ({ id, image, title, text, action, lat, lng, selected, tog
       </CardMedia>
       <CardText>{text}</CardText>
       <CardActions style={styleFlatButton}>
-        <FlatButton
-          primary
-          hoverColor={red100}
-          label={action}
-          onClick={() => toggleCTADialog(id)}
-        />
-        <FlatButton primary hoverColor={deepPurple100} label="Map" />
+        <FlatButton primary hoverColor={red100} label={action} onClick={() => toggleCTADialog(id)} />
+        <FlatButton onClick={() => showOnMap(id)} primary hoverColor={deepPurple100} label="show on Map" />
       </CardActions>
-      <button onClick={() => {}}>
-        {lat} ,{lng},{id}
-      </button>
     </Card>
   </HoverEffect>
 );
@@ -43,7 +30,8 @@ CardWithImage.propTypes = {
   lat: PropTypes.number.isRequired,
   lng: PropTypes.number.isRequired,
   selected: PropTypes.string,
-  toggleCTADialog: PropTypes.func
+  toggleCTADialog: PropTypes.func,
+  showOnMap: PropTypes.func
 };
 
 CardWithImage.defaultProps = {
@@ -52,7 +40,8 @@ CardWithImage.defaultProps = {
   text: 'Text unavailable',
   action: 'Action button',
   selected: null,
-  toggleCTADialog: () => null
+  toggleCTADialog: () => null,
+  showOnMap: () => null
 };
 
 export default CardWithImage;
