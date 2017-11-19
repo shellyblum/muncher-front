@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import Menu from '../../components/Menu/Menu';
 import ImageShow from '../../components/ImageShow/ImageShow';
 import ReviewList from '../../components/Reviews/ReviewList';
-import images from './images';
-import reviews from './reviews';
+import images from '../Location/images';
+import reviews from '../Location/reviews';
 
 const LocationWrapper = styled.div`
-  display:grid;
-  grid-template-columns:  1fr 2fr;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   grid-gap: 1rem;
-  padding : 1rem;
+  padding: 1rem;
 `;
 
 const location = () => (
