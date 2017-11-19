@@ -79,7 +79,7 @@ class Filter extends Component {
   }
 
   filterAll = () => {
-    const { city, myPosition, distance, initialDistace, orderType } = this.state;
+    const { city, myPosition, distance, orderType } = this.state;
     const { cards } = this.props;
     const filteredList = cards.filter(card => {
       const cityFlag = city ? card.city.toLowerCase().includes(city.toLowerCase()) : 1;
