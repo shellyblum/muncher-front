@@ -18,9 +18,9 @@ console.log(reviews);
 const location = () => (
   <div>
     <LocationWrapper>
-      <ImageShow data={images} />
+      <ImageShow data={images.images} />
       <Menu grid="2fr" />
-      <ReviewList data={reviews} />
+      <ReviewList data={reviews.reviews} />
     </LocationWrapper>
   </div>
 );
