@@ -15,7 +15,14 @@ const CardWithImage = ({ id, image, title, text, action, selected, toggleCTADial
       <CardText>{text}</CardText>
       <CardActions style={styleFlatButton}>
         <FlatButton primary hoverColor={red100} label={action} onClick={() => toggleCTADialog(id)} />
-        <FlatButton onClick={() => showOnMap(id)} primary hoverColor={deepPurple100} label="show on Map" />
+        <FlatButton onClick={(e) => showOnMap(id, e)} primary hoverColor={deepPurple100} label="show on Map" />
+        <button
+          onClick={e => {
+            showOnMap(e, id);
+          }}
+        >
+          button
+        </button>
       </CardActions>
     </Card>
   </HoverEffect>

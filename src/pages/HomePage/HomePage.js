@@ -15,31 +15,37 @@ class HomePage extends Component {
     selectedRest: {}
   };
 
-  onMarkerClick = cardId => {
+  onMarkerClick = (cardId, e) => {
     this.selectCard(cardId);
     this.showInfoBox(cardId);
+    this.scroll(cardId, e);
   };
 
-  showOnMap = restId => {
+  scroll = (cardId, elementHeight) => {
+    console.log(elementHeight);
+    window.scroll({
+      top: elementHeight,
+      Left: 0,
+      behavior: 'smooth'
+    });
+  };
+  showOnMap = (e, restId) => {
     this.selectCard(restId);
-    // console.log(this.state.filteredCards[restId].selected);
     this.showInfoBox(restId);
+    const x = e.target.parentElement;
+    x.scrollIntoView({ inline: 'start', behavior: 'smooth' });
   };
 
   selectCard = async (isSelected, borderType = '1px solid black') => {
-    console.log(isSelected);
-    // const { filteredCards } = this.state;
-    const selectedCard = this.state.filteredCards.map(card => (card.id === isSelected ? { ...card, selected: borderType } : { ...card, selected: null }));
-    console.log(selectedCard);
+    const { filteredCards } = this.state;
+    const selectedCard = filteredCards.map(card => (card.id === isSelected ? { ...card, selected: borderType } : { ...card, selected: null }));
     await this.setState({ filteredCards: selectedCard });
-    console.log(this.state.filteredCards);
   };
 
   showInfoBox = id => {
     const { filteredCards } = this.state;
     const newState = filteredCards.map(card => (card.id === id ? { ...card, showInfo: !card.showInfo } : { ...card, showInfo: false }));
     this.setState({ filteredCards: newState });
-    // console.log(this.state.filteredCards[id].showInfo);
   };
 
   applyStyle = id => {

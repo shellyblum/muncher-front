@@ -73,6 +73,18 @@ export default {
       orderType: ['takeOut'],
       lng: 34.5765765,
       lat: 34.465465
+    },
+    {
+      id: '6',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title7',
+      text: 'Muncher - Text7: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 34.5765765,
+      lat: 34.465465
     }
   ]
 };

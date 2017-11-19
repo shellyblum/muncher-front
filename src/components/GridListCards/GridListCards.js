@@ -8,7 +8,7 @@ import CardWithImage from '../CardWithImage/CardWithImage';
 const GridListCards = ({ gridColumns, gridArea, filteredCards, toggleCTADialog, showOnMap }) => (
   <Grid gridColumns={gridColumns} gridArea={gridArea}>
     {filteredCards.map(tile => (
-      <CardWithImage key={tile.title} {...tile} showOnMap={showOnMap} toggleCTADialog={toggleCTADialog} />
+      <CardWithImage id={tile.id} key={tile.title} {...tile} showOnMap={showOnMap} toggleCTADialog={toggleCTADialog} />
     ))}
   </Grid>
 );
