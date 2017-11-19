@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { red100, deepPurple100 } from 'material-ui/styles/colors';
 import { HoverEffect, styleCardText, styleFlatButton, styleCard } from '../CardWithImage/CardWithImage.styled';
 
-const CardWithImage = ({ id, image, title, text, action, lat, lng, selected, toggleCTADialog, showOnMap }) => (
+const CardWithImage = ({ id, image, title, text, action, selected, toggleCTADialog, showOnMap }) => (
   <HoverEffect selected={selected}>
     <Card style={styleCard}>
       <CardText style={styleCardText}>{title}</CardText>
@@ -27,8 +27,6 @@ CardWithImage.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   action: PropTypes.string,
-  lat: PropTypes.number.isRequired,
-  lng: PropTypes.number.isRequired,
   selected: PropTypes.string,
   toggleCTADialog: PropTypes.func,
   showOnMap: PropTypes.func
