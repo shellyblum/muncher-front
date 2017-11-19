@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import images from './images';
+import reviews from './reviews';
 import Menu from '../../components/Menu/Menu';
 import ImageShow from '../../components/ImageShow/ImageShow';
 import ReviewList from '../../components/Reviews/ReviewList';
-import images from './images';
-import reviews from './reviews';
 
 const LocationWrapper = styled.div`
   display: grid;
@@ -18,7 +18,7 @@ console.log(reviews);
 const location = () => (
   <div>
     <LocationWrapper>
-      <ImageShow />
+      <ImageShow data={images.images} />
       <Menu grid="2fr" />
       <ReviewList data={reviews.reviews} />
     </LocationWrapper>
