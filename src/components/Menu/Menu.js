@@ -1,9 +1,12 @@
+import 'antd/lib/tabs/style/css';
+import { Tabs } from 'antd';
 import React from 'react';
-import { Tabs, Tab } from 'material-ui/Tabs';
 import PropTypes from 'prop-types';
 import MenuElements from './MenuElements/MenuElements';
 import Body from './Menu.styles';
 import data from './data';
+
+const { TabPane } = Tabs;
 
 class Menu extends React.Component {
   state = { value: 'drinks' };
@@ -13,20 +16,23 @@ class Menu extends React.Component {
 
     return (
       <Body width={grid}>
-        <Tabs
-          value={this.state.value}
-          onChange={value => {
-            this.setState({
-              value
-            });
-          }}
-        >
-          {data.map(item => (
-            <Tab key={item.category} label={item.category} value={item.category}>
-              <MenuElements items={item.list}>{item.list.name}</MenuElements>
-            </Tab>
-          ))}
-        </Tabs>
+        <div className="card-container">
+          <Tabs
+            type="card"
+            value={this.state.value}
+            onChange={value => {
+              this.setState({
+                value
+              });
+            }}
+          >
+            {data.map(item => (
+              <TabPane tab={item.category} key={item.category}>
+                <MenuElements items={item.list}>{item.list.name}</MenuElements>
+              </TabPane>
+            ))}
+          </Tabs>
+        </div>
       </Body>
     );
   }
