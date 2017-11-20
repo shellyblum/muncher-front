@@ -10,10 +10,9 @@ import geolib from 'geolib';
 import { FilterStyle, ButtonItem, DistanceItem } from './filter.styled';
 
 const { Option } = Select;
-let INITIAL_DIST = -1;
 const KM = 1000;
 
-const initDistances = (farthestDistance) => {
+const initDistances = farthestDistance => {
   const MENU_ITEMS = 9;
   const START_FROM = 1;
   const section = farthestDistance / MENU_ITEMS;
@@ -31,9 +30,10 @@ const initDistances = (farthestDistance) => {
 
 class Filter extends Component {
   state = {
-    orderType: '',
-    city: '',
-    distance: INITIAL_DIST,
+    orderType: undefined,
+    city: undefined,
+    initialDistace: undefined,
+    distance: undefined,
     menuDistances: [],
     myPosition: {
       latitude: -1,
@@ -59,20 +59,23 @@ class Filter extends Component {
   }
 
   initCities() {
-    return this.props.cards.map(card => <Option key={card.city} value={card.city}>{card.city}</Option>);
+    return this.props.cards.map(card => (
+      <Option key={card.city} value={card.city}>
+        {card.city}
+      </Option>
+    ));
   }
 
   checkFarthestPoint(myPosition) {
     let dist;
-    let distance =
+    let initialDistace =
       this.props.filteredCards.reduce((maxDist, card) => {
         dist = geolib.getDistance(myPosition, { latitude: card.lng, longitude: card.lat });
         return Math.max(dist, maxDist);
       }, 0) / KM;
-    distance += 1;
-    distance = parseInt(distance, 10);
-    INITIAL_DIST = distance;
-    this.setState({ distance, menuDistances: initDistances(distance) });
+    initialDistace += 1;
+    initialDistace = parseInt(initialDistace, 10);
+    this.setState({ initialDistace, menuDistances: initDistances(initialDistace) });
   }
 
   filterAll = () => {
@@ -93,12 +96,12 @@ class Filter extends Component {
 
   clearFilter = () => {
     const { cards } = this.props;
-    this.setState({ orderType: '', city: '', distance: INITIAL_DIST });
+    this.setState({ orderType: undefined, city: undefined, distance: undefined });
     this.props.updateFilterCards(cards);
   };
 
   render() {
-    const { distance, menuDistances } = this.state;
+    const { orderType, city, distance, initialDistace, menuDistances } = this.state;
     return (
       <FilterStyle>
         <Select
@@ -107,6 +110,7 @@ class Filter extends Component {
           style={{ width: 200 }}
           placeholder="Select order type"
           optionFilterProp="children"
+          value={orderType}
           onChange={value => {
             this.setState({ orderType: value });
           }}
@@ -122,6 +126,7 @@ class Filter extends Component {
           style={{ width: 200 }}
           placeholder="Select city"
           optionFilterProp="children"
+          value={city}
           onChange={value => {
             this.setState({ city: value });
           }}
@@ -136,14 +141,15 @@ class Filter extends Component {
           style={{ width: 200 }}
           placeholder="Select distance"
           optionFilterProp="children"
+          value={distance}
           onChange={value => {
-            this.setState({ distance: value });
+            this.setState({ distance: value, initialDistace: value });
           }}
           filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           {menuDistances}
         </Select>
-        <DistanceItem>{distance || 0} KM</DistanceItem>
+        <DistanceItem>{initialDistace || 0} KM</DistanceItem>
 
         <Button type="primary" size="large" style={ButtonItem} onClick={this.clearFilter}>
           Clear
