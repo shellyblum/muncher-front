@@ -1,21 +1,26 @@
+import 'antd/lib/card/style/css';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Grid from './GridListCards.styled';
+import { Card } from 'antd';
 
-import CardWithImage from '../CardWithImage/CardWithImage';
+import LocationCard from '../LocationCard/LocationCard';
 
-const GridListCards = ({ gridColumns, gridArea, filteredCards, toggleCTADialog }) => (
-  <Grid gridColumns={gridColumns} gridArea={gridArea}>
+const GridListCards = ({ filteredCards, toggleCTADialog }) => (
+  <Card bordered={false} noHovering>
     {filteredCards.map(tile => (
-      <CardWithImage key={tile.title} {...tile} toggleCTADialog={toggleCTADialog} />
+      <Card.Grid
+        key={tile.title}
+        style={{ width: '30%', textAlign: 'center', padding: '0px', margin: '0 5px 10px 5px' }}
+      >
+        <LocationCard {...tile} toggleCTADialog={toggleCTADialog} />
+      </Card.Grid>
     ))}
-  </Grid>
+  </Card>
 );
 
 GridListCards.propTypes = {
-  gridColumns: PropTypes.number,
-  gridArea: PropTypes.string,
   toggleCTADialog: PropTypes.func,
   filteredCards: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string,
@@ -30,8 +35,6 @@ GridListCards.propTypes = {
 };
 
 GridListCards.defaultProps = {
-  gridColumns: 3,
-  gridArea: 'right',
   toggleCTADialog: () => null
 };
 

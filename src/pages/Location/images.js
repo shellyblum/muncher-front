@@ -1,4 +1,4 @@
-const images = [
+export default [
   {
     image: 'http://lorempicsum.com/rio/627/300/1',
     alt: 'http://lorempicsum.com/futurama/350/200/1',
@@ -18,5 +18,5 @@ const images = [
     image: 'http://lorempicsum.com/rio/627/300/4',
     alt: 'http://lorempicsum.com/futurama/350/200/1',
     discription: 'hahahahahahhahahaha'
-  }];
-export default images;
+  }
+];
