@@ -19,7 +19,7 @@ const MapWithAMarkerClusterer = compose(
   <GoogleMap defaultZoom={4} defaultCenter={{ lat: props.lat, lng: props.lng }}>
     {props.markers.map(marker => (
       <Marker
-        onClick={(e) => props.onMarkerClick(marker.id, e)}
+        onClick={() => props.onMarkerClick(marker.id)}
         key={marker.title}
         position={{ lat: marker.lat, lng: marker.lng }}
         title={marker.title}

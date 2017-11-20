@@ -15,20 +15,16 @@ class HomePage extends Component {
     selectedRest: {}
   };
 
-  onMarkerClick = (cardId, e) => {
+  onMarkerClick = (cardId) => {
     this.selectCard(cardId);
     this.showInfoBox(cardId);
-    this.scroll(cardId, e);
+    this.scroll(cardId);
   };
 
-  scroll = (cardId, elementHeight) => {
-    console.log(elementHeight);
-    window.scroll({
-      top: elementHeight,
-      Left: 0,
-      behavior: 'smooth'
-    });
+  scroll = async (cardId) => {
+    await document.getElementById(cardId).scrollIntoView({ inline: 'start', behavior: 'smooth' });
   };
+
   showOnMap = (e, restId) => {
     this.selectCard(restId);
     this.showInfoBox(restId);
@@ -36,10 +32,10 @@ class HomePage extends Component {
     x.scrollIntoView({ inline: 'start', behavior: 'smooth' });
   };
 
-  selectCard = async (isSelected, borderType = '1px solid black') => {
+  selectCard =(isSelected, borderType = '1px solid black') => {
     const { filteredCards } = this.state;
     const selectedCard = filteredCards.map(card => (card.id === isSelected ? { ...card, selected: borderType } : { ...card, selected: null }));
-    await this.setState({ filteredCards: selectedCard });
+    this.setState({ filteredCards: selectedCard });
   };
 
   showInfoBox = id => {
