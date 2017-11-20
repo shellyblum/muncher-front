@@ -20,11 +20,7 @@ class Menu extends React.Component {
           <Tabs
             type="card"
             value={this.state.value}
-            onChange={value => {
-              this.setState({
-                value
-              });
-            }}
+            onChange={value => this.setState({value})}
           >
             {data.map(item => (
               <TabPane tab={item.category} key={item.category}>
