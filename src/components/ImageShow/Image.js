@@ -17,7 +17,7 @@ function Image({ data, click }) {
       <Tooltip placement="topRight" title={data.discription}>
         <ImageWrapp src={data.image} onClick={click} alt={data.alt} />
       </Tooltip>
-    </div >
+    </div>
   );
 }
 
