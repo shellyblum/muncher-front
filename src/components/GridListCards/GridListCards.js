@@ -1,11 +1,11 @@
-import 'antd/dist/antd.css';
+import 'antd/lib/card/style/css';
 
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Card } from 'antd';
 
-import CardWithImage from '../CardWithImage/CardWithImage';
+import LocationCard from '../LocationCard/LocationCard';
 
 const GridListCards = ({ filteredCards, toggleCTADialog }) => (
   <Card bordered={false} noHovering>
@@ -14,7 +14,7 @@ const GridListCards = ({ filteredCards, toggleCTADialog }) => (
         key={tile.title}
         style={{ width: '30%', textAlign: 'center', padding: '0px', margin: '0 5px 10px 5px' }}
       >
-        <CardWithImage {...tile} toggleCTADialog={toggleCTADialog} />
+        <LocationCard {...tile} toggleCTADialog={toggleCTADialog} />
       </Card.Grid>
     ))}
   </Card>
