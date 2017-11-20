@@ -14,10 +14,10 @@ const ImageWrapp = styled.img`
 function Image({ data, click }) {
   return (
     <div>
-      <Tooltip placement="bottomRight" title={data.discription}>
+      <Tooltip placement="topRight" title={data.discription}>
         <ImageWrapp src={data.image} onClick={click} alt={data.alt} />
       </Tooltip>
-    </div>
+    </div >
   );
 }
 
