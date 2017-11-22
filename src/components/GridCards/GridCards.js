@@ -7,7 +7,7 @@ import { Card } from 'antd';
 
 import LocationCard from '../LocationCard/LocationCard';
 
-const GridListCards = ({ filteredCards, toggleCTADialog }) => (
+const GridCards = ({ filteredCards, toggleCTADialog }) => (
   <Card bordered={false} noHovering>
     {filteredCards.map(tile => (
       <Card.Grid
@@ -20,7 +20,7 @@ const GridListCards = ({ filteredCards, toggleCTADialog }) => (
   </Card>
 );
 
-GridListCards.propTypes = {
+GridCards.propTypes = {
   toggleCTADialog: PropTypes.func,
   filteredCards: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string,
@@ -34,8 +34,8 @@ GridListCards.propTypes = {
   })).isRequired
 };
 
-GridListCards.defaultProps = {
+GridCards.defaultProps = {
   toggleCTADialog: () => null
 };
 
-export default GridListCards;
+export default GridCards;
