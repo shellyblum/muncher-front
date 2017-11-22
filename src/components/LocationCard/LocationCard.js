@@ -1,25 +1,35 @@
+import 'antd/lib/tooltip/style/css';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Tooltip } from 'antd';
 
-import { SelectEffect } from '../LocationCard/LocationCard.styled';
+import {
+  SelectEffect,
+  P,
+  BtnsWrapper,
+  CallToActionBtn,
+  MapBtn
+} from '../LocationCard/LocationCard.styled';
 
 const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialog }) => (
   <SelectEffect selected={selected}>
     <h3>{title}</h3>
-    <div className="custom-image">
-      <img alt={title} width="100%" src={image} />
-    </div>
-    <div className="custom-card">
-      <p>{text}</p>
-    </div>
-    <button onClick={() => toggleCTADialog(id)}> {action} </button>
-    <button
-      onClick={e => {
-        console.log(e.target); // Gil's function will come here
-      }}
-    >
-      Show on map
-    </button>
+    <img alt={title} width="100%" src={image} />
+    <P>{text}</P>
+    <BtnsWrapper>
+      <CallToActionBtn onClick={() => toggleCTADialog(id)}>
+        <h3>{action}</h3>
+      </CallToActionBtn>
+      <MapBtn
+        onClick={e => {
+          console.log(e.target); // Gil's function will come here
+        }}
+      >
+        <Tooltip title="Show on map">
+          <i className="fa fa-map-marker" aria-hidden="true" />
+        </Tooltip>
+      </MapBtn>
+    </BtnsWrapper>
   </SelectEffect>
 );
 

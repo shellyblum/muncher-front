@@ -1,10 +1,7 @@
 import 'antd/lib/card/style/css';
-
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { Card } from 'antd';
-
 import LocationCard from '../LocationCard/LocationCard';
 
 const GridCards = ({ filteredCards, toggleCTADialog }) => (
