@@ -55,8 +55,8 @@ export const dataForWidget = [
     component: <FreshOnSite data={data} />
   },
   {
-    label: 'Todays special',
-    name: 'gifts',
+    label: 'Today special',
+    name: 'fa fa-money',
     component: <Special data={special} />
   }
 ];

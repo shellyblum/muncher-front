@@ -1,16 +1,18 @@
 import React from 'react';
+import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardTitle,
+  CardText
+} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import PropTypes from 'prop-types';
-import { Card } from 'antd';
 
 const Special = ({ data }) => (
-  <Card title={data.title} extra={<a href="#">More</a>} style={{ width: 300 }}>
-    <p>{data.text}</p>
-  </Card>
-);
-
-/* <Card>
+  <Card>
     <CardHeader
-      title=
+      title={data.title}
       subtitle={data.subtitle}
       avatar={data.image}
     />
@@ -20,7 +22,8 @@ const Special = ({ data }) => (
       <FlatButton label="Action1" />
       <FlatButton label="Action2" />
     </CardActions>
-  </Card> */
+  </Card>
+);
 
 export default Special;
 
