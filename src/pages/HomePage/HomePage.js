@@ -15,33 +15,18 @@ class HomePage extends Component {
     selectedRest: {}
   };
 
-  onMarkerClick = (cardId) => {
-    this.selectCard(cardId);
-    this.showInfoBox(cardId);
-    this.scroll(cardId);
-  };
-
-  scroll = async (cardId) => {
-    await document.getElementById(cardId).scrollIntoView({ inline: 'start', behavior: 'smooth' });
-  };
-
-  showOnMap = (e, restId) => {
-    this.selectCard(restId);
-    this.showInfoBox(restId);
-    const x = e.target.parentElement;
-    x.scrollIntoView({ inline: 'start', behavior: 'smooth' });
-  };
-
-  selectCard =(isSelected, borderType = '1px solid black') => {
+  onMarkerClick = (id, event, borderType = '1px solid black') => {
     const { filteredCards } = this.state;
-    const selectedCard = filteredCards.map(card => (card.id === isSelected ? { ...card, selected: borderType } : { ...card, selected: null }));
+    const selectedCard = filteredCards.map(card =>
+      (card.id === id
+        ? { ...card, selected: borderType, showInfo: !card.showInfo }
+        : { ...card, showInfo: false, selected: null }));
     this.setState({ filteredCards: selectedCard });
+    this.scroll(id);
   };
 
-  showInfoBox = id => {
-    const { filteredCards } = this.state;
-    const newState = filteredCards.map(card => (card.id === id ? { ...card, showInfo: !card.showInfo } : { ...card, showInfo: false }));
-    this.setState({ filteredCards: newState });
+  scroll = async cardId => {
+    await document.getElementById(cardId).scrollIntoView({ inline: 'start', behavior: 'smooth' });
   };
 
   applyStyle = id => {
@@ -75,7 +60,7 @@ class HomePage extends Component {
           <GridListCards
             filteredCards={filteredCards}
             toggleCTADialog={this.toggleCTADialog}
-            showOnMap={this.showOnMap}
+            onMarkerClick={this.onMarkerClick}
           />
           <CallToActionDialog
             selectedRest={this.state.selectedRest}
@@ -85,8 +70,7 @@ class HomePage extends Component {
           <Left gridArea="left">
             <MapWithMarkers
               onMarkerClick={this.onMarkerClick}
-              dataMarkers={this.state.filteredCards}
-              height={150}
+              dataMarkers={filteredCards}
               lat={34}
               lng={32}
             />

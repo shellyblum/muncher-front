@@ -19,7 +19,7 @@ const MapWithAMarkerClusterer = compose(
   <GoogleMap defaultZoom={4} defaultCenter={{ lat: props.lat, lng: props.lng }}>
     {props.markers.map(marker => (
       <Marker
-        onClick={() => props.onMarkerClick(marker.id)}
+        onClick={(e) => props.onMarkerClick(marker.id, e)}
         key={marker.title}
         position={{ lat: marker.lat, lng: marker.lng }}
         title={marker.title}
@@ -42,20 +42,18 @@ const MapWithAMarkerClusterer = compose(
   </GoogleMap>
 ));
 
-const MapWithMarkers = ({ onMarkerClick, dataMarkers, lat, lng, height }) => (
+const MapWithMarkers = ({ onMarkerClick, dataMarkers, lat, lng }) => (
   <MapWithAMarkerClusterer
     onMarkerClick={onMarkerClick}
     markers={dataMarkers}
     lat={lat}
     lng={lng}
-    height={height}
   />
 );
 
 MapWithMarkers.propTypes = {
   dataMarkers: PropTypes.arrayOf(Object).isRequired,
   onMarkerClick: PropTypes.func.isRequired,
-  height: PropTypes.number.isRequired,
   lat: PropTypes.number.isRequired,
   lng: PropTypes.number.isRequired
 };

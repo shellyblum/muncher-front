@@ -5,10 +5,10 @@ import Grid from './GridListCards.styled';
 
 import CardWithImage from '../CardWithImage/CardWithImage';
 
-const GridListCards = ({ gridColumns, gridArea, filteredCards, toggleCTADialog, showOnMap }) => (
+const GridListCards = ({ gridColumns, gridArea, filteredCards, toggleCTADialog, onMarkerClick }) => (
   <Grid gridColumns={gridColumns} gridArea={gridArea}>
     {filteredCards.map(tile => (
-      <CardWithImage id={tile.id} key={tile.title} {...tile} showOnMap={showOnMap} toggleCTADialog={toggleCTADialog} />
+      <CardWithImage id={tile.id} key={tile.title} {...tile} onMarkerClick={onMarkerClick} toggleCTADialog={toggleCTADialog} />
     ))}
   </Grid>
 );
@@ -17,7 +17,7 @@ GridListCards.propTypes = {
   gridColumns: PropTypes.number,
   gridArea: PropTypes.string,
   toggleCTADialog: PropTypes.func,
-  showOnMap: PropTypes.func,
+  onMarkerClick: PropTypes.func,
   filteredCards: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string,
     title: PropTypes.string,
@@ -34,7 +34,7 @@ GridListCards.defaultProps = {
   gridColumns: 3,
   gridArea: 'right',
   toggleCTADialog: () => null,
-  showOnMap: () => null
+  onMarkerClick: () => null
 };
 
 export default GridListCards;
