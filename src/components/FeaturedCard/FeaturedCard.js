@@ -1,18 +1,24 @@
 import React from 'react';
-import { Tabs, Tab } from 'material-ui/Tabs';
-import FontIcon from 'material-ui/FontIcon';
+import 'antd/lib/card/style/css';
+import { Tabs, Icon } from 'antd';
 import { dataForWidget } from './data';
 
+const { TabPane } = Tabs;
+
 const FeaturedCard = () => (
-  <Tabs>
+  <Tabs defaultActiveKey="2" tabPosition="left">
     {dataForWidget.map(item => (
-      <Tab
+      <TabPane
         key={item.label}
-        icon={<FontIcon className={item.name} />}
-        label={item.label}
+        tab={
+          <span>
+            <Icon type={item.name} />
+            {item.label}
+          </span>
+        }
       >
         {item.component}
-      </Tab>
+      </TabPane>
     ))}
   </Tabs>
 );
