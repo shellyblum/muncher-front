@@ -5,7 +5,7 @@ export const SelectEffect = styled.div`
   padding: 5px 7px 0px 7px;
 `;
 
-export const P = styled.div`
+export const Paragraph = styled.p`
   font-size: 1.1em;
 `;
 

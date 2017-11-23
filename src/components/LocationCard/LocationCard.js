@@ -5,7 +5,7 @@ import { Tooltip } from 'antd';
 
 import {
   SelectEffect,
-  P,
+  Paragraph,
   BtnsWrapper,
   CallToActionBtn,
   MapBtn
@@ -15,7 +15,7 @@ const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialo
   <SelectEffect selected={selected}>
     <h3>{title}</h3>
     <img alt={title} width="100%" src={image} />
-    <P>{text}</P>
+    <Paragraph>{text}</Paragraph>
     <BtnsWrapper>
       <CallToActionBtn onClick={() => toggleCTADialog(id)}>
         <h3>{action}</h3>
