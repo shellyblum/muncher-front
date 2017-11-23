@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import GridListCards from '../../components/GridListCards/GridListCards';
-import { Main, Search, Left } from './HomePage.styles';
+import GridCards from '../../components/GridCards/GridCards';
+import { Main, Search, Left, Right } from './HomePage.styles';
 import data from './data';
 import MapWithMarkers from '../../components/Maps/MapWithMarkers';
 import Filter from '../../components/Filter/filter';
@@ -57,23 +57,20 @@ class HomePage extends Component {
           <Search gridArea="search">
             <Filter cards={cards} filteredCards={filteredCards} updateFilterCards={this.updateFilterCards} />
           </Search>
-          <GridListCards
-            filteredCards={filteredCards}
-            toggleCTADialog={this.toggleCTADialog}
-            onMarkerClick={this.onMarkerClick}
-          />
-          <CallToActionDialog
-            selectedRest={this.state.selectedRest}
-            open={this.state.toggleCTADialog}
-            toggleCTADialog={this.toggleCTADialog}
-          />
-          <Left gridArea="left">
-            <MapWithMarkers
+          <Right gridArea="right">
+            <GridCards
+              filteredCards={filteredCards}
+              toggleCTADialog={this.toggleCTADialog}
               onMarkerClick={this.onMarkerClick}
-              dataMarkers={filteredCards}
-              lat={34}
-              lng={32}
             />
+            <CallToActionDialog
+              selectedRest={this.state.selectedRest}
+              open={this.state.toggleCTADialog}
+              toggleCTADialog={this.toggleCTADialog}
+            />
+          </Right>
+          <Left gridArea="left">
+            <MapWithMarkers onMarkerClick={this.onMarkerClick} dataMarkers={filteredCards} lat={34} lng={32} />
           </Left>
           <BottomLeft gridArea="bottomLeft">Title component here</BottomLeft>
         </Main>

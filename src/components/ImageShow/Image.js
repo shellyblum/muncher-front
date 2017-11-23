@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'antd';
+import 'antd/lib/tooltip/style/css';
 import PropTypes from 'prop-types';
 
 const ImageWrapp = styled.img`
@@ -10,14 +11,12 @@ const ImageWrapp = styled.img`
   }
 `;
 
-
 function Image({ data, click }) {
   return (
     <div>
-      <ImageWrapp src={data.image} onClick={click} alt={data.alt} data-tip data-for={data.discription} />
-      <ReactTooltip id={data.discription} effect="solid" place="bottom">
-        <p>{data.discription}</p>
-      </ReactTooltip>
+      <Tooltip placement="topRight" title={data.discription}>
+        <ImageWrapp src={data.image} onClick={click} alt={data.alt} />
+      </Tooltip>
     </div>
   );
 }
