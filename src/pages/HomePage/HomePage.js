@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GridListCards from '../../components/GridListCards/GridListCards';
+import GridCards from '../../components/GridCards/GridCards';
 import { Main, Search, Left, Right } from './HomePage.styles';
 import data from './data';
 import MapWithMarkers from '../../components/Maps/MapWithMarkers';
@@ -59,7 +59,7 @@ class HomePage extends Component {
             />
           </Search>
           <Right gridArea="right">
-            <GridListCards filteredCards={filteredCards} toggleCTADialog={this.toggleCTADialog} />
+            <GridCards filteredCards={filteredCards} toggleCTADialog={this.toggleCTADialog} />
             <CallToActionDialog
               selectedRest={this.state.selectedRest}
               open={this.state.toggleCTADialog}
