@@ -54,7 +54,6 @@ class HomePage extends Component {
           <Search gridArea="search">
             <Filter
               cards={cards}
-              filteredCards={filteredCards}
               updateFilterCards={this.updateFilterCards}
             />
           </Search>

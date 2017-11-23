@@ -21,7 +21,7 @@ const initDistances = farthestDistance => {
     .map((item, index) => {
       const value = parseInt(section * (index + START_FROM), 10);
       return (
-        <Option key={value} value={value}>
+        <Option key={value} value={value.toString()}>
           {value}
         </Option>
       );
@@ -69,7 +69,7 @@ class Filter extends Component {
   checkFarthestPoint(myPosition) {
     let dist;
     let initialDistace =
-      this.props.filteredCards.reduce((maxDist, card) => {
+      this.props.cards.reduce((maxDist, card) => {
         dist = geolib.getDistance(myPosition, { latitude: card.lng, longitude: card.lat });
         return Math.max(dist, maxDist);
       }, 0) / KM;
@@ -164,16 +164,6 @@ class Filter extends Component {
 
 Filter.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.shape({
-    image: PropTypes.string,
-    title: PropTypes.string,
-    text: PropTypes.string,
-    action: PropTypes.string,
-    city: PropTypes.string,
-    orderType: PropTypes.arrayOf(PropTypes.string),
-    lng: PropTypes.number,
-    lat: PropTypes.number
-  })).isRequired,
-  filteredCards: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string,
     title: PropTypes.string,
     text: PropTypes.string,
