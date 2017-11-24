@@ -85,6 +85,126 @@ export default {
       orderType: ['takeOut'],
       lng: 34.5765765,
       lat: 34.465465
+    },
+    {
+      id: '7',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title8',
+      text: 'Muncher - Text8: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 34.5765765,
+      lat: 33.462465
+    },
+    {
+      id: '8',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title9',
+      text: 'Muncher - Text9: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 34.5765725,
+      lat: 32.465465
+    },
+    {
+      id: '9',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title10',
+      text: 'Muncher - Text10: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 31.2765765,
+      lat: 34.465465
+    },
+    {
+      id: '10',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title11',
+      text: 'Muncher - Text11: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 34.5725765,
+      lat: 34.465465
+    },
+    {
+      id: '11',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title12',
+      text: 'Muncher - Text12: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 31.5765765,
+      lat: 34.465465
+    },
+    {
+      id: '12',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title13',
+      text: 'Muncher - Text13: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 34.5765765,
+      lat: 31.465465
+    },
+    {
+      id: '14',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title14',
+      text: 'Muncher - Text14: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 34.5765765,
+      lat: 32.465465
+    },
+    {
+      id: '18',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title18',
+      text: 'Muncher - Text18: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 33.1765765,
+      lat: 32.465465
+    },
+    {
+      id: '15',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title15',
+      text: 'Muncher - Text15: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 33.5765765,
+      lat: 32.165465
+    },
+    {
+      id: '16',
+      image:
+        'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+      title: 'Muncher - Title16',
+      text: 'Muncher - Text16: It is a long established fact that a reader will be distracted.',
+      action: 'Book a seat',
+      city: 'uganda',
+      orderType: ['takeOut'],
+      lng: 33.5765765,
+      lat: 30.465465
     }
   ]
 };
