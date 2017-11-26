@@ -7,7 +7,7 @@ import LocationCard from '../LocationCard/LocationCard';
 const GridCards = ({ filteredCards, toggleCTADialog, onMarkerClick }) => (
   <Card
     id="cardWrapper"
-    style={{ scrollBehavior: 'smooth', height: '600px', overflow: 'scroll' }}
+    style={{ scrollBehavior: 'smooth', height: 'calc(100vh - 112px)', overflowY: 'scroll' }}
     bordered={false}
     noHovering
   >
