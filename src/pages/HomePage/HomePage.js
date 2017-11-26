@@ -15,14 +15,18 @@ class HomePage extends Component {
     selectedRest: {}
   };
 
-  onMarkerClick = (id, borderType = '#EAE8F2') => {
+  onMarkerClick = (id) => {
+    this.onCardClick(id);
+    this.scroll(id);
+  };
+
+  onCardClick = (id, borderType = '#EAE8F2') => {
     const { filteredCards } = this.state;
     const selectedCard = filteredCards.map(card =>
       (card.id === id
         ? { ...card, selected: borderType, showInfo: !card.showInfo }
         : { ...card, showInfo: false, selected: null }));
     this.setState({ filteredCards: selectedCard });
-    this.scroll(id);
   };
 
   scroll = cardId => {
@@ -63,7 +67,7 @@ class HomePage extends Component {
             <GridCards
               filteredCards={filteredCards}
               toggleCTADialog={this.toggleCTADialog}
-              onMarkerClick={this.onMarkerClick}
+              onCardClick={this.onCardClick}
             />
             <CallToActionDialog
               selectedRest={this.state.selectedRest}
