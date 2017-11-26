@@ -4,7 +4,7 @@ import Subheader from 'material-ui/Subheader';
 import Avatar from 'material-ui/Avatar';
 import { List, ListItem } from 'material-ui/List';
 import PropTypes from 'prop-types';
-import { rightIconMenu } from './featuredRest.styled';
+// import { rightIconMenu } from './featuredRest.styled';
 
 const FeaturedRest = ({ data }) => (
   <div>
@@ -35,8 +35,7 @@ FeaturedRest.propTypes = {
 FeaturedRest.defaultProps = {
   data: [
     {
-      image:
-        'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
+      image: 'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
       title: 'Title not available',
       text: 'Text not available',
       action: '🚫'

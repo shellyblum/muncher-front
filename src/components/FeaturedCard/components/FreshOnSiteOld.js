@@ -4,7 +4,7 @@ import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
 import PropTypes from 'prop-types';
-import { rightIconMenu } from './freshOnSite.styled';
+// import { rightIconMenu } from './freshOnSite.styled';
 
 const FreshOnSite = ({ data }) => (
   <List>
