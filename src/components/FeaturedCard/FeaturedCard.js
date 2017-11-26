@@ -17,7 +17,7 @@ const Span = styled.span``;
 const I = styled.i``;
 
 const FeaturedCard = () => (
-  <Tabs defaultActiveKey="2" tabPosition="left">
+  <Tabs defaultActiveKey="2" tabPosition="top">
     {dataForWidget.map(item => (
       <TabPane
         tabBarStyle={{ margin: '0px' }}
