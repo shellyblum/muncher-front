@@ -5,7 +5,7 @@ import { Tooltip } from 'antd';
 
 import { SelectEffect, Paragraph, BtnsWrapper, CallToActionBtn, MapBtn } from '../LocationCard/LocationCard.styled';
 
-const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialog, onMarkerClick }) => (
+const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialog, onCardClick }) => (
   <SelectEffect style={{ background: selected }} selected={selected}>
     <h3>{title}</h3>
     <img alt={title} width="100%" src={image} />
@@ -14,7 +14,7 @@ const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialo
       <CallToActionBtn onClick={() => toggleCTADialog(id)}>
         <h3>{action}</h3>
       </CallToActionBtn>
-      <MapBtn key={id} id={id} onClick={() => onMarkerClick(id)}>
+      <MapBtn key={id} id={id} onClick={() => onCardClick(id)}>
         <Tooltip title="Show on map">
           <i className="fa fa-map-marker" aria-hidden="true" />
         </Tooltip>
@@ -31,7 +31,7 @@ LocationCard.propTypes = {
   action: PropTypes.string,
   selected: PropTypes.string,
   toggleCTADialog: PropTypes.func,
-  onMarkerClick: PropTypes.func
+  onCardClick: PropTypes.func
 };
 
 LocationCard.defaultProps = {
@@ -41,7 +41,7 @@ LocationCard.defaultProps = {
   action: 'Action button',
   selected: null,
   toggleCTADialog: () => null,
-  onMarkerClick: () => null
+  onCardClick: () => null
 };
 
 export default LocationCard;
