@@ -29,8 +29,6 @@ class HomePage extends Component {
     const myElement = document.getElementById(cardId);
     const topPos = myElement.parentElement.parentElement.offsetTop;
     document.getElementById('cardWrapper').scrollTop = topPos;
-    console.log(myElement.parentElement.parentElement);
-    console.log(myElement.parentElement.parentElement.offsetTop);
   };
 
   applyStyle = id => {
