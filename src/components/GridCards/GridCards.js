@@ -5,7 +5,12 @@ import { Card } from 'antd';
 import LocationCard from '../LocationCard/LocationCard';
 
 const GridCards = ({ filteredCards, toggleCTADialog, onMarkerClick }) => (
-  <Card bordered={false} noHovering>
+  <Card
+    id="cardWrapper"
+    style={{ scrollBehavior: 'smooth', height: '600px', overflow: 'scroll' }}
+    bordered={false}
+    noHovering
+  >
     {filteredCards.map(tile => (
       <Card.Grid
         key={tile.title}

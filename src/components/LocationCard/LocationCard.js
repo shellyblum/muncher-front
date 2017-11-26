@@ -6,7 +6,7 @@ import { Tooltip } from 'antd';
 import { SelectEffect, Paragraph, BtnsWrapper, CallToActionBtn, MapBtn } from '../LocationCard/LocationCard.styled';
 
 const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialog, onMarkerClick }) => (
-  <SelectEffect selected={selected}>
+  <SelectEffect style={{ background: selected }} selected={selected}>
     <h3>{title}</h3>
     <img alt={title} width="100%" src={image} />
     <Paragraph>{text}</Paragraph>
@@ -14,7 +14,7 @@ const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialo
       <CallToActionBtn onClick={() => toggleCTADialog(id)}>
         <h3>{action}</h3>
       </CallToActionBtn>
-      <MapBtn key={id} id={id} onClick={e => onMarkerClick(id, e)} label="show on Map">
+      <MapBtn key={id} id={id} onClick={() => onMarkerClick(id)}>
         <Tooltip title="Show on map">
           <i className="fa fa-map-marker" aria-hidden="true" />
         </Tooltip>

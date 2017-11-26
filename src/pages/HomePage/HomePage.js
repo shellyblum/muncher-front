@@ -15,7 +15,7 @@ class HomePage extends Component {
     selectedRest: {}
   };
 
-  onMarkerClick = (id, event, borderType = '1px solid black') => {
+  onMarkerClick = (id, borderType = '#EAE8F2') => {
     const { filteredCards } = this.state;
     const selectedCard = filteredCards.map(card =>
       (card.id === id
@@ -25,8 +25,12 @@ class HomePage extends Component {
     this.scroll(id);
   };
 
-  scroll = async cardId => {
-    await document.getElementById(cardId).scrollIntoView({ inline: 'start', behavior: 'smooth' });
+  scroll = cardId => {
+    const myElement = document.getElementById(cardId);
+    const topPos = myElement.parentElement.parentElement.offsetTop;
+    document.getElementById('cardWrapper').scrollTop = topPos;
+    console.log(myElement.parentElement.parentElement);
+    console.log(myElement.parentElement.parentElement.offsetTop);
   };
 
   applyStyle = id => {
