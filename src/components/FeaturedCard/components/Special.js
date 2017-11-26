@@ -4,7 +4,7 @@ import { Card } from 'antd';
 import 'antd/lib/card/style/css';
 
 const Special = ({ data }) => (
-  <Card title={data.title} extra={<a href="#">More</a>} style={{ width: 300 }}>
+  <Card title={data.title} extra={<a href="">More</a>} style={{ width: 300 }}>
     <p>{data.text}</p>
   </Card>
 );
