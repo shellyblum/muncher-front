@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Main = styled.div`
   background-color: #fbfbfb;
-  padding: 1em;
+  padding: 0 1em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
