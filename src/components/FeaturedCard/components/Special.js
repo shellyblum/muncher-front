@@ -4,8 +4,14 @@ import { Card } from 'antd';
 import 'antd/lib/card/style/css';
 
 const Special = ({ data }) => (
-  <Card title={data.title} extra={<a href="">More</a>} style={{ width: 300 }}>
-    <p>{data.text}</p>
+  <Card title={data.title} extra={<a href="">More</a>} bodyStyle={{ padding: 0 }} style={{ width: 300 }}>
+    <div className="custom-image">
+      <img src={data.image} width="100%" alt="special" />
+    </div>
+    <div className="custom-card">
+      <h3>{data.subtitle}</h3>
+      <p>{data.text}</p>
+    </div>
   </Card>
 );
 
