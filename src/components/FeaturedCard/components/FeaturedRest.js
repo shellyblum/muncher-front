@@ -1,45 +1,61 @@
 import React from 'react';
-import Divider from 'material-ui/Divider';
-import Subheader from 'material-ui/Subheader';
-import Avatar from 'material-ui/Avatar';
-import { List, ListItem } from 'material-ui/List';
-import PropTypes from 'prop-types';
-import { rightIconMenu } from './featuredRest.styled';
+import { Table, Icon } from 'antd';
 
-const FeaturedRest = ({ data }) => (
-  <div>
-    <List>
-      <Subheader>Today</Subheader>
-      {data.map(item => (
-        <div key={item.title}>
-          <ListItem
-            leftAvatar={<Avatar src={item.image} />}
-            rightIconButton={rightIconMenu}
-            primaryText={item.title}
-            secondaryText={item.text}
-            secondaryTextLines={2}
-          />
-          <Divider inset />
-        </div>
-      ))}
-    </List>
-  </div>
-);
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    render: text => <a href="#">{text}</a>
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age'
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address'
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    render: (text, record) => (
+      <span>
+        <a href="#">Action 一 {record.name}</a>
+        <span className="ant-divider" />
+        <a href="#">Delete</a>
+        <span className="ant-divider" />
+        <a href="#" className="ant-dropdown-link">
+          More actions <Icon type="down" />
+        </a>
+      </span>
+    )
+  }
+];
+
+const data = [
+  {
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park'
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    age: 42,
+    address: 'London No. 1 Lake Park'
+  },
+  {
+    key: '3',
+    name: 'Joe Black',
+    age: 32,
+    address: 'Sidney No. 1 Lake Park'
+  }
+];
+
+const FeaturedRest = () => <Table columns={columns} dataSource={data} />;
 
 export default FeaturedRest;
-
-FeaturedRest.propTypes = {
-  data: PropTypes.arrayOf(Object)
-};
-
-FeaturedRest.defaultProps = {
-  data: [
-    {
-      image:
-        'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
-      title: 'Title not available',
-      text: 'Text not available',
-      action: '🚫'
-    }
-  ]
-};
