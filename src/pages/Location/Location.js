@@ -13,9 +13,13 @@ const LocationWrapper = styled.div`
   padding: 1rem;
 `;
 const ReviewsWrapper = styled.div`
-height: 400px;
-overflow: auto;
-padding: 0 25px 0 10px;
+height: 55vh;
+overflow-y: hidden;
+border: 1px solid #eee;
+padding: 0 20px 0 20px;
+  &:hover {
+    overflow-y:scroll;
+  }
 `;
 const location = () => (
   <div>
