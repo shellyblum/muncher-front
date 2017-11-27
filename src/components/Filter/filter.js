@@ -19,7 +19,7 @@ const initDistances = farthestDistance => {
   return Array(MENU_ITEMS)
     .fill(1)
     .map((item, index) => {
-      const value = (parseInt(section * (index + START_FROM), 10)).toString();
+      const value = parseInt(section * (index + START_FROM), 10).toString();
       return (
         <Option key={value} value={value}>
           {value}
@@ -60,11 +60,14 @@ class Filter extends Component {
 
   initCities() {
     let cityKey = 0;
-    return this.props.cards.map(card => {
+    const { cards } = this.props;
+    const cities = cards.map(card => card.city);
+    const cordsNoDup = cities.filter((city, pos) => cities.indexOf(city) === pos);
+    return cordsNoDup.map(city => {
       cityKey += 1;
       return (
-        <Option key={cityKey} value={card.city}>
-          {card.city}
+        <Option key={cityKey} value={city}>
+          {city}
         </Option>
       );
     });
