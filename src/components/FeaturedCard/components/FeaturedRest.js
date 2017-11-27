@@ -9,7 +9,17 @@ const gridStyle = {
 
 const FeaturedRest = ({ data }) => (
   <Card title="Card Title" noHovering>
-    {data.map(item => <Card.Grid style={gridStyle}>{item.title}</Card.Grid>)}
+    {data.map(item => (
+      <Card.Grid style={gridStyle}>
+        <div className="custom-image">
+          <img src={item.image} width="100%" alt="special" />
+        </div>
+        <div className="custom-card">
+          <h3>{item.subtitle}</h3>
+          <p>{item.text}</p>
+        </div>
+      </Card.Grid>
+    ))}
   </Card>
 );
 
