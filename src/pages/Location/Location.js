@@ -12,13 +12,19 @@ const LocationWrapper = styled.div`
   grid-gap: 1rem;
   padding: 1rem;
 `;
-
+const ReviewsWrapper = styled.div`
+height: 400px;
+overflow: auto;
+padding: 0 25px 0 10px;
+`;
 const location = () => (
   <div>
     <LocationWrapper>
       <ImageShow data={images} />
       <Menu grid="2fr" />
-      <ReviewList data={reviews} />
+      <ReviewsWrapper>
+        <ReviewList data={reviews} />
+      </ReviewsWrapper>
     </LocationWrapper>
   </div>
 );
