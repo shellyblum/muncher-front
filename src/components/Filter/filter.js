@@ -59,18 +59,10 @@ class Filter extends Component {
   }
 
   initCities() {
-    let cityKey = 0;
     const { cards } = this.props;
     const cities = cards.map(card => card.city);
     const cordsNoDup = cities.filter((city, pos) => cities.indexOf(city) === pos);
-    return cordsNoDup.map(city => {
-      cityKey += 1;
-      return (
-        <Option key={cityKey} value={city}>
-          {city}
-        </Option>
-      );
-    });
+    return cordsNoDup.map(city => <Option key={city} value={city}> {city} </Option>);
   }
 
   checkFarthestPoint(myPosition) {
