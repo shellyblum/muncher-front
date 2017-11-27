@@ -19,7 +19,7 @@ const initDistances = farthestDistance => {
   return Array(MENU_ITEMS)
     .fill(1)
     .map((item, index) => {
-      const value = (parseInt(section * (index + START_FROM), 10)).toString();
+      const value = parseInt(section * (index + START_FROM), 10).toString();
       return (
         <Option key={value} value={value}>
           {value}
@@ -59,15 +59,10 @@ class Filter extends Component {
   }
 
   initCities() {
-    let cityKey = 0;
-    return this.props.cards.map(card => {
-      cityKey += 1;
-      return (
-        <Option key={cityKey} value={card.city}>
-          {card.city}
-        </Option>
-      );
-    });
+    const { cards } = this.props;
+    const cities = cards.map(card => card.city);
+    const cordsNoDup = cities.filter((city, pos) => cities.indexOf(city) === pos);
+    return cordsNoDup.map(city => <Option key={city} value={city}> {city} </Option>);
   }
 
   checkFarthestPoint(myPosition) {
@@ -92,7 +87,8 @@ class Filter extends Component {
         latitude: card.lng,
         longitude: card.lat
       });
-      return geoDistance / KM < distance && cityFlag && orderTypeFlag;
+      const distanceFlag = distance ? geoDistance / KM < distance : 1;
+      return distanceFlag && cityFlag && orderTypeFlag;
     });
 
     this.props.updateFilterCards(filteredList);
