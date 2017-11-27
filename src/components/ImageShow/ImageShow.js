@@ -19,7 +19,7 @@ const ListWrapper = styled.div`
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 1rem;
-  padding : 1rem;
+  padding : 1rem 0 0 0;
   `;
 
 class ImageShow extends Component {

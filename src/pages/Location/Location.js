@@ -12,13 +12,23 @@ const LocationWrapper = styled.div`
   grid-gap: 1rem;
   padding: 1rem;
 `;
-
+const ReviewsWrapper = styled.div`
+height: 55vh;
+overflow-y: hidden;
+border: 1px solid #eee;
+padding: 0 20px 0 20px;
+  &:hover {
+    overflow-y:scroll;
+  }
+`;
 const location = () => (
   <div>
     <LocationWrapper>
       <ImageShow data={images} />
       <Menu grid="2fr" />
-      <ReviewList data={reviews} />
+      <ReviewsWrapper>
+        <ReviewList data={reviews} />
+      </ReviewsWrapper>
     </LocationWrapper>
   </div>
 );
