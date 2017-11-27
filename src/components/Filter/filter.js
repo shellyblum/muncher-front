@@ -95,7 +95,8 @@ class Filter extends Component {
         latitude: card.lng,
         longitude: card.lat
       });
-      return geoDistance / KM < distance && cityFlag && orderTypeFlag;
+      const distanceFlag = distance ? geoDistance / KM < distance : 1;
+      return distanceFlag && cityFlag && orderTypeFlag;
     });
 
     this.props.updateFilterCards(filteredList);
