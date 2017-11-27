@@ -4,14 +4,25 @@ import PropTypes from 'prop-types';
 import { Card } from 'antd';
 import LocationCard from '../LocationCard/LocationCard';
 
-const GridCards = ({ filteredCards, toggleCTADialog }) => (
-  <Card bordered={false} noHovering>
+const GridCards = ({ filteredCards, toggleCTADialog, onCardClick }) => (
+  <Card
+    id="cardWrapper"
+    style={{ scrollBehavior: 'smooth', height: 'calc(100vh - 112px)', overflowY: 'scroll' }}
+    bordered={false}
+    noHovering
+  >
     {filteredCards.map(tile => (
       <Card.Grid
         key={tile.title}
         style={{ width: '30%', textAlign: 'center', padding: '0px', margin: '0 5px 10px 5px' }}
       >
-        <LocationCard {...tile} toggleCTADialog={toggleCTADialog} />
+        <LocationCard
+          id={tile.id}
+          key={tile.title}
+          {...tile}
+          toggleCTADialog={toggleCTADialog}
+          onCardClick={onCardClick}
+        />
       </Card.Grid>
     ))}
   </Card>
@@ -19,6 +30,7 @@ const GridCards = ({ filteredCards, toggleCTADialog }) => (
 
 GridCards.propTypes = {
   toggleCTADialog: PropTypes.func,
+  onCardClick: PropTypes.func,
   filteredCards: PropTypes.arrayOf(PropTypes.shape({
     image: PropTypes.string,
     title: PropTypes.string,
@@ -32,7 +44,8 @@ GridCards.propTypes = {
 };
 
 GridCards.defaultProps = {
-  toggleCTADialog: () => null
+  toggleCTADialog: () => null,
+  onCardClick: () => null
 };
 
 export default GridCards;

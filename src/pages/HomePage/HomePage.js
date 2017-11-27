@@ -15,15 +15,24 @@ class HomePage extends Component {
     selectedRest: {}
   };
 
-  onMarkerClick = cardId => {
-    this.selectCard(cardId);
+  onMarkerClick = (id) => {
+    this.onCardClick(id);
+    this.scroll(id);
   };
 
-  selectCard = (isSelected, borderType = '#d3d3d3') => {
+  onCardClick = (id, borderType = '#EAE8F2') => {
     const { filteredCards } = this.state;
     const selectedCard = filteredCards.map(card =>
-      (card.id === isSelected ? { ...card, selected: borderType } : { ...card, selected: null }));
+      (card.id === id
+        ? { ...card, selected: borderType, showInfo: !card.showInfo }
+        : { ...card, showInfo: false, selected: null }));
     this.setState({ filteredCards: selectedCard });
+  };
+
+  scroll = cardId => {
+    const myElement = document.getElementById(cardId);
+    const topPos = myElement.parentElement.parentElement.offsetTop;
+    document.getElementById('cardWrapper').scrollTop = topPos;
   };
 
   applyStyle = id => {
@@ -58,7 +67,11 @@ class HomePage extends Component {
             />
           </Search>
           <Right gridArea="right">
-            <GridCards filteredCards={filteredCards} toggleCTADialog={this.toggleCTADialog} />
+            <GridCards
+              filteredCards={filteredCards}
+              toggleCTADialog={this.toggleCTADialog}
+              onCardClick={this.onCardClick}
+            />
             <CallToActionDialog
               selectedRest={this.state.selectedRest}
               open={this.state.toggleCTADialog}
@@ -66,13 +79,7 @@ class HomePage extends Component {
             />
           </Right>
           <Left gridArea="left">
-            <MapWithMarkers
-              onMarkerClick={this.onMarkerClick}
-              dataMarkers={data.cards}
-              height={150}
-              lat={34}
-              lng={32}
-            />
+            <MapWithMarkers onMarkerClick={this.onMarkerClick} dataMarkers={filteredCards} lat={34} lng={32} />
           </Left>
           <BottomLeft gridArea="bottomLeft">Title component here</BottomLeft>
         </Main>

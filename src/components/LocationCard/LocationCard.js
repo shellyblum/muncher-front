@@ -3,16 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'antd';
 
-import {
-  SelectEffect,
-  Paragraph,
-  BtnsWrapper,
-  CallToActionBtn,
-  MapBtn
-} from '../LocationCard/LocationCard.styled';
+import { SelectEffect, Paragraph, BtnsWrapper, CallToActionBtn, MapBtn } from '../LocationCard/LocationCard.styled';
 
-const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialog }) => (
-  <SelectEffect selected={selected}>
+const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialog, onCardClick }) => (
+  <SelectEffect style={{ background: selected }} selected={selected}>
     <h3>{title}</h3>
     <img alt={title} width="100%" src={image} />
     <Paragraph>{text}</Paragraph>
@@ -20,11 +14,7 @@ const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialo
       <CallToActionBtn onClick={() => toggleCTADialog(id)}>
         <h3>{action}</h3>
       </CallToActionBtn>
-      <MapBtn
-        onClick={e => {
-          console.log(e.target); // Gil's function will come here
-        }}
-      >
+      <MapBtn key={id} id={id} onClick={() => onCardClick(id)}>
         <Tooltip title="Show on map">
           <i className="fa fa-map-marker" aria-hidden="true" />
         </Tooltip>
@@ -40,7 +30,8 @@ LocationCard.propTypes = {
   text: PropTypes.string,
   action: PropTypes.string,
   selected: PropTypes.string,
-  toggleCTADialog: PropTypes.func
+  toggleCTADialog: PropTypes.func,
+  onCardClick: PropTypes.func
 };
 
 LocationCard.defaultProps = {
@@ -49,7 +40,8 @@ LocationCard.defaultProps = {
   text: 'Text unavailable',
   action: 'Action button',
   selected: null,
-  toggleCTADialog: () => null
+  toggleCTADialog: () => null,
+  onCardClick: () => null
 };
 
 export default LocationCard;
