@@ -45,16 +45,19 @@ export const data = [
 
 export const dataForWidget = [
   {
+    key: '1',
     label: 'Featured list',
     name: 'fa fa-star',
     component: <FeaturedRest data={data} />
   },
   {
+    key: '2',
     label: 'Fresh on site',
     name: 'fa fa-bolt',
     component: <FreshOnSite data={data} />
   },
   {
+    key: '3',
     label: 'Today special',
     name: 'fa fa-money',
     component: <Special data={special} />
