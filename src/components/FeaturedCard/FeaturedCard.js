@@ -10,7 +10,7 @@ import LocationCard from '../LocationCard/LocationCard';
 const { TabPane } = Tabs;
 
 const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => (
-  <Tabs defaultActiveKey="1" tabPosition="top">
+  <Tabs defaultActiveKey="1" tabPosition="left">
     <TabPane
       tab={
         <span>

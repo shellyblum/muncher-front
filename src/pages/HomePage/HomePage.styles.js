@@ -20,14 +20,15 @@ export const Right = styled.div`
 `;
 
 export const Left = styled.div`
-  height: 450px;
+  min-height: 400px;
+  max-height: 400px;
   margin-bottom: 5px;
   margin-right: 5px;
   grid-area: ${({ gridArea }) => gridArea};
 `;
 
 export const BottomLeft = styled.div`
-  min-height: 400px;
+  min-height: 200px;
   border: 1px solid green;
   grid-area: ${({ gridArea }) => gridArea};
 `;
