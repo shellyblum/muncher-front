@@ -9,6 +9,10 @@ import LocationCard from '../LocationCard/LocationCard';
 
 const { TabPane } = Tabs;
 
+const Wrapper = styled.div`
+  min-height: 300px;
+`;
+
 const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => (
   <Tabs defaultActiveKey="1" tabPosition="left">
     <TabPane
@@ -19,13 +23,15 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => (
       }
       key="1"
     >
-      <LocationCard
-        id={special.id}
-        key={special.title}
-        {...special}
-        toggleCTADialog={toggleCTADialog}
-        onCardClick={onCardClick}
-      />
+      <Wrapper>
+        <LocationCard
+          id={special.id}
+          key={special.title}
+          {...special}
+          toggleCTADialog={toggleCTADialog}
+          onCardClick={onCardClick}
+        />
+      </Wrapper>
     </TabPane>
     <TabPane
       tab={
@@ -35,7 +41,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => (
       }
       key="2"
     >
-      Tab 2
+      <Wrapper>Tab 2</Wrapper>
     </TabPane>
     <TabPane
       tab={
@@ -45,7 +51,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => (
       }
       key="3"
     >
-      sssd
+      <Wrapper>Tab 3</Wrapper>
     </TabPane>
   </Tabs>
 );

@@ -20,7 +20,7 @@ export const Right = styled.div`
 `;
 
 export const Left = styled.div`
-  min-height: 400px;
+  min-height: 350px;
   max-height: 400px;
   margin-bottom: 5px;
   margin-right: 5px;
