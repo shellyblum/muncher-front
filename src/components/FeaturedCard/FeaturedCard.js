@@ -16,16 +16,27 @@ const Wrapper = styled.div`
   min-height: 300px;
 `;
 
+const Span = styled.span`
+  display: flex;
+  justify-content: center;
+`;
+
+const style = {
+  display: 'flex',
+  alignItems: 'center;',
+  justifyContent: 'center'
+};
+
 const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => {
   const FeaturedCards = cards.filter((item, index) => index < 3);
   const FreshOnSiteCards = cards.filter((item, index) => index > 3 && index < 6);
   return (
-    <Tabs defaultActiveKey="2" tabPosition="left">
+    <Tabs tabBarStyle={style} defaultActiveKey="2" tabPosition="left">
       <TabPane
         tab={
-          <span>
+          <Span>
             <Icon className="fa-star" /> Special
-          </span>
+          </Span>
         }
         key="1"
       >
