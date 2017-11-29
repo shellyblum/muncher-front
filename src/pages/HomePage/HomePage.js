@@ -29,6 +29,10 @@ class HomePage extends Component {
     this.setState({ filteredCards: selectedCard });
   };
 
+  getRandomCard() {
+    return this.state.cards[Math.floor(Math.random() * this.state.cards.length)];
+  }
+
   scroll = cardId => {
     const myElement = document.getElementById(cardId);
     const topPos = myElement.parentElement.parentElement.offsetTop;
@@ -85,9 +89,10 @@ class HomePage extends Component {
           </Left>
           <BottomLeft gridArea="bottomLeft">
             <FeaturedCard
-              selectedRest={this.state.selectedRest}
-              open={this.state.toggleCTADialog}
+              special={this.getRandomCard()}
+              cards={cards}
               toggleCTADialog={this.toggleCTADialog}
+              onCardClick={this.onCardClick}
             />
           </BottomLeft>
         </Main>
