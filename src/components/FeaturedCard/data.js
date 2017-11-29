@@ -60,6 +60,6 @@ export const dataForWidget = [
     key: '3',
     label: 'Today special',
     name: 'fa fa-money',
-    component: <Special data={special} />
+    component: <Special tile={special} />
   }
 ];

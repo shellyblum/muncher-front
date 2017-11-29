@@ -2,14 +2,16 @@ import React from 'react';
 import { Card } from 'antd';
 import PropTypes from 'prop-types';
 
-const gridStyle = {
-  width: '25%',
-  textAlign: 'center'
+const style = {
+  cardGrid: {
+    width: '25%',
+    textAlign: 'center'
+  }
 };
 
 const FeaturedOnSite = ({ data }) => (
   <Card title="Card Title" noHovering>
-    {data.map(item => <Card.Grid style={gridStyle}>{item.title}</Card.Grid>)}
+    {data.map(item => <Card.Grid style={style.cardGrid}>{item.title}</Card.Grid>)}
   </Card>
 );
 

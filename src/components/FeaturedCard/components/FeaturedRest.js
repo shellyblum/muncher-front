@@ -2,15 +2,17 @@ import React from 'react';
 import { Card } from 'antd';
 import PropTypes from 'prop-types';
 
-const gridStyle = {
-  width: '25%',
-  textAlign: 'center'
+const style = {
+  cardGrid: {
+    width: '25%',
+    textAlign: 'center'
+  }
 };
 
 const FeaturedRest = ({ data }) => (
   <Card title="Card Title" noHovering>
     {data.map(item => (
-      <Card.Grid style={gridStyle}>
+      <Card.Grid style={style.cardGrid}>
         <div className="custom-image">
           <img src={item.image} width="100%" alt="special" />
         </div>
