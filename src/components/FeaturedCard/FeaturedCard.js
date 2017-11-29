@@ -2,40 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'antd/lib/card/style/css';
 import { Tabs } from 'antd';
-import styled from 'styled-components';
 import { Icon } from 'react-fa';
 
 import LocationCard from '../LocationCard/LocationCard';
 import ListCards from './components/ListCards';
+import { Wrapper, Span } from './FeaturedCard.styled';
 
 const { TabPane } = Tabs;
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  min-height: 300px;
-`;
-
-const Span = styled.span`
-  display: flex;
-  justify-content: center;
-`;
-
-const style = {
-  display: 'flex',
-  alignItems: 'center;',
-  justifyContent: 'center'
-};
 
 const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => {
   const FeaturedCards = cards.filter((item, index) => index < 3);
   const FreshOnSiteCards = cards.filter((item, index) => index > 3 && index < 6);
   return (
-    <Tabs tabBarStyle={style} defaultActiveKey="2" tabPosition="left">
+    <Tabs defaultActiveKey="2" tabPosition="left">
       <TabPane
         tab={
           <Span>
-            <Icon className="fa-star" /> Special
+            <Icon name="star" className="fa-star" /> Special
           </Span>
         }
         key="1"
@@ -53,7 +36,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => {
       <TabPane
         tab={
           <span>
-            <Icon className="fa-bolt" /> Featured list
+            <Icon name="bolt" className="fa-bolt" /> Featured list
           </span>
         }
         key="2"
@@ -65,7 +48,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => {
       <TabPane
         tab={
           <span>
-            <Icon className="fa-money" /> Fresh on site
+            <Icon name="money" className="fa-money" /> Fresh on site
           </span>
         }
         key="3"
@@ -93,15 +76,16 @@ FeaturedCard.propTypes = {
     lng: PropTypes.number,
     lat: PropTypes.number
   })).isRequired,
-  special: PropTypes.objectOf({
+  special: PropTypes.shape({
     id: PropTypes.string.isRequired,
     image: PropTypes.string,
     title: PropTypes.string,
     text: PropTypes.string,
     action: PropTypes.string,
-    selected: PropTypes.string,
-    toggleCTADialog: PropTypes.func,
-    onCardClick: PropTypes.func
+    city: PropTypes.string,
+    orderType: PropTypes.arrayOf(PropTypes.string),
+    lng: PropTypes.number,
+    lat: PropTypes.number
   })
 };
 
@@ -109,12 +93,14 @@ FeaturedCard.defaultProps = {
   toggleCTADialog: () => null,
   onCardClick: () => null,
   special: {
+    id: '1',
     image: 'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
     title: 'Title unavailable',
     text: 'Text unavailable',
+    city: 'tel Aviv',
     action: 'Action button',
     selected: null,
-    toggleCTADialog: () => null,
-    onCardClick: () => null
+    lng: 30,
+    lat: 34
   }
 };
