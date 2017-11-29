@@ -6,55 +6,66 @@ import styled from 'styled-components';
 import { Icon } from 'react-fa';
 
 import LocationCard from '../LocationCard/LocationCard';
+import ListCards from './components/ListCards';
 
 const { TabPane } = Tabs;
 
 const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
   min-height: 300px;
 `;
 
-const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => (
-  <Tabs defaultActiveKey="1" tabPosition="left">
-    <TabPane
-      tab={
-        <span>
-          <Icon className="fa-star" /> Special
-        </span>
-      }
-      key="1"
-    >
-      <Wrapper>
-        <LocationCard
-          id={special.id}
-          key={special.title}
-          {...special}
-          toggleCTADialog={toggleCTADialog}
-          onCardClick={onCardClick}
-        />
-      </Wrapper>
-    </TabPane>
-    <TabPane
-      tab={
-        <span>
-          <Icon className="fa-bolt" /> Featured list
-        </span>
-      }
-      key="2"
-    >
-      <Wrapper>Tab 2</Wrapper>
-    </TabPane>
-    <TabPane
-      tab={
-        <span>
-          <Icon className="fa-money" /> Fresh on site
-        </span>
-      }
-      key="3"
-    >
-      <Wrapper>Tab 3</Wrapper>
-    </TabPane>
-  </Tabs>
-);
+const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => {
+  const FeaturedCards = cards.filter((item, index) => index < 3);
+  const FreshOnSiteCards = cards.filter((item, index) => index > 3 && index < 6);
+  return (
+    <Tabs defaultActiveKey="2" tabPosition="left">
+      <TabPane
+        tab={
+          <span>
+            <Icon className="fa-star" /> Special
+          </span>
+        }
+        key="1"
+      >
+        <Wrapper>
+          <LocationCard
+            id={special.id}
+            key={special.title}
+            {...special}
+            toggleCTADialog={toggleCTADialog}
+            onCardClick={onCardClick}
+          />
+        </Wrapper>
+      </TabPane>
+      <TabPane
+        tab={
+          <span>
+            <Icon className="fa-bolt" /> Featured list
+          </span>
+        }
+        key="2"
+      >
+        <Wrapper>
+          <ListCards onCardClick={onCardClick} cards={FeaturedCards} />
+        </Wrapper>
+      </TabPane>
+      <TabPane
+        tab={
+          <span>
+            <Icon className="fa-money" /> Fresh on site
+          </span>
+        }
+        key="3"
+      >
+        <Wrapper>
+          <ListCards onCardClick={onCardClick} cards={FreshOnSiteCards} />
+        </Wrapper>
+      </TabPane>
+    </Tabs>
+  );
+};
 
 export default FeaturedCard;
 
