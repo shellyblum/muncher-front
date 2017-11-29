@@ -29,6 +29,5 @@ export const Left = styled.div`
 
 export const BottomLeft = styled.div`
   min-height: 200px;
-  border: 1px solid green;
   grid-area: ${({ gridArea }) => gridArea};
 `;
