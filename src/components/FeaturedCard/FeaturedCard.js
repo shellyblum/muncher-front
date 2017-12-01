@@ -13,7 +13,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => {
   const FeaturedCards = cards.filter((item, index) => index < 3);
   const FreshOnSiteCards = cards.filter((item, index) => index > 3 && index < 6);
   return (
-    <Tabs defaultActiveKey="2" tabPosition="left">
+    <Tabs tabBarStyle={{ paddingTop: '20px', height: '100%' }} defaultActiveKey="2" tabPosition="left">
       <TabPane
         tab={
           <Span>
