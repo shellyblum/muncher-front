@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReusableForm from '../ReusableForm/ReusableForm';
-import { loginSignupRequest } from '../../actions/user';
+import { loginSignupRequest } from '../../redux/actions/user';
 import messages from '../../helpers/messages';
 
 class LoginForm extends Component {

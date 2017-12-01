@@ -1,11 +1,5 @@
 import axios from 'axios';
-
-export const LOGOUT = 'LOGOUT';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const TRY_LOGIN = 'TRY_LOGIN';
-export const TRY_SIGNUP = 'TRY_SIGNUP';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-export const TOGGLE_LOGIN_DIALOG = 'TOGGLE_LOGIN_DIALOG';
+import { TRY_LOGIN, LOGIN_SUCCESS, LOGOUT, LOGIN_FAILURE, TOGGLE_LOGIN_DIALOG } from '../constants/user';
 
 export const tryLogin = () => ({ type: TRY_LOGIN });
 export const loginSuccess = () => ({ type: LOGIN_SUCCESS });

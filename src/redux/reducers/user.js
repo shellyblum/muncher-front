@@ -4,7 +4,7 @@ import {
   LOGOUT,
   LOGIN_FAILURE,
   TOGGLE_LOGIN_DIALOG
-} from '../actions/user';
+} from '../constants/user';
 
 const initialState = {
   loggedIn: !!localStorage.token, // local storage is missing here
