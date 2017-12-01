@@ -128,4 +128,4 @@ class Api {
   // reviewDelete() {}
 }
 
-export { Api };
+export default { Api };
