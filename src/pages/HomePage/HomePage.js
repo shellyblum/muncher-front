@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import GridCards from '../../components/GridCards/GridCards';
-import { Main, Search, Left, Right } from './HomePage.styles';
+import { Main, Search, Left, Right, BottomLeft } from './HomePage.styles';
 import data from './data';
 import MapWithMarkers from '../../components/Maps/MapWithMarkers';
 import Filter from '../../components/Filter/filter';
-import BottomLeft from '../../components/FeaturedCard/FeaturedCard';
+import FeaturedCard from '../../components/FeaturedCard/FeaturedCard';
 import CallToActionDialog from '../../components/CallToActionDialog/CallToActionDialog';
 
 class HomePage extends Component {
@@ -15,7 +15,7 @@ class HomePage extends Component {
     selectedRest: {}
   };
 
-  onMarkerClick = (id) => {
+  onMarkerClick = id => {
     this.onCardClick(id);
     this.scroll(id);
   };
@@ -28,6 +28,10 @@ class HomePage extends Component {
         : { ...card, showInfo: false, selected: null }));
     this.setState({ filteredCards: selectedCard });
   };
+
+  getRandomCard() {
+    return this.state.cards[Math.floor(Math.random() * this.state.cards.length)];
+  }
 
   scroll = cardId => {
     const myElement = document.getElementById(cardId);
@@ -61,10 +65,7 @@ class HomePage extends Component {
       <div>
         <Main>
           <Search gridArea="search">
-            <Filter
-              cards={cards}
-              updateFilterCards={this.updateFilterCards}
-            />
+            <Filter cards={cards} updateFilterCards={this.updateFilterCards} />
           </Search>
           <Right gridArea="right">
             <GridCards
@@ -79,9 +80,21 @@ class HomePage extends Component {
             />
           </Right>
           <Left gridArea="left">
-            <MapWithMarkers onMarkerClick={this.onMarkerClick} dataMarkers={filteredCards} lat={34} lng={32} />
+            <MapWithMarkers
+              onMarkerClick={this.onMarkerClick}
+              dataMarkers={filteredCards}
+              lat={34}
+              lng={32}
+            />
           </Left>
-          <BottomLeft gridArea="bottomLeft">Title component here</BottomLeft>
+          <BottomLeft gridArea="bottomLeft">
+            <FeaturedCard
+              special={this.getRandomCard()}
+              cards={cards}
+              toggleCTADialog={this.toggleCTADialog}
+              onCardClick={this.onCardClick}
+            />
+          </BottomLeft>
         </Main>
       </div>
     );
