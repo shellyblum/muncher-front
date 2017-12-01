@@ -13,12 +13,12 @@ const GridCards = ({ filteredCards, toggleCTADialog, onCardClick }) => (
   >
     {filteredCards.map(tile => (
       <Card.Grid
-        key={tile.title}
+        key={tile.name}
         style={{ width: '30%', textAlign: 'center', padding: '0px', margin: '0 5px 10px 5px' }}
       >
         <LocationCard
           id={tile.id}
-          key={tile.title}
+          key={tile.id}
           {...tile}
           toggleCTADialog={toggleCTADialog}
           onCardClick={onCardClick}

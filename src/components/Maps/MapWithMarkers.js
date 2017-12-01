@@ -20,12 +20,12 @@ const MapWithAMarkerClusterer = compose(
     {props.markers.map(marker => (
       <Marker
         onClick={() => props.onMarkerClick(marker.id)}
-        key={marker.title}
-        position={{ lat: marker.lat, lng: marker.lng }}
-        title={marker.title}
+        key={marker.id}
+        position={{ lat: marker.address.lat, lng: marker.address.lng }}
+        title={marker.name}
       >
         {marker.showInfo && (
-          <InfoBox position={{ lat: marker.lat, lng: marker.lng }}>
+          <InfoBox position={{ lat: marker.address.lat, lng: marker.address.lng }}>
             <div
               style={{
                 backgroundColor: 'salmon',
@@ -33,7 +33,7 @@ const MapWithAMarkerClusterer = compose(
                 borderRadius: '0px 7px 12px 12px'
               }}
             >
-              <div style={{ fontSize: '16px', fontColor: '#08233B' }}>{marker.title}</div>
+              <div style={{ fontSize: '16px', fontColor: '#08233B' }}>{marker.name}</div>
             </div>
           </InfoBox>
         )}
