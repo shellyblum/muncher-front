@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import 'antd/lib/card/style/css';
 import { Tabs } from 'antd';
 import { Icon } from 'react-fa';
-
 import LocationCard from '../LocationCard/LocationCard';
 import ListCards from './components/ListCards';
 import { Wrapper, Span } from './FeaturedCard.styled';
