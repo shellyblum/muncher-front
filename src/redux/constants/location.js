@@ -1,1 +1,4 @@
-export const GetAllLocation = 'GetAllLocation';
+export const GET_LOCATIONS = 'GET_LOCATIONS';
+export const PENDING_REQUEST = 'PENDING_REQUEST';
+export const SUCCSES_LOCATIONS = 'SUCCSES_LOCATIONS';
+export const GET_ERROR = 'GET_ERROR';

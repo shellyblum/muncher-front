@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import GridCards from '../../components/GridCards/GridCards';
 import { Main, Search, Left, Right, BottomLeft } from './HomePage.styles';
 import MapWithMarkers from '../../components/Maps/MapWithMarkers';
 import Filter from '../../components/Filter/filter';
 import FeaturedCard from '../../components/FeaturedCard/FeaturedCard';
 import CallToActionDialog from '../../components/CallToActionDialog/CallToActionDialog';
+
 import { Api } from '../../assets/api/muncher.api';
 
 const placeHolder = {
@@ -137,4 +139,19 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = ({ user }) => {
+  const { loginDialogOpen } = user;
+  return {
+    loginDialogOpen
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  toggleDialog: () => {
+    dispatch();
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+
+// export default HomePage;

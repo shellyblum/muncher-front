@@ -1,32 +1,27 @@
-import { TRY_LOGIN, LOGIN_SUCCESS, LOGOUT, LOGIN_FAILURE, TOGGLE_LOGIN_DIALOG } from '../constants/user';
+import { PENDING_REQUEST, GET_ERROR, SUCCESS_LOCATIONS } from '../constants/location';
 
 const initialState = {
-  locations: !!localStorage.token, // local storage is missing here
-  getPending: false,
+  locations: [],
+  gettingLocations: false,
   Error: false
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case TRY_LOGIN:
-      return { ...state, loginPending: true };
-    case LOGIN_SUCCESS:
+    case PENDING_REQUEST:
+      return { ...state, gettingLocations: true };
+    case SUCCESS_LOCATIONS:
       return {
-        ...state,
-        loggedIn: true,
-        loginPending: false,
-        loginDialogOpen: false
+        Error: false,
+        gettingLocations: false,
+        locations: action.payload.data
       };
-    case LOGOUT:
-      return { ...state, loggedIn: false };
-    case LOGIN_FAILURE:
+    case GET_ERROR:
       return {
         ...state,
         loginError: action.payload.error,
-        loginPending: false
+        gettingLocations: false
       };
-    case TOGGLE_LOGIN_DIALOG:
-      return { ...state, loginDialogOpen: !state.loginDialogOpen };
     default:
       return state;
   }

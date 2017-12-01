@@ -1,26 +1,26 @@
 import axios from 'axios';
-import { getAlllocation } from '../constants/location';
+import { PENDING_REQUEST, SUCCESS_LOCATIONS } from '../constants/location';
 
-export const getAlllocation = error => ({
-  type: LOGIN_FAILURE,
-  payload: { error }
-});
-export const toggleLoginDialog = () => ({ type: TOGGLE_LOGIN_DIALOG });
+export const pendingRequest = () => ({ type: PENDING_REQUEST });
+
+export const successRequest = data => ({ type: SUCCESS_LOCATIONS, payload: data });
+
+// export const getAlllocation = error => ({
+//   type: LOGIN_FAILURE,
+//   payload: { error }
+// });
 
 const api = {
-  getLocations: '/api/v1/location/location'
+  getLocations: 'http://localhost:9000/api/v1/locations'
 };
 
-export const loginSignupRequest = (url, userDetail) => async dispatch => {
-  dispatch(tryLogin());
+export const getAlllocations = async dispatch => {
+  dispatch(pendingRequest());
   try {
-    const res = await axios.post(api[url], userDetail);
-    const { token } = res.data;
-    localStorage.token = token;
-    axios.defaults.headers.common.Authorization = token;
-    // just to have time for the 'loading-spinnner'
-    dispatch(loginSuccess());
+    const res = await axios.get(api.getLocations);
+    dispatch(successRequest(res.data));
   } catch ({ response: { status } }) {
-    dispatch(loginFailure(status));
+    console.log(status);
+    // dispatch(loginFailure(status));
   }
 };
