@@ -21,8 +21,7 @@ export const Right = styled.div`
 `;
 
 export const Left = styled.div`
-  min-height: 350px;
-  max-height: 400px;
+  height: 400px;
   margin-bottom: 5px;
   margin-right: 5px;
   grid-area: ${({ gridArea }) => gridArea};
