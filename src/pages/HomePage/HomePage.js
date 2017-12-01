@@ -6,13 +6,50 @@ import MapWithMarkers from '../../components/Maps/MapWithMarkers';
 import Filter from '../../components/Filter/filter';
 import FeaturedCard from '../../components/FeaturedCard/FeaturedCard';
 import CallToActionDialog from '../../components/CallToActionDialog/CallToActionDialog';
+import { Api } from '../../assets/api/muncher.api';
+
+const placeHolder = {
+  id: '1',
+  name: 'Muncher - Title1',
+  type: ['takeOut'],
+  generalDesc: 'Muncher - Text1: It is a long established fact that a reader will be distracted.',
+  imageUrl:
+    'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
+  address: {
+    country: 'United States',
+    city: 'Chicago',
+    street: 'South State Street',
+    number: '22/11',
+    lat: 34.4324323,
+    lng: 34.443432
+  }
+};
+
+// const placeHolder = {
+//   id: '0',
+//   image: '',
+//   title: 'Muncher - Title1',
+//   text: '',
+//   action: 'Call now',
+//   city: 'DSW Designer Shoe Warehouse, South State Street, Chicago, IL, United States',
+//   orderType: ['takeOut'],
+//   lng: 34.443432,
+//   lat: 34.4324323
+// };
+
+const SDK = new Api();
 
 class HomePage extends Component {
   state = {
-    cards: data.cards,
-    filteredCards: data.cards,
+    cards: [placeHolder],
+    filteredCards: [placeHolder],
     toggleCTADialog: false,
     selectedRest: {}
+  };
+
+  componentDidMount = async () => {
+    const response = await SDK.locationGetAll();
+    this.setState({ cards: response.data, filteredCards: response.data });
   };
 
   onMarkerClick = id => {

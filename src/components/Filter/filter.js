@@ -60,16 +60,20 @@ class Filter extends Component {
 
   initCities() {
     const { cards } = this.props;
-    const cities = cards.map(card => card.city);
+    const cities = cards.map(card => card.address.city);
     const cordsNoDup = cities.filter((city, pos) => cities.indexOf(city) === pos);
-    return cordsNoDup.map(city => <Option key={city} value={city}> {city} </Option>);
+    return cordsNoDup.map(city => (
+      <Option key={city} value={city}>
+        {city}
+      </Option>
+    ));
   }
 
   checkFarthestPoint(myPosition) {
     let dist;
     let initialDistance =
       this.props.cards.reduce((maxDist, card) => {
-        dist = geolib.getDistance(myPosition, { latitude: card.lng, longitude: card.lat });
+        dist = geolib.getDistance(myPosition, { latitude: card.address.lng, longitude: card.address.lat });
         return Math.max(dist, maxDist);
       }, 0) / KM;
     initialDistance += 1;
@@ -114,7 +118,9 @@ class Filter extends Component {
           onChange={value => {
             this.setState({ orderType: value });
           }}
-          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
         >
           <Option value="takeOut">takeOut</Option>
           <Option value="sit">sit</Option>
@@ -130,7 +136,9 @@ class Filter extends Component {
           onChange={value => {
             this.setState({ city: value });
           }}
-          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
         >
           {this.initCities()}
         </Select>
@@ -145,7 +153,9 @@ class Filter extends Component {
           onChange={value => {
             this.setState({ distance: value, initialDistance: value });
           }}
-          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
         >
           {menuDistances}
         </Select>

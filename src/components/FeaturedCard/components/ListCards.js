@@ -8,8 +8,8 @@ const ListCards = ({ cards, onCardClick }) => (
     {cards.map(card => (
       <Timeline.Item key={card.id}>
         <Wrapper>
-          <Image alt="example" src={card.image} />
-          {card.title}
+          <Image alt="example" src={card.imageUrl} />
+          {card.name}
           <MapBtn key={card.id} id={card.id} onClick={() => onCardClick(card.id)}>
             <Tooltip title="Show on map">
               <i className="fa fa-map-marker" aria-hidden="true" />
@@ -32,9 +32,9 @@ ListCards.defaultProps = {
   onCardClick: () => null,
   cards: [
     {
-      image: 'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
-      title: 'Title not available',
-      text: 'Text not available',
+      imageUrl: 'https://www.equalserving.com/images/es1scplugin/image-not-available.png',
+      name: 'Title not available',
+      generalDesc: 'Text not available',
       action: '🚫'
     }
   ]
