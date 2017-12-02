@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import GridCards from '../../components/GridCards/GridCards';
 import { Main, Search, Left, Right, BottomLeft } from './HomePage.styles';
 import MapWithMarkers from '../../components/Maps/MapWithMarkers';
 import Filter from '../../components/Filter/filter';
 import FeaturedCard from '../../components/FeaturedCard/FeaturedCard';
-import CallToActionDialog from '../../components/CallToActionDialog/CallToActionDialog';
+import GridCards from '../../containers/GridCards';
 import { getAllLocations } from '../../redux/actions/location';
 
 class HomePage extends Component {
@@ -17,10 +16,6 @@ class HomePage extends Component {
     locations: PropTypes.array.isRequired
   };
   /* eslint-enable */
-
-  state = {
-    selectedRest: {}
-  };
 
   componentDidMount() {
     // this.props.getLocations();
@@ -50,23 +45,14 @@ class HomePage extends Component {
     document.getElementById('cardWrapper').scrollTop = topPos;
   };
 
+  // do we need the date here?
   applyStyle = id => {
     if (this.state.isSelected === id);
   };
 
+  // should be moved to redux action as the state of filters will moved be there
   updateFilterCards = filteredCards => {
     this.setState({ filteredCards });
-  };
-
-  toggleCTADialog = restId => {
-    const previousState = this.state.toggleCTADialog;
-    this.setState({ toggleCTADialog: !previousState });
-    this.findRestById(restId);
-  };
-
-  findRestById = restId => {
-    const selectedRest = this.state.filteredCards.find(rest => rest.id === restId);
-    this.setState({ selectedRest });
   };
 
   render() {
@@ -79,8 +65,7 @@ class HomePage extends Component {
             <Filter cards={locations} updateFilterCards={this.updateFilterCards} />
           </Search>
           <Right gridArea="right">
-            <GridCards filteredCards={filteredCards} toggleCTADialog={this.toggleCTADialog} onCardClick={this.onCardClick} />
-            <CallToActionDialog selectedRest={this.state.selectedRest} open={this.state.toggleCTADialog} toggleCTADialog={this.toggleCTADialog} />
+            <GridCards />
           </Right>
           <Left gridArea="left">
             <MapWithMarkers onMarkerClick={this.onMarkerClick} dataMarkers={filteredCards} lat={34} lng={32} />
