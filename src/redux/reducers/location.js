@@ -1,9 +1,12 @@
 import { PENDING_REQUEST, GET_ERROR, SUCCESS_LOCATIONS } from '../constants/location';
+import { cards } from './data';
 
 const initialState = {
-  locations: [],
+  locations: cards,
+  filteredCards: cards,
   gettingLocations: false,
-  Error: false
+  selectedRest: {},
+  error: false
 };
 
 export default (state = initialState, action) => {
@@ -12,14 +15,15 @@ export default (state = initialState, action) => {
       return { ...state, gettingLocations: true };
     case SUCCESS_LOCATIONS:
       return {
-        Error: false,
+        ...state,
         gettingLocations: false,
-        locations: action.payload.data
+        locations: action.payload,
+        filteredCards: action.payload
       };
     case GET_ERROR:
       return {
         ...state,
-        loginError: action.payload.error,
+        error: action.payload,
         gettingLocations: false
       };
     default:

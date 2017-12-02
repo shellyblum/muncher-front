@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import GridCards from '../../components/GridCards/GridCards';
 import { Main, Search, Left, Right, BottomLeft } from './HomePage.styles';
@@ -6,52 +7,24 @@ import MapWithMarkers from '../../components/Maps/MapWithMarkers';
 import Filter from '../../components/Filter/filter';
 import FeaturedCard from '../../components/FeaturedCard/FeaturedCard';
 import CallToActionDialog from '../../components/CallToActionDialog/CallToActionDialog';
-
-import { Api } from '../../assets/api/muncher.api';
-
-const placeHolder = {
-  id: '1',
-  name: 'Muncher - Title1',
-  type: ['takeOut'],
-  generalDesc: 'Muncher - Text1: It is a long established fact that a reader will be distracted.',
-  imageUrl:
-    'http://www.telegraph.co.uk/content/dam/Travel/hotels/europe/spain/canary-islands/tenerife/h10-timanfaya-palace-lanzarote-restaurant-small.jpg',
-  address: {
-    country: 'United States',
-    city: 'Chicago',
-    street: 'South State Street',
-    number: '22/11',
-    lat: 34.4324323,
-    lng: 34.443432
-  }
-};
-
-// const placeHolder = {
-//   id: '0',
-//   image: '',
-//   title: 'Muncher - Title1',
-//   text: '',
-//   action: 'Call now',
-//   city: 'DSW Designer Shoe Warehouse, South State Street, Chicago, IL, United States',
-//   orderType: ['takeOut'],
-//   lng: 34.443432,
-//   lat: 34.4324323
-// };
-
-const SDK = new Api();
+import { getAllLocations } from '../../redux/actions/location';
 
 class HomePage extends Component {
+  // disable strict prop types until we will know back response
+  /* eslint-disable react/forbid-prop-types */
+  static propTypes = {
+    filteredCards: PropTypes.array.isRequired,
+    locations: PropTypes.array.isRequired
+  };
+  /* eslint-enable */
+
   state = {
-    cards: [placeHolder],
-    filteredCards: [placeHolder],
-    toggleCTADialog: false,
     selectedRest: {}
   };
 
-  componentDidMount = async () => {
-    const response = await SDK.locationGetAll();
-    this.setState({ cards: response.data, filteredCards: response.data });
-  };
+  componentDidMount() {
+    // this.props.getLocations();
+  }
 
   onMarkerClick = id => {
     this.onCardClick(id);
@@ -68,7 +41,7 @@ class HomePage extends Component {
   };
 
   getRandomCard() {
-    return this.state.cards[Math.floor(Math.random() * this.state.cards.length)];
+    return this.props.locations[Math.floor(Math.random() * this.props.locations.length)];
   }
 
   scroll = cardId => {
@@ -97,41 +70,23 @@ class HomePage extends Component {
   };
 
   render() {
-    const { filteredCards, cards } = this.state;
+    const { locations, filteredCards } = this.props;
 
     return (
       <div>
         <Main>
           <Search gridArea="search">
-            <Filter cards={cards} updateFilterCards={this.updateFilterCards} />
+            <Filter cards={locations} updateFilterCards={this.updateFilterCards} />
           </Search>
           <Right gridArea="right">
-            <GridCards
-              filteredCards={filteredCards}
-              toggleCTADialog={this.toggleCTADialog}
-              onCardClick={this.onCardClick}
-            />
-            <CallToActionDialog
-              selectedRest={this.state.selectedRest}
-              open={this.state.toggleCTADialog}
-              toggleCTADialog={this.toggleCTADialog}
-            />
+            <GridCards filteredCards={filteredCards} toggleCTADialog={this.toggleCTADialog} onCardClick={this.onCardClick} />
+            <CallToActionDialog selectedRest={this.state.selectedRest} open={this.state.toggleCTADialog} toggleCTADialog={this.toggleCTADialog} />
           </Right>
           <Left gridArea="left">
-            <MapWithMarkers
-              onMarkerClick={this.onMarkerClick}
-              dataMarkers={filteredCards}
-              lat={34}
-              lng={32}
-            />
+            <MapWithMarkers onMarkerClick={this.onMarkerClick} dataMarkers={filteredCards} lat={34} lng={32} />
           </Left>
           <BottomLeft gridArea="bottomLeft">
-            <FeaturedCard
-              special={this.getRandomCard()}
-              cards={cards}
-              toggleCTADialog={this.toggleCTADialog}
-              onCardClick={this.onCardClick}
-            />
+            <FeaturedCard special={this.getRandomCard()} cards={locations} toggleCTADialog={this.toggleCTADialog} onCardClick={this.onCardClick} />
           </BottomLeft>
         </Main>
       </div>
@@ -139,19 +94,17 @@ class HomePage extends Component {
   }
 }
 
-const mapStateToProps = ({ user }) => {
-  const { loginDialogOpen } = user;
+const mapStateToProps = ({ location }) => {
+  const { locations, filteredCards } = location;
   return {
-    loginDialogOpen
+    locations,
+    filteredCards
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  toggleDialog: () => {
-    dispatch();
-  }
+  getLocations: () => dispatch(getAllLocations())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 
-// export default HomePage;
