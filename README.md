@@ -7,5 +7,5 @@ Redux
 
 Styled-Components
 
-Material-UI
+[ant.design](https://ant.design/)
 
