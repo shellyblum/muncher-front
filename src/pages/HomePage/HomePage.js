@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { withRouter } from 'react-router-dom';
 import GridCards from '../../components/GridCards/GridCards';
 import { Main, Search, Left, Right, BottomLeft } from './HomePage.styles';
 import data from './data';
@@ -32,6 +33,11 @@ class HomePage extends Component {
   getRandomCard() {
     return this.state.cards[Math.floor(Math.random() * this.state.cards.length)];
   }
+
+  redirectToLocation = id => {
+    // console.log(id);
+    history.push('/my-new-location')}
+  };
 
   scroll = cardId => {
     const myElement = document.getElementById(cardId);
@@ -71,6 +77,7 @@ class HomePage extends Component {
             <GridCards
               filteredCards={filteredCards}
               toggleCTADialog={this.toggleCTADialog}
+              redirectToLocation={this.redirectToLocation}
               onCardClick={this.onCardClick}
             />
             <CallToActionDialog

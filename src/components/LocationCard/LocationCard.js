@@ -3,13 +3,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'antd';
 
-import { SelectEffect, Paragraph, BtnsWrapper, CallToActionBtn, MapBtn } from '../LocationCard/LocationCard.styled';
+import {
+  SelectEffect,
+  Paragraph,
+  ContentWrapper,
+  BtnsWrapper,
+  CallToActionBtn,
+  MapBtn
+} from '../LocationCard/LocationCard.styled';
 
-const LocationCard = ({ id, image, title, text, action, selected, toggleCTADialog, onCardClick }) => (
+const LocationCard = ({
+  id,
+  image,
+  title,
+  text,
+  action,
+  selected,
+  toggleCTADialog,
+  redirectToLocation,
+  onCardClick
+}) => (
   <SelectEffect style={{ background: selected }} selected={selected}>
-    <h3>{title}</h3>
-    <img alt={title} width="100%" src={image} />
-    <Paragraph>{text}</Paragraph>
+    <ContentWrapper onClick={() => redirectToLocation(id)}>
+      <h3>{title}</h3>
+      <img alt={title} width="100%" src={image} />
+      <Paragraph>{text}</Paragraph>
+    </ContentWrapper>
     <BtnsWrapper>
       <CallToActionBtn onClick={() => toggleCTADialog(id)}>
         <h3>{action}</h3>
@@ -31,6 +50,7 @@ LocationCard.propTypes = {
   action: PropTypes.string,
   selected: PropTypes.string,
   toggleCTADialog: PropTypes.func,
+  redirectToLocation: PropTypes.func,
   onCardClick: PropTypes.func
 };
 
@@ -41,6 +61,7 @@ LocationCard.defaultProps = {
   action: 'Action button',
   selected: null,
   toggleCTADialog: () => null,
+  redirectToLocation: () => null,
   onCardClick: () => null
 };
 
