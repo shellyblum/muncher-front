@@ -35,8 +35,8 @@ class HomePage extends Component {
   }
 
   redirectToLocation = id => {
-    // console.log(id);
-    history.push('/my-new-location')}
+    console.log(id);
+    // history.push('/my-new-location')}
   };
 
   scroll = cardId => {
