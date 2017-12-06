@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Wrapper, Image, MapBtn } from './ListCards.styled';
 
 const ListCards = ({ cards, onCardClick }) => (
-  <Timeline pending={<a href="">See more</a>}>
+  <Timeline pending={<a href="">See more!</a>}>
     {cards.map(card => (
       <Timeline.Item key={card.id}>
         <Wrapper>
