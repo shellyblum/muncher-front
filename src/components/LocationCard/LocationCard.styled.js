@@ -9,7 +9,7 @@ export const Paragraph = styled.p`
   font-size: 1.1em;
 `;
 
-export const ContentWrapper = styled.div`
+export const Content = styled.div`
   cursor: zoom-in;
 `;
 

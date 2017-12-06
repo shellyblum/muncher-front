@@ -34,8 +34,9 @@ class HomePage extends Component {
     return this.state.cards[Math.floor(Math.random() * this.state.cards.length)];
   }
 
-  redirectToLocation = id => {
+  redirectToLocation = (history, id) => {
     console.log(id);
+    history.push(`/location/${id}`);
     // history.push('/my-new-location')}
   };
 

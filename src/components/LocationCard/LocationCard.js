@@ -2,15 +2,8 @@ import 'antd/lib/tooltip/style/css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'antd';
-
-import {
-  SelectEffect,
-  Paragraph,
-  ContentWrapper,
-  BtnsWrapper,
-  CallToActionBtn,
-  MapBtn
-} from '../LocationCard/LocationCard.styled';
+import CardContent from './CardContent';
+import { SelectEffect, BtnsWrapper, CallToActionBtn, MapBtn } from '../LocationCard/LocationCard.styled';
 
 const LocationCard = ({
   id,
@@ -24,11 +17,7 @@ const LocationCard = ({
   onCardClick
 }) => (
   <SelectEffect style={{ background: selected }} selected={selected}>
-    <ContentWrapper onClick={() => redirectToLocation(id)}>
-      <h3>{title}</h3>
-      <img alt={title} width="100%" src={image} />
-      <Paragraph>{text}</Paragraph>
-    </ContentWrapper>
+    <CardContent redirectToLocation={redirectToLocation} title={title} image={image} id={id} text={text} />
     <BtnsWrapper>
       <CallToActionBtn onClick={() => toggleCTADialog(id)}>
         <h3>{action}</h3>
