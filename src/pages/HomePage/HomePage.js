@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { withRouter } from 'react-router-dom';
 import GridCards from '../../components/GridCards/GridCards';
 import { Main, Search, Left, Right, BottomLeft } from './HomePage.styles';
 import data from './data';
@@ -35,9 +34,7 @@ class HomePage extends Component {
   }
 
   redirectToLocation = (history, id) => {
-    console.log(id);
     history.push(`/location/${id}`);
-    // history.push('/my-new-location')}
   };
 
   scroll = cardId => {
