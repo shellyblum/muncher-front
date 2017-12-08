@@ -33,6 +33,10 @@ class HomePage extends Component {
     return this.state.cards[Math.floor(Math.random() * this.state.cards.length)];
   }
 
+  redirectToLocation = (history, id) => {
+    history.push(`/location/${id}`);
+  };
+
   scroll = cardId => {
     const myElement = document.getElementById(cardId);
     const topPos = myElement.parentElement.parentElement.offsetTop;
@@ -71,6 +75,7 @@ class HomePage extends Component {
             <GridCards
               filteredCards={filteredCards}
               toggleCTADialog={this.toggleCTADialog}
+              redirectToLocation={this.redirectToLocation}
               onCardClick={this.onCardClick}
             />
             <CallToActionDialog
