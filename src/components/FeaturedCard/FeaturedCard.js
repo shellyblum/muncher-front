@@ -13,7 +13,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => {
   const FeaturedCards = cards.filter((item, index) => index < 3);
   const FreshOnSiteCards = cards.filter((item, index) => index > 3 && index < 6);
   return (
-    <Tabs tabBarStyle={{ paddingTop: '20px', height: '100%' }} defaultActiveKey="2" tabPosition="left">
+    <Tabs defaultActiveKey="2" tabPosition="left">
       <TabPane
         tab={
           <Span>
@@ -22,15 +22,13 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => {
         }
         key="1"
       >
-        <Wrapper>
-          <LocationCard
-            id={special.id}
-            key={special.title}
-            {...special}
-            toggleCTADialog={toggleCTADialog}
-            onCardClick={onCardClick}
-          />
-        </Wrapper>
+        <LocationCard
+          id={special.id}
+          key={special.title}
+          {...special}
+          toggleCTADialog={toggleCTADialog}
+          onCardClick={onCardClick}
+        />
       </TabPane>
       <TabPane
         tab={
@@ -40,9 +38,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => {
         }
         key="2"
       >
-        <Wrapper>
-          <ListCards onCardClick={onCardClick} cards={FeaturedCards} />
-        </Wrapper>
+        <ListCards onCardClick={onCardClick} cards={cards} />
       </TabPane>
       <TabPane
         tab={
@@ -52,9 +48,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => {
         }
         key="3"
       >
-        <Wrapper>
-          <ListCards onCardClick={onCardClick} cards={FreshOnSiteCards} />
-        </Wrapper>
+        <ListCards onCardClick={onCardClick} cards={cards} />
       </TabPane>
     </Tabs>
   );
