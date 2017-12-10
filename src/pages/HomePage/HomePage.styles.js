@@ -5,7 +5,8 @@ export const Main = styled.div`
   padding: 0 1em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: 'search search search' 'left right right' 'bottomLeft right right'
+  grid-template-areas:
+    'search search search' 'left right right' 'bottomLeft right right'
     'bottomLeft right right';
 `;
 
@@ -29,6 +30,6 @@ export const Left = styled.div`
 
 export const BottomLeft = styled.div`
   border: 1px solid grey;
-  min-height: 200px;
+  height: 450px;
   grid-area: ${({ gridArea }) => gridArea};
 `;

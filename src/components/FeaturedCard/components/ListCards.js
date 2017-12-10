@@ -1,24 +1,34 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Timeline, Tooltip } from 'antd';
 import PropTypes from 'prop-types';
 import { Wrapper, Image, MapBtn } from './ListCards.styled';
 
+const Test = styled.div`
+  padding-top: 7px;
+  border: 1px solid;
+  height: 450px;
+  overflow-y: scroll;
+`;
+
 const ListCards = ({ cards, onCardClick }) => (
-  <Timeline pending={<a href="">See more!</a>}>
-    {cards.map(card => (
-      <Timeline.Item key={card.id}>
-        <Wrapper>
-          <Image alt="example" src={card.image} />
-          {card.title}
-          <MapBtn key={card.id} id={card.id} onClick={() => onCardClick(card.id)}>
-            <Tooltip title="Show on map">
-              <i className="fa fa-map-marker" aria-hidden="true" />
-            </Tooltip>
-          </MapBtn>
-        </Wrapper>
-      </Timeline.Item>
-    ))}
-  </Timeline>
+  <Test>
+    <Timeline pending={<a href="">See more!</a>}>
+      {cards.map(card => (
+        <Timeline.Item key={card.id}>
+          <Wrapper>
+            <Image alt="example" src={card.image} />
+            {card.title}
+            <MapBtn key={card.id} id={card.id} onClick={() => onCardClick(card.id)}>
+              <Tooltip title="Show on map">
+                <i className="fa fa-map-marker" aria-hidden="true" />
+              </Tooltip>
+            </MapBtn>
+          </Wrapper>
+        </Timeline.Item>
+      ))}
+    </Timeline>
+  </Test>
 );
 
 export default ListCards;
