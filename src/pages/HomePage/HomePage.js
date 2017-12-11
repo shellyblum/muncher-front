@@ -96,8 +96,9 @@ class HomePage extends Component {
             <FeaturedCard
               special={this.getRandomCard()}
               cards={cards}
+              redirectToLocation={this.redirectToLocation}
               toggleCTADialog={this.toggleCTADialog}
-              onCardClick={this.onCardClick}
+              onCardClick={this.onMarkerClick}
             />
           </BottomLeft>
         </Main>

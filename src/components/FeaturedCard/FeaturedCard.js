@@ -9,32 +9,33 @@ import { Span } from './FeaturedCard.styled';
 
 const { TabPane } = Tabs;
 
-const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => (
+const FeaturedCard = ({ special, cards, toggleCTADialog, redirectToLocation, onCardClick }) => (
   <Tabs defaultActiveKey="2" tabPosition="left">
     <TabPane
       tab={
         <Span>
           <Icon name="star" className="fa-star" /> Special
         </Span>
-        }
+      }
       key="1"
-      >
+    >
       <LocationCard
         id={special.id}
         key={special.title}
         {...special}
+        redirectToLocation={redirectToLocation}
         toggleCTADialog={toggleCTADialog}
         onCardClick={onCardClick}
-        />
+      />
     </TabPane>
     <TabPane
       tab={
         <span>
           <Icon name="bolt" className="fa-bolt" /> Featured list
         </span>
-        }
+      }
       key="2"
-      >
+    >
       <ListCards onCardClick={onCardClick} cards={cards} />
     </TabPane>
     <TabPane
@@ -42,9 +43,9 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => (
         <span>
           <Icon name="money" className="fa-money" /> Fresh on site
         </span>
-        }
+      }
       key="3"
-      >
+    >
       <ListCards onCardClick={onCardClick} cards={cards} />
     </TabPane>
   </Tabs>
@@ -53,6 +54,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, onCardClick }) => (
 export default FeaturedCard;
 
 FeaturedCard.propTypes = {
+  redirectToLocation: PropTypes.func,
   toggleCTADialog: PropTypes.func,
   onCardClick: PropTypes.func,
   cards: PropTypes.arrayOf(PropTypes.shape({
@@ -79,6 +81,7 @@ FeaturedCard.propTypes = {
 };
 
 FeaturedCard.defaultProps = {
+  redirectToLocation: () => null,
   toggleCTADialog: () => null,
   onCardClick: () => null,
   special: {
