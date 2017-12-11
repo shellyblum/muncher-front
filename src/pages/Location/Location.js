@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Menu from '../../components/Menu/Menu';
 import ImageShow from '../../components/ImageShow/ImageShow';
 import ReviewList from '../../components/Reviews/ReviewList';
 import images from './images';
