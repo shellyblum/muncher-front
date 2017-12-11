@@ -1,19 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Timeline, Tooltip } from 'antd';
 import PropTypes from 'prop-types';
-import { Wrapper, Image, MapBtn } from './ListCards.styled';
-
-const Test = styled.div`
-  padding-top: 7px;
-  border: 1px solid;
-  height: 450px;
-  overflow-y: scroll;
-`;
+import { ListCardWrapper, Wrapper, Image, MapBtn } from './ListCards.styled';
 
 const ListCards = ({ cards, onCardClick }) => (
-  <Test>
-    <Timeline pending={<a href="">See more!</a>}>
+  <ListCardWrapper>
+    <Timeline>
       {cards.map(card => (
         <Timeline.Item key={card.id}>
           <Wrapper>
@@ -28,7 +20,7 @@ const ListCards = ({ cards, onCardClick }) => (
         </Timeline.Item>
       ))}
     </Timeline>
-  </Test>
+  </ListCardWrapper>
 );
 
 export default ListCards;

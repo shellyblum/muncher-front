@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const ListCardWrapper = styled.div`
+  padding-top: 7px;
+  height: 450px;
+  overflow-y: scroll;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
