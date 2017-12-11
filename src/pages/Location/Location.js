@@ -25,7 +25,6 @@ const location = () => (
   <div>
     <LocationWrapper>
       <ImageShow data={images} />
-      <Menu grid="2fr" />
       <ReviewsWrapper>
         <ReviewList data={reviews} />
       </ReviewsWrapper>
