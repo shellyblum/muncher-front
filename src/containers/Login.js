@@ -12,11 +12,7 @@ import messages from '../helpers/messages';
 const LoginDialog = ({ toggleDialog, loginDialogOpen }) => {
   const actions = [
     <Link to="/signup">
-      <FlatButton
-        label="Not registered? Register now!"
-        primary
-        onClick={toggleDialog}
-      />
+      <FlatButton label="Not registered? Register now!" primary onClick={toggleDialog} />
     </Link>,
     <FlatButton label="Cancel" secondary onClick={toggleDialog} />
   ];
