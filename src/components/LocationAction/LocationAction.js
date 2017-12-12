@@ -9,6 +9,7 @@ import Menu from '../../components/Menu/Menu';
 import { Wrapper, Span } from './LocationAction.styled';
 
 const { TabPane } = Tabs;
+const phoneNumber = 900300400;
 
 function callback(key) {
   console.log(key);
@@ -22,7 +23,7 @@ const LocationAction = () => (
         shape="circle"
         icon="phone"
         size="large"
-        onClick={() => console.log('Calling')}
+        onClick={() => window.open(`tel:${phoneNumber}`)}
       />
     </TabPane>
     <TabPane tab="Book a seat" key="2">
