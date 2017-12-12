@@ -24,7 +24,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/login" component={LoginForm} />
-          <Route path="/signup" component={LoginForm} />
+          <Route path="/signup" component={SignupPage} />
           <Route path="/location" component={Location} />
           <Route exact path="/dashboard" component={DashBoardPage} />
           <Route component={() => <h1>Oops.. page not found</h1>} />
