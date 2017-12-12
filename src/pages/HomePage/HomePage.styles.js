@@ -22,13 +22,13 @@ export const Right = styled.div`
 `;
 
 export const Left = styled.div`
-  height: 400px;
+  height: 40vh;
   margin-bottom: 5px;
   margin-right: 5px;
   grid-area: ${({ gridArea }) => gridArea};
 `;
 
 export const BottomLeft = styled.div`
-  height: 450px;
+  height: 40vh;
   grid-area: ${({ gridArea }) => gridArea};
 `;

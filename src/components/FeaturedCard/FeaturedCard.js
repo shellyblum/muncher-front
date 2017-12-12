@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import 'antd/lib/card/style/css';
+import 'antd/dist/antd.css';
 import { Tabs } from 'antd';
 import { Icon } from 'react-fa';
 import LocationCard from '../LocationCard/LocationCard';
-import ListCards from './components/ListCards';
-import { Span } from './FeaturedCard.styled';
+import TimeLine from './components/TimeLine';
+import IconWrapper from './FeaturedCard.styled';
 
 const { TabPane } = Tabs;
 
@@ -13,9 +13,9 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, redirectToLocation, onC
   <Tabs defaultActiveKey="2" tabPosition="left">
     <TabPane
       tab={
-        <Span>
+        <IconWrapper>
           <Icon name="star" className="fa-star" /> Special
-        </Span>
+        </IconWrapper>
       }
       key="1"
     >
@@ -36,7 +36,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, redirectToLocation, onC
       }
       key="2"
     >
-      <ListCards onCardClick={onCardClick} cards={cards} />
+      <TimeLine onCardClick={onCardClick} cards={cards} />
     </TabPane>
     <TabPane
       tab={
@@ -46,7 +46,7 @@ const FeaturedCard = ({ special, cards, toggleCTADialog, redirectToLocation, onC
       }
       key="3"
     >
-      <ListCards onCardClick={onCardClick} cards={cards} />
+      <TimeLine onCardClick={onCardClick} cards={cards} />
     </TabPane>
   </Tabs>
 );

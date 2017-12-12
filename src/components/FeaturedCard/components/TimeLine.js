@@ -1,7 +1,7 @@
 import React from 'react';
 import { Timeline, Tooltip } from 'antd';
 import PropTypes from 'prop-types';
-import { ListCardWrapper, Wrapper, Image, MapBtn } from './ListCards.styled';
+import { ListCardWrapper, Wrapper, Image, MapBtn } from './TimeLine.styled';
 
 const ListCards = ({ cards, onCardClick }) => (
   <ListCardWrapper>

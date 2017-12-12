@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ListCardWrapper = styled.div`
   padding-top: 7px;
-  height: 450px;
+  height: 40vh;
   overflow-y: scroll;
 `;
 
