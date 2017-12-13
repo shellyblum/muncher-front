@@ -90,6 +90,7 @@ class HomePage extends Component {
               dataMarkers={filteredCards}
               lat={34}
               lng={32}
+              defaultZoom={4}
             />
           </Left>
           <BottomLeft gridArea="bottomLeft">
