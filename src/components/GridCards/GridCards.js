@@ -9,7 +9,6 @@ const GridCards = ({ filteredCards, toggleCTADialog, redirectToLocation, onCardC
     id="cardWrapper"
     style={{ scrollBehavior: 'smooth', height: 'calc(100vh - 112px)', overflowY: 'scroll' }}
     bordered={false}
-    noHovering
   >
     {filteredCards.map(tile => (
       <Card.Grid
