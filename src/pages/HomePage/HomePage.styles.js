@@ -5,7 +5,8 @@ export const Main = styled.div`
   padding: 0 1em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: 'search search search' 'left right right' 'bottomLeft right right'
+  grid-template-areas:
+    'search search search' 'left right right' 'bottomLeft right right'
     'bottomLeft right right';
 `;
 
@@ -21,14 +22,13 @@ export const Right = styled.div`
 `;
 
 export const Left = styled.div`
-  height: 400px;
+  height: 40vh;
   margin-bottom: 5px;
   margin-right: 5px;
   grid-area: ${({ gridArea }) => gridArea};
 `;
 
 export const BottomLeft = styled.div`
-  border: 1px solid grey;
-  min-height: 200px;
+  height: 40vh;
   grid-area: ${({ gridArea }) => gridArea};
 `;

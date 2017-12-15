@@ -12,7 +12,13 @@ class HomePage extends Component {
     cards: data.cards,
     filteredCards: data.cards,
     toggleCTADialog: false,
-    selectedRest: {}
+    selectedRest: {},
+    special: {}
+  };
+
+  componentWillMount = () => {
+    const special = this.getRandomCard();
+    this.setState({ special });
   };
 
   onMarkerClick = id => {
@@ -63,7 +69,7 @@ class HomePage extends Component {
   };
 
   render() {
-    const { filteredCards, cards } = this.state;
+    const { special, filteredCards, cards } = this.state;
 
     return (
       <div>
@@ -90,14 +96,16 @@ class HomePage extends Component {
               dataMarkers={filteredCards}
               lat={34}
               lng={32}
+              defaultZoom={4}
             />
           </Left>
           <BottomLeft gridArea="bottomLeft">
             <FeaturedCard
-              special={this.getRandomCard()}
+              special={special}
               cards={cards}
+              redirectToLocation={this.redirectToLocation}
               toggleCTADialog={this.toggleCTADialog}
-              onCardClick={this.onCardClick}
+              onCardClick={this.onMarkerClick}
             />
           </BottomLeft>
         </Main>
