@@ -42,12 +42,12 @@ const MapWithAMarkerClusterer = compose(
   </GoogleMap>
 ));
 
-const MapWithMarkers = ({ onMarkerClick, dataMarkers, lat, lng }) => (
-  <MapWithAMarkerClusterer onMarkerClick={onMarkerClick} markers={dataMarkers} lat={lat} lng={lng} />
+const MapWithMarkers = ({ onMarkerClick, dataToShow, lat, lng }) => (
+  <MapWithAMarkerClusterer onMarkerClick={onMarkerClick} markers={dataToShow} lat={lat} lng={lng} />
 );
 
 MapWithMarkers.propTypes = {
-  dataMarkers: PropTypes.arrayOf(Object).isRequired,
+  dataToShow: PropTypes.arrayOf(Object).isRequired,
   onMarkerClick: PropTypes.func.isRequired,
   lat: PropTypes.number.isRequired,
   lng: PropTypes.number.isRequired

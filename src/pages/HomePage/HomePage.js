@@ -7,13 +7,21 @@ import Filter from '../../components/Filter/filter';
 import FeaturedCard from '../../components/FeaturedCard/FeaturedCard';
 import CallToActionDialog from '../../components/CallToActionDialog/CallToActionDialog';
 
+const itemsPerPage = 6;
+
 class HomePage extends Component {
   state = {
     cards: data.cards,
     filteredCards: data.cards,
+    dataToShow: [],
     toggleCTADialog: false,
     selectedRest: {}
   };
+
+  componentWillMount() {
+    const dataToShow = data.cards.slice(0, itemsPerPage - 1);
+    this.setState({ dataToShow });
+  }
 
   onMarkerClick = id => {
     this.onCardClick(id);
@@ -32,6 +40,9 @@ class HomePage extends Component {
   getRandomCard() {
     return this.state.cards[Math.floor(Math.random() * this.state.cards.length)];
   }
+  updateShownCards = dataToShow => {
+    this.setState({ dataToShow });
+  };
 
   redirectToLocation = (history, id) => {
     history.push(`/location/${id}`);
@@ -63,7 +74,7 @@ class HomePage extends Component {
   };
 
   render() {
-    const { filteredCards, cards } = this.state;
+    const { filteredCards, cards, dataToShow } = this.state;
 
     return (
       <div>
@@ -73,6 +84,8 @@ class HomePage extends Component {
           </Search>
           <Right gridArea="right">
             <GridCards
+              itemsPerPage={itemsPerPage}
+              updateShownCards={this.updateShownCards}
               filteredCards={filteredCards}
               toggleCTADialog={this.toggleCTADialog}
               redirectToLocation={this.redirectToLocation}
@@ -86,6 +99,7 @@ class HomePage extends Component {
           </Right>
           <Left gridArea="left">
             <MapWithMarkers
+              dataToShow={dataToShow}
               onMarkerClick={this.onMarkerClick}
               dataMarkers={filteredCards}
               lat={34}
