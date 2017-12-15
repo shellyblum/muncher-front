@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Menu from '../../components/Menu/Menu';
 import ImageShow from '../../components/ImageShow/ImageShow';
 import ReviewList from '../../components/Reviews/ReviewList';
-import LocationAction from '../../components/LocationAction/LocationAction';
 import images from './images';
 import reviews from './reviews';
 import MapWithMarkers from '../../components/Maps/MapWithMarkers';
